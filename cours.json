@@ -3,7 +3,7 @@
     "course_name": "cloud",
     "course_description": "Formation Cloud",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "intro",
       "cloud/cloud-introduction",
       "cloud/cloud"
@@ -13,7 +13,7 @@
     "course_name": "openstack",
     "course_description": "Formation OpenStack administrateur",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "intro",
       "cloud/cloud-introduction",
       "openstack/openstack-user-introduction",
@@ -33,7 +33,7 @@
     "course_name": "openstack-ops",
     "course_description": "Formation OpenStack administrateur",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "intro",
       "openstack/openstack-introduction",
       "openstack/openstack-presentation",
@@ -48,7 +48,7 @@
     "course_name": "openstack-user",
     "course_description": "Formation OpenStack utilisateur",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "intro",
       "cloud/cloud-introduction",
       "openstack/openstack-introduction",
@@ -65,7 +65,7 @@
     "course_name": "openstack-admin-user",
     "course_description": "Formation OpenStack Ops Users",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "intro",
       "openstack/openstack-user-introduction",
       "openstack/openstack-introduction",
@@ -84,7 +84,7 @@
     "course_name": "docker",
     "course_description": "Formation Docker",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "containers/containers-introduction",
       "containers/containers-runtimes",
       "containers/docker-concepts",
@@ -103,7 +103,7 @@
     "course_name": "kubernetes",
     "course_description": "Formation Kubernetes",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
@@ -123,7 +123,7 @@
     "course_name": "kubernetes-user",
     "course_description": "Formation Kubernetes Utilisateur",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
@@ -141,7 +141,7 @@
     "course_name": "kubernetes-ops",
     "course_description": "Formation Kubernetes Opérateur",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-installation",
@@ -154,7 +154,7 @@
     "course_name": "Amazon Web Services",
     "course_description": "Formation Cloud Amazon Web Services",
     "modules": [
-      "intro-awcc",
+      "intro-particule",
       "aws/iam",
       "aws/networking",
       "aws/conclusion"

@@ -76,7 +76,7 @@ display_help() {
 
     -o output           Output format (html, pdf or all). Default: all
 
-    -t theme            Theme to use. Default: awcc
+    -t theme            Theme to use. Default: particule
 
     -u revealjsURL      RevealJS URL that need to be use. If you build formation
                         supports on local environment you should git
@@ -109,10 +109,10 @@ while getopts ":o:t:u:c:l:h" OPT; do
     esac
 done
 
-[[ $REVEALJSURL == "" ]] && REVEALJSURL="https://osones.com/formations/revealjs"
+[[ $REVEALJSURL == "" ]] && REVEALJSURL="https://dev.particule.io/formations/revealjs"
 
 if [[ $THEME == "" ]]; then
-  THEME="awcc"
+  THEME="particule"
 else
   ls styles/"$THEME".css &> /dev/null
   [ $? -eq 2 ] && echo "Theme $THEME doesn't exist" && exit 1

@@ -1,0 +1,31 @@
+branches:
+  only:
+  - master
+services:
+  - docker
+before_install:
+  - docker pull osones/revealjs-builder:stable
+  - docker pull osones/wkhtmltopdf:stable
+script:
+    - for dir in styles/* ; do if [ -d "$dir" ] ; then aws s3 cp "$dir".css s3://AWS_S3_BUCKET/formations/revealjs/css/theme/ && aws s3 cp "$(basename $dir)" s3://$AWS_S3_BUCKET/formations/revealjs/css/theme/"$(basename $dir)" --recursive ; fi ; done
+    - /bin/bash -x build.sh -l fr
+    - /bin/bash -x build.sh -l en
+deploy:
+- provider: s3
+  skip_cleanup: true
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_S3_BUCKET
+  region: $AWS_DEFAULT_REGION
+  acl: public_read
+  local_dir: output-html
+  upload-dir: formations
+- provider: s3
+  skip_cleanup: true
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_S3_BUCKET
+  region: $AWS_DEFAULT_REGION
+  acl: public_read
+  local_dir: output-pdf
+  upload-dir: formations/pdf

@@ -40,7 +40,7 @@ build-html() {
     # Header2 are only usefull for beamer, they need to be replaced with Header3 for revealjs interpretation
     sed -i 's/^## /### /' "$COURS_DIR"/slide-"$cours"
     echo "Build "$TITLE" "$LANUGAGE" ("$OUTPUT")"
-    docker run --rm -v $PWD:/formations osones/revealjs-builder:"$DOCKER_TAG" \
+    docker run --rm -v $PWD:/formations particule/revealjs-builder:"$DOCKER_TAG" \
       --standalone \
       --template=/formations/templates/template.revealjs \
       --slide-level 3 \
@@ -49,7 +49,7 @@ build-html() {
       -V revealjs-url="$REVEALJSURL" \
       -V slideNumber=true \
       -V title="$TITLE" \
-      -V institute="alter way Cloud Consulting" \
+      -V institute="particule" \
       -o /formations/output-html/"$cours"."$LANGUAGE".html \
       /formations/"$COURS_DIR"/slide-"$cours"
     rm -f "$COURS_DIR"/slide-"$cours"
@@ -62,7 +62,7 @@ build-pdf() {
     docker run --rm \
       -v $PWD/output-pdf:/output \
       -v $PWD/output-html/"$cours"."$LANGUAGE".html:/index.html \
-      -v $PWD/images:/images osones/wkhtmltopdf:$DOCKER_TAG \
+      -v $PWD/images:/images particule/wkhtmltopdf:$DOCKER_TAG \
           -O landscape \
           -s A5 \
           -T 0 -B 0 file:///index.html\?print-pdf /output/"$cours"."$LANGUAGE".pdf
@@ -83,7 +83,7 @@ display_help() {
                         clone https://github.com/hakimel/reveal.js and set
                         this variable to your local copy.
                         This option is also necessary even if you only want PDF
-                        output. Default: https://osones.com/formations/revealjs
+                        output. Default: https://particule.io/formations/revealjs
 
     -c course           Course to build, "all" for build them all !
 

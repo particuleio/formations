@@ -88,15 +88,15 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: osones
+  name: particule
 spec:
   rules:
-  - host: blog.osones.com
+  - host: blog.particule.io
     http:
       paths:
       - path: /
         backend:
-          serviceName: osones-nodeport
+          serviceName: particule-nodeport
           servicePort: 80
 ```
 

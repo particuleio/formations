@@ -17,13 +17,13 @@
 #               texlive-extra-utils (pdfnup)
 
 # These vars can be overridden
-author="Team alter way Cloud Consulting"
-institute="alter way Cloud Consulting"
+author="Team Particule"
+institute="Particule"
 date="$$(date +'%d %B %Y')"
 lang=fr
 
 # Where to get revealjs stuff
-revealjsurl=https://osones.com/formations/revealjs
+revealjsurl=https://particule.io/formations/revealjs
 
 # Definition of cours based on modules
 cours=cours.json

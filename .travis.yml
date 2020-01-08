@@ -4,8 +4,8 @@ branches:
 services:
 - docker
 before_install:
-- docker pull osones/revealjs-builder:stable
-- docker pull osones/wkhtmltopdf:stable
+  - docker pull particule/revealjs-builder:stable
+  - docker pull particule/wkhtmltopdf:stable
 script:
 - for dir in styles/* ; do if [ -d "$dir" ] ; then aws s3 cp "$dir".css s3://AWS_S3_BUCKET/formations/revealjs/css/theme/
   && aws s3 cp "$(basename $dir)" s3://$AWS_S3_BUCKET/formations/revealjs/css/theme/"$(basename

@@ -7,7 +7,7 @@ ex Osones - <https://cloud-consulting.alterway.fr>
 
 ![Logo particule](images/logo-particule.png){height="70px"}
 
-- Copyright © 2014 - 2020 particule.
+- Copyright © 2020 particule.
 - Licence : [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.fr)
 - Sources : <https://github.com/particuleio/formations/>
 - HTML/PDF : <https://particule.io/formations/>

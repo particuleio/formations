@@ -1,29 +1,29 @@
-# Supports de formation alter way Cloud Consulting
+# Supports de formation Particule
 
-![Build Status](https://codebuild.eu-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiUkRNdlZtY2JhbVlPb3ZJaDExeXlwT2hjRVhocmRVUGRQRnZtZCsyM0g4RGp2WHZKMzhUWUcxd0xSWVJncUNzRllCTFJBZmwrMTE5Q01iN0d5MEQ2aVZZPSIsIml2UGFyYW1ldGVyU3BlYyI6ImpzWHAzUXJDVUd5MlAxQzQiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+[![Build Status](https://travis-ci.com/particuleio/formations.svg?branch=master)](https://travis-ci.com/particuleio/formations)
 
-Supports de formation (sous forme de slides) écrits en Français et traduits en Anglais et réalisés par [alter way Cloud Consulting](https://alterway.fr/) (ex Osones) pour ses offres de [formation](https://formation.alterway.fr/cloud/).
+Supports de formation (sous forme de slides) écrits en Français et traduits en Anglais et réalisés originellement par les employés d'[alter way Cloud Consulting](https://cloud-consulting.alterway.fr/) (ex Osones) et repris depuis 2020 par [Particule](https://particule.io) pour ses offres de [formation](https://particule.io/formations/).
 
-Sont notamment abordés les sujets suivants : le cloud, sa philosophie, le projet OpenStack, l'utilisation d'OpenStack, le déploiement d'OpenStack, le principe des conteneurs, le projet Docker, l'utilisation de Docker, l'orchestration de conteneurs Docker.
+Sont notamment abordés les sujets suivants : le cloud, sa philosophie, le projet Kubernetes, l'administration et l'utilisation de Kubernetes, le principe des conteneurs, l'utilisation de Docker, le projet OpenStack, l'utilisation d'OpenStack, le déploiement d'OpenStack.
 
-Sources : <https://github.com/Osones/formations/>
+Sources : <https://github.com/particuleio/formations/>
 
-Auteurs :
+Auteurs originaux :
 
-* Adrien Cunin <adrien.cunin@alterway.fr>
-* Pierre Freund <pierre.freund@alterway.fr>
-* Romain Guichard <romain.guichard@alterway.fr>
-* Kevin Lefevre <kevin.lefevre@alterway.fr>
-* Jean-François Taltavull <jean-francois.taltavull@alterway.fr>
+* Adrien Cunin <adrien@adriencuin.fr>
+* Pierre Freund <pierre.freund@gmail.com>
+* Romain Guichard <romain@particule.io>
+* Kevin Lefevre <kevin@particule.io>
+* Jean-François Taltavull <jftalta@gmail.com>
 
-HTML et PDF construits automatiquement : <https://osones.com/formations/>
+HTML et PDF construits automatiquement : <https://particule.io/formations/>
 
-* OpenStack User [PDF](https://osones.com/formations/pdf/openstack-user.fr.pdf)/[HTML](https://osones.com/formations/openstack-user.fr.html)
-* OpenStack Ops [PDF](https://osones.com/formations/pdf/openstack-ops.fr.pdf)/[HTML](https://osones.com/formations/openstack-ops.fr.html)
-* Kubernetes User [PDF](https://osones.com/formations/pdf/kubernetes-user.fr.pdf)/[HTML](https://osones.com/formations/kubernetes-user.fr.html)
-* Kubernetes Ops [PDF](https://osones.com/formations/pdf/kubernetes-ops.fr.pdf)/[HTML](https://osones.com/formations/kubernetes-ops.fr.html)
-* Cloud [PDF](https://osones.com/formations/pdf/cloud.fr.pdf)/[HTML](https://osones.com/formations/cloud.fr.html)
-* Docker [PDF](https://osones.com/formations/pdf/docker.fr.pdf)/[HTML](https://osones.com/formations/docker.fr.html)
+* OpenStack User [PDF](https://particule.io/formations/pdf/openstack-user.fr.pdf)/[HTML](https://particule.io/formations/openstack-user.fr.html)
+* OpenStack Ops [PDF](https://particule.io/formations/pdf/openstack-ops.fr.pdf)/[HTML](https://particule.io/formations/openstack-ops.fr.html)
+* Kubernetes User [PDF](https://particule.io/formations/pdf/kubernetes-user.fr.pdf)/[HTML](https://particule.io/formations/kubernetes-user.fr.html)
+* Kubernetes Ops [PDF](https://particule.io/formations/pdf/kubernetes-ops.fr.pdf)/[HTML](https://particule.io/formations/kubernetes-ops.fr.html)
+* Cloud [PDF](https://particule.io/formations/pdf/cloud.fr.pdf)/[HTML](https://particule.io/formations/cloud.fr.html)
+* Docker [PDF](https://particule.io/formations/pdf/docker.fr.pdf)/[HTML](https://particule.io/formations/docker.fr.html)
 
 ## Prérequis
 
@@ -65,8 +65,8 @@ et de ne pas "encrasser" le système hôte avec des paquets dont l'utilisation e
 
 Les Dockerfiles des images Docker sont disponibles ici :
 
-- [revealjs-builder](https://hub.docker.com/r/osones/revealjs-builder)
-- [wkhtmltopdf](https://hub.docker.com/r/osones/wkhtmltopdf)
+- [revealjs-builder](https://hub.docker.com/r/particule/revealjs-builder)
+- [wkhtmltopdf](https://hub.docker.com/r/particule/wkhtmltopdf)
 
 Un daemon Docker est donc le seul pré-requis pour le build via `build.sh`
 
@@ -75,14 +75,14 @@ Un daemon Docker est donc le seul pré-requis pour le build via `build.sh`
 
     -o output           Output format (html, pdf or all). Default: all
 
-    -t theme            Theme to use. Default: awcc
+    -t theme            Theme to use. Default: particule
 
     -u revealjsURL      RevealJS URL that need to be use. If you build formation
                         supports on local environment you should git
                         clone https://github.com/hakimel/reveal.js and set
                         this variable to your local copy.
                         This option is also necessary even if you only want PDF
-                        output. Default: https://osones.com/formations/revealjs
+                        output. Default: https://particule.io/formations/revealjs
 
     -c course           Course to build, "all" for build them all !
 
@@ -147,6 +147,7 @@ make openstack.html
 Tous les contenus originaux (Makefile, scripts, fichiers dans `cours/`) sont :
 
 * Copyright © 2014-2019 alter way Cloud Consulting
+* Depuis 2020, tous les commits sont la propriété de leurs auteurs respectifs
 * Distribués sous licence Creative Commons BY-SA 4.0 (<https://creativecommons.org/licenses/by-sa/4.0/>)
 
 ![Creative Commons BY-SA](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png)

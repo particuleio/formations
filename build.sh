@@ -109,7 +109,7 @@ while getopts ":o:t:u:c:l:h" OPT; do
     esac
 done
 
-[[ $REVEALJSURL == "" ]] && REVEALJSURL="https://dev.particule.io/formations/revealjs"
+[[ $REVEALJSURL == "" ]] && REVEALJSURL="https://particule.io/formations/revealjs"
 
 if [[ $THEME == "" ]]; then
   THEME="particule"

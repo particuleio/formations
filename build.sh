@@ -47,7 +47,7 @@ build-html() {
       -V theme="$THEME" \
       -V navigation=frame \
       -V revealjs-url="$REVEALJSURL" \
-      -V slideNumber=true \
+      -V slideNumber=\"c/t\" \
       -V title="$TITLE" \
       -V institute="particule" \
       -o /formations/output-html/"$cours"."$LANGUAGE".html \

@@ -93,7 +93,8 @@
       "containers/docker-hosts",
       "containers/docker-orchestration",
       "containers/docker-monitoring",
-      "containers/kubernetes/k8s-concepts",
+      "containers/kubernetes/k8s-core-api-objects",
+      "containers/kubernetes/k8s-networking",
       "containers/kubernetes/k8s-architecture",
       "containers/k8s-openshift-introduction",
       "containers/kubernetes/conclusion"

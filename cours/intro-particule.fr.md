@@ -2,15 +2,13 @@
 
 ### Supports de cours réalisés par Particule
 
-ex Alterway - <https://cloud-consulting.alterway.fr>
-ex Osones - <https://cloud-consulting.alterway.fr>
-
-![Logo particule](images/logo-particule.png){height="70px"}
-
+- ex [Osones/Alterway](https://cloud-consulting.alterway.fr)
+- Copyright © 2014-2019 alter way Cloud Consulting
 - Copyright © 2020 particule.
+- Depuis 2020, tous les commits sont la propriété de leurs auteurs respectifs
 - Licence : [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.fr)
 - Sources : <https://github.com/particuleio/formations/>
 - HTML/PDF : <https://particule.io/formations/>
 
-![Licence Creative Commons BY-SA 4.0](images/licence.png){height="30px"}
+![](images/licence.png){height="30px"}
 

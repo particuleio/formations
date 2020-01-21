@@ -56,6 +56,37 @@ spec:
         cpu: "500m"
 ```
 
+### Horizontal Autoscaling
+
+- Permet de scaler automatiquement le nombre de pods d'un deployment
+- Métriques classiques (CPU/RAM): En fonction d'un % de la request CPU/RAM
+- Métriques custom (Applicative)
+  
+
+### Horizontal Autoscaling
+
+```yaml
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: php-apache
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: php-apache
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+```
+
 ### LimitRanges
 
 - l'objet `LimitRange` permet de définir les valeurs minimales et maximales des ressources utilisées par les containers et les pods
@@ -99,4 +130,3 @@ spec:
     limits.cpu: 600m
     limits.memory: 500Mi
 ```
-

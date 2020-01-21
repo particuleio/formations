@@ -119,7 +119,7 @@ spec:
 - Utilisé pour des besoins particuliers comme :
     - l'exécution d'agents de collection de logs comme `fluentd` ou `logstash`
     - l'exécution de pilotes pour du matériel comme `nvidia-plugin`
-    - l'exécution d'agents de supervision comme NewRelic agent, Prometheus node exporter
+    - l'exécution d'agents de supervision comme NewRelic agent ou Prometheus node exporter
 
 ### Kubernetes : DaemonSet
 
@@ -140,32 +140,9 @@ spec:
       labels:
         name: fluentd-elasticsearch
     spec:
-      tolerations:
-      - key: node-role.kubernetes.io/master
-        effect: NoSchedule
       containers:
       - name: fluentd-elasticsearch
         image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
-        resources:
-          limits:
-            memory: 200Mi
-          requests:
-            cpu: 100m
-            memory: 200Mi
-        volumeMounts:
-        - name: varlog
-          mountPath: /var/log
-        - name: varlibdockercontainers
-          mountPath: /var/lib/docker/containers
-          readOnly: true
-      terminationGracePeriodSeconds: 30
-      volumes:
-      - name: varlog
-        hostPath:
-          path: /var/log
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
 ```
 
 ### Kubernetes : StatefulSet
@@ -189,13 +166,12 @@ spec:
     matchLabels:
       app: nginx # has to match .spec.template.metadata.labels
   serviceName: "nginx"
-  replicas: 3 # by default is 1
+  replicas: 3
   template:
     metadata:
       labels:
         app: nginx # has to match .spec.selector.matchLabels
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
       - name: nginx
         image: k8s.gcr.io/nginx-slim:0.8
@@ -255,19 +231,19 @@ spec:
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-    name: batch-job-every-fifteen-minutes
+  name: batch-job-every-fifteen-minutes
 spec:
-    schedule: "0,15,30,45 * * * *"
-    jobTemplate:
+  schedule: "0,15,30,45 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: periodic-batch-job
         spec:
-            template:
-                metadata:
-                    labels:
-                        app: periodic-batch-job
-                spec:
-                    restartPolicy: OnFailure
-                    containers:
-                    -  name: pi
-                       image: perl
-                       command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+          restartPolicy: OnFailure
+          containers:
+          -  name: pi
+             image: perl
+             command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
 ```

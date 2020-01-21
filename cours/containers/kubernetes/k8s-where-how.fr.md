@@ -1,11 +1,11 @@
-# Kubernetes: ou deployer et comment ?
+# Kubernetes: où deployer et comment ?
 
 ### Bare metal, private et public Clouds
 
-![](images/kubernetes/azure_h.png){height="50px"}
-![](images/kubernetes/aws_h.png){height="50px"}
-![](images/kubernetes/gcp_h.png){height="50px"}
-![](images/kubernetes/magnum_h.png){height="50px"}
+![azure](images/kubernetes/azure_h.png){height="50px"}
+![aws](images/kubernetes/aws_h.png){height="50px"}
+![gcp](images/kubernetes/gcp_h.png){height="50px"}
+![magnum](images/kubernetes/magnum_h.png){height="50px"}
 
 Managed - Kops - Kubespray - Kubeadm - Kube-aws - Symplegma
 
@@ -17,7 +17,7 @@ Cluster Lifecycle
 
 ### Infrastucture as code
 
-IaC: Infrastructure as Code
+IaC : Infrastructure as Code
 
 ▼
 
@@ -25,9 +25,9 @@ Terraform - CloudFormation - Cloud Deployment Manager - OpenStack Heat - Azure R
 
 ▼
 
-Declarative infrastructure
+Infrastructure déclarée
 
-Immutable infrastructure
+Infrastructure immuable
 
 ### Implémentation de référence
 
@@ -35,7 +35,7 @@ Immutable infrastructure
 
 ### Que choisir ?
 
-*Je veux utiliser Kubernetes*
+**Je veux utiliser Kubernetes**
 
 *Cloud ?*
 
@@ -49,8 +49,9 @@ Immutable infrastructure
 
 ### Local Kubernetes
 
-- [Minikube](https://github.com/kubernetes/minikube): Machines virtuelle locale
+- [Minikube](https://github.com/kubernetes/minikube): Machine virtuelle locale
 - [Kind](https://github.com/kubernetes-sigs/kind): Kubernetes in Docker
+- [k3s](http://github.com/rancher/k3s): Kubernetes léger
 - [Docker for Mac/Windows](https://docs.docker.com/docker-for-mac/)
 
 ### Kubernetes managé
@@ -90,6 +91,34 @@ Immutable infrastructure
 - Kubernetes v1.16.X : Stein release
 - Proposé sur certains public cloud basés sur OpenStack
 
+### Outils de déploiements agnostiques
+
+### kubeadm
+
+- Outil **officiel** de la communauté
+- Stable depuis v1.13.0
+- Ne provisionne pas de machine
+- Facilement personnalisabe
+- Respect des best practices
+- Kubernetes v1.17.X
+- Peut être utilisé par d'autres outils
+
+### kubespray
+
+- Basé sur Ansible
+- Dense, permet d'installer un nombre important de plugins
+- Multiples OS
+- Support Kubeadm
+- Kubernetes v1.16.X
+
+### symplegma
+
+- Basé sur Ansible
+- Inspiré de Kubespray en plus léger
+- CoreOS/Ubuntu
+- Full Kubeadm
+- Kubernetes v1.17.X
+
 ### Outils de déploiements spécifiques
 
 ### kube-aws
@@ -105,35 +134,8 @@ Immutable infrastructure
 - Déploie sur AWS/GCP/OpenStack et Digital Ocean
 - Cycle de release lent
 - Facilement personnalisable
-- Multiple OS
+- Multiples OS
 - Kubernetes v1.15.X
 - Supporte Cloudformation and Terraform
 
-### Outils de déploiements agnostiques
-
-### kubeadm
-
-- Outil officiel de la communauté
-- Stable depuis v1.13.0
-- Ne provisionne pas de machine
-- Facilement personnalisabe
-- Respect des best practice
-- Kubernetes v1.17.X
-- Peut être utilisé par d'autres outils
-
-### kubespray
-
-- Basé sur Ansible
-- Assez dense et difficile a comprendre
-- Multiple OS
-- Support Kubeadm
-- Kubernetes v1.16.X
-
-### symplegma
-
-- Basé sur Ansible
-- Inspiré de Kubespray en plus light
-- CoreOS/Ubuntu
-- Full Kubeadm
-- Kubernetes v1.17.X
 

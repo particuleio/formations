@@ -2,10 +2,10 @@
 
 ### Bare metal, private and public Clouds
 
-![](images/kubernetes/azure_h.png){height="50px"}
-![](images/kubernetes/aws_h.png){height="50px"}
-![](images/kubernetes/gcp_h.png){height="50px"}
-![](images/kubernetes/magnum_h.png){height="50px"}
+![azure](images/kubernetes/azure_h.png){height="50px"}
+![aws](images/kubernetes/aws_h.png){height="50px"}
+![gcp](images/kubernetes/gcp_h.png){height="50px"}
+![magnum](images/kubernetes/magnum_h.png){height="50px"}
 
 Managed - Kops - Kubespray - Kubeadm - Kube-aws - Symplegma
 
@@ -35,7 +35,7 @@ Immutable infrastructure
 
 ### Running Kubernetes
 
-*Hey, I want to use Kubernetes*
+**Hey, I want to use Kubernetes**
 
 *Do you want to run on Cloud infrastructure ?*
 
@@ -51,6 +51,7 @@ Immutable infrastructure
 
 - [Minikube](https://github.com/kubernetes/minikube): local virtual machine
 - [Kind](https://github.com/kubernetes-sigs/kind): Kubernetes in Docker
+- [k3s](https://github.com/rancher/k3s): Lightweight Kubernetes
 - [Docker for Mac/Windows](https://docs.docker.com/docker-for-mac/)
 
 ### Managed Kubernetes
@@ -97,7 +98,7 @@ Immutable infrastructure
 ### kube-aws
 
 - Pure AWS CloudFormation Stack
-- Sloe development
+- Slow development
 - Easily tunable
 - Uses CoreOS ❤
 - Kubernetes v1.15.X
@@ -127,9 +128,7 @@ Immutable infrastructure
 
 - Based on Ansible
 - Quite dense
-- A bit hard to understand
 - Multiple OS
-- Does not officially take care of infrastructure
 - Kubeadm support
 - Kubernetes v1.16.X
 

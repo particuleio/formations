@@ -15,7 +15,7 @@
 ### Affinité de nodes
 
 ```yaml
-pods/pod-with-node-affinity.yaml 
+pods/pod-with-node-affinity.yaml
 
 apiVersion: v1
 kind: Pod
@@ -112,7 +112,8 @@ spec:
     image: nginx
     imagePullPolicy: IfNotPresent
   tolerations:
-  - key: "example-key"
+  - key: "key"
     operator: "Exists"
     effect: "NoSchedule"
 ```
+

@@ -92,9 +92,14 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-nginx
+  name: nginx-deployment
+  labels:
+    app: nginx
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
@@ -102,7 +107,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:stable
+        image: nginx:1.7.9
         ports:
         - containerPort: 80
 ```
@@ -122,21 +127,45 @@ spec:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: ssd-monitor
-  spec:
+  name: fluentd-elasticsearch
+  namespace: kube-system
+  labels:
+    k8s-app: fluentd-logging
+spec:
   selector:
     matchLabels:
-      app: ssd-monitor
+      name: fluentd-elasticsearch
   template:
     metadata:
       labels:
-        app: ssd-monitor
-  spec:
-    nodeSelector:
-    disk: ssd
-    containers:
-    - name: main
-      image: luksa/ssd-monitor
+        name: fluentd-elasticsearch
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd-elasticsearch
+        image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
 ```
 
 ### Kubernetes : StatefulSet
@@ -158,19 +187,33 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx # has to match .spec.template.metadata.labels
   serviceName: "nginx"
-  replicas: 3
+  replicas: 3 # by default is 1
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx # has to match .spec.selector.matchLabels
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: nginx
-        image: nginx
+        image: k8s.gcr.io/nginx-slim:0.8
         ports:
         - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "my-storage-class"
+      resources:
+        requests:
+          storage: 1Gi
 ```
 
 ### Kubernetes : Job

@@ -159,5 +159,30 @@
       "aws/networking",
       "aws/conclusion"
     ]
+  },
+  "kubernetes-ube": {
+    "course_name": "kubernetes",
+    "course_description": "Formation Kubernetes",
+    "modules": [
+      "intro-particule",
+      "containers/containers-introduction",
+      "containers/containers-runtimes",
+      "containers/docker-bsr",
+      "containers/kubernetes/k8s-governance",
+      "containers/kubernetes/k8s-architecture",
+      "containers/kubernetes/k8s-core-api-objects",
+      "containers/kubernetes/k8s-networking",
+      "containers/kubernetes/k8s-volumes",
+      "containers/kubernetes/k8s-workloads-configuration",
+      "containers/kubernetes/k8s-resources-handling",
+      "containers/kubernetes/k8s-scheduling",
+      "containers/kubernetes/k8s-observability-monitoring",
+      "containers/kubernetes/k8s-usage",
+      "containers/kubernetes/k8s-operations",
+      "containers/kubernetes/k8s-where-how",
+      "containers/kubernetes/k8s-installation",
+      "containers/kubernetes/k8s-security",
+      "containers/kubernetes/conclusion"
+    ]
   }
 }

@@ -53,7 +53,7 @@ Immutable infrastructure
 - [Kind](https://github.com/kubernetes-sigs/kind): Kubernetes in Docker
 - [Docker for Mac/Windows](https://docs.docker.com/docker-for-mac/)
 
-### Managed Kubernetes
+### Kubernetes managé
 
 ### AWS EKS
 

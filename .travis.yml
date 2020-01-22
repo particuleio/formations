@@ -14,7 +14,7 @@ script:
 - "/bin/bash -x build.sh -l en"
 deploy:
 - provider: s3
-  skip_cleanup: true
+  edge: true
   access_key_id: "$AWS_ACCESS_KEY_ID"
   secret_access_key: "$AWS_SECRET_ACCESS_KEY"
   bucket: "$AWS_S3_BUCKET"
@@ -23,7 +23,16 @@ deploy:
   local_dir: output-html
   upload-dir: formations
 - provider: s3
-  skip_cleanup: true
+  edge: true
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: "$AWS_S3_BUCKET"
+  region: "$AWS_DEFAULT_REGION"
+  acl: public_read
+  local_dir: images
+  upload-dir: formations
+- provider: s3
+  edge: true
   access_key_id: "$AWS_ACCESS_KEY_ID"
   secret_access_key: "$AWS_SECRET_ACCESS_KEY"
   bucket: "$AWS_S3_BUCKET"

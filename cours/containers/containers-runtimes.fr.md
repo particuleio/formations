@@ -85,47 +85,15 @@ CGroup: /
 
 ### Container runtime
 
-- Docker
+Permettent d'exécuter des conteneurs sur un système
 
-- Rkt
+- docker: historique
 
-- LXC
+- containerd: implementation de reference
 
-### LXC
+- cri-o: implementation Open Source développée par redhat
 
-- Conteneur système
-
-- Utilise la *liblxc*
-
-- Virtualisation d'un système complet (boot)
-
-![](images/docker/lxc.png){height="100px"}
-
-### Docker
-
-- Développé par dotCloud et open sourcé en mars 2013
-
-- Fonctionne en mode daemon : difficulté d'intégration avec les init-process
-
-- Utilisait la *liblxc*
-
-- Utilise désormais la *libcontainer*
-
-![](images/docker-media-kit/small_h-trans.png){height="100px"}
-
-### Rocket (rkt)
-
-- Se prononce “rock-it”
-
-- Développé par CoreOS
-
-- Pas de daemon : intégration avec systemd
-
-- Utilise systemd-nspawn et propose maintenant d'autres solutions (eg. KVM)
-
-- Adresse certains problèmes de sécurité inhérents à Docker
-
-![](images/docker/rkt.png){height="100px"}
+- kata containers: Conteneurs dans des VMs
 
 ### Les conteneurs: conclusion
 

@@ -92,9 +92,14 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-nginx
+  name: nginx-deployment
+  labels:
+    app: nginx
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
@@ -102,7 +107,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:stable
+        image: nginx:1.7.9
         ports:
         - containerPort: 80
 ```
@@ -114,7 +119,7 @@ spec:
 - Utilisé pour des besoins particuliers comme :
     - l'exécution d'agents de collection de logs comme `fluentd` ou `logstash`
     - l'exécution de pilotes pour du matériel comme `nvidia-plugin`
-    - l'exécution d'agents de supervision comme NewRelic agent, Prometheus node exporter
+    - l'exécution d'agents de supervision comme NewRelic agent ou Prometheus node exporter
 
 ### Kubernetes : DaemonSet
 
@@ -122,21 +127,22 @@ spec:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: ssd-monitor
-  spec:
+  name: fluentd-elasticsearch
+  namespace: kube-system
+  labels:
+    k8s-app: fluentd-logging
+spec:
   selector:
     matchLabels:
-      app: ssd-monitor
+      name: fluentd-elasticsearch
   template:
     metadata:
       labels:
-        app: ssd-monitor
-  spec:
-    nodeSelector:
-    disk: ssd
-    containers:
-    - name: main
-      image: luksa/ssd-monitor
+        name: fluentd-elasticsearch
+    spec:
+      containers:
+      - name: fluentd-elasticsearch
+        image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
 ```
 
 ### Kubernetes : StatefulSet
@@ -158,19 +164,32 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx # has to match .spec.template.metadata.labels
   serviceName: "nginx"
   replicas: 3
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx # has to match .spec.selector.matchLabels
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: k8s.gcr.io/nginx-slim:0.8
         ports:
         - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "my-storage-class"
+      resources:
+        requests:
+          storage: 1Gi
 ```
 
 ### Kubernetes : Job
@@ -212,19 +231,19 @@ spec:
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-    name: batch-job-every-fifteen-minutes
+  name: batch-job-every-fifteen-minutes
 spec:
-    schedule: "0,15,30,45 * * * *"
-    jobTemplate:
+  schedule: "0,15,30,45 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: periodic-batch-job
         spec:
-            template:
-                metadata:
-                    labels:
-                        app: periodic-batch-job
-                spec:
-                    restartPolicy: OnFailure
-                    containers:
-                    -  name: pi
-                       image: perl
-                       command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+          restartPolicy: OnFailure
+          containers:
+          -  name: pi
+             image: perl
+             command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
 ```

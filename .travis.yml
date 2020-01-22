@@ -30,7 +30,7 @@ deploy:
   region: "$AWS_DEFAULT_REGION"
   acl: public_read
   local_dir: images
-  upload-dir: formations
+  upload-dir: formations/images
 - provider: s3
   edge: true
   access_key_id: "$AWS_ACCESS_KEY_ID"

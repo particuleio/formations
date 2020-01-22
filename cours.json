@@ -98,6 +98,9 @@
       "containers/kubernetes/k8s-architecture",
       "containers/k8s-openshift-introduction",
       "containers/kubernetes/conclusion"
+    ],
+    "tp": [
+      "docker/docker-base"
     ]
   },
   "kubernetes-full": {

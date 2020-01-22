@@ -37,6 +37,16 @@ build-html() {
     done
     TITLE=$(jq -r '.["'"$cours"'"].course_name' $LIST)
 
+    jq -r '.["'"$cours"'"].tp[]' $LIST  &> /dev/null
+    if [ $? -eq 0 ]; then
+      mkdir -p output-html/tp
+      for tp in $(jq -r '.["'"$cours"'"].tp[]' $LIST); do
+        echo "Build TP $(basename $tp)"
+        docker run --rm -v $PWD:/formations particule/markdown-pdf:"$DOCKER_TAG" \
+          -o /formations/output-html/tp/$(basename $tp).pdf /formations/tp/$tp.md
+      done
+    fi
+
     # Header2 are only usefull for beamer, they need to be replaced with Header3 for revealjs interpretation
     sed -i 's/^## /### /' "$COURS_DIR"/slide-"$cours"
     echo "Build "$TITLE" "$LANUGAGE" ("$OUTPUT")"

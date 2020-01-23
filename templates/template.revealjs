@@ -35,6 +35,7 @@ $endif$
 $for(css)$
   <link rel="stylesheet" href="$css$"/>
 $endfor$
+  <link rel="stylesheet" href="$revealjs-url$/lib/css/monokai.css">
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -238,7 +239,8 @@ $endif$
           { src: '$revealjs-url$/plugin/zoom-js/zoom.js', async: true },
           { src: '$revealjs-url$/plugin/notes/notes.js', async: true },
           { src: '$revealjs-url$/plugin/search/search.js', async: true },
-          { src: '$revealjs-url$/plugin/markdown/markdown.js', async: true }
+          { src: '$revealjs-url$/plugin/markdown/markdown.js', async: true },
+          { src: '$revealjs-url$/plugin/highlight/highlight.js', async: true },
         ]
       });
     </script>

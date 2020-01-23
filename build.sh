@@ -54,6 +54,7 @@ build-html() {
       --standalone \
       --template=/formations/templates/template.revealjs \
       --slide-level 3 \
+      --no-highlight \
       -V theme="$THEME" \
       -V navigation=frame \
       -V revealjs-url="$REVEALJSURL" \

@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+
+  config.vm.define "master" do |master|
+    master.vm.hostname = "master"
+    master.vm.provider "virtualbox" do |vb|
+      vb.cpus = "2"
+      vb.memory = "2048"
+    end
+  end
+
+  config.vm.define "node" do |node|
+    node.vm.hostname = "node"
+    node.vm.provider "virtualbox" do |vb|
+      vb.cpus = "1"
+      vb.memory = "1024"
+    end
+  end
+
+end

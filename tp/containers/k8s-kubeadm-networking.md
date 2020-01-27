@@ -17,7 +17,7 @@ Nous allons voir les différents types de services et les notions associées:
 
 ## ClusterIP
 
-Chaque cluster Kubernetes dispose d'un réseau interne pour les services. Le type de service par defaut est *ClusterIP*, ces IP sont joignable uniquement à l'intérieur du cluster.
+Chaque cluster Kubernetes dispose d'un réseau interne pour les services. Le type de service par défaut est *ClusterIP*, ces IP sont joignables uniquement à l'intérieur du cluster.
 
 Avoir une seule IP permet de load balancer le trafic automatiquement entre de multiples pods (replicas).
 
@@ -206,4 +206,4 @@ curl -v $EXTERNAL_IP
 
 Le dernier type de service est spécifique aux fournisseurs de Cloud. Par exemple, dans le cas d'un cluster sur Amazon Web Service, il est possible de provisionner automatiquement un load balancer et de publier le trafic vers l'extérieur.
 
-Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer.
+Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer..

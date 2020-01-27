@@ -109,7 +109,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-Créez et éditez le ficher `/etc/default/kubelet`, pour chaque noeud remplacez avec la bonne adresse IP:
+Créez et éditez le ficher `/etc/default/kubelet`, pour chaque nœud remplacez avec la bonne adresse IP:
 
 ```bash
 KUBELET_EXTRA_ARGS="--node-ip=NODE_IP_ETH1"
@@ -129,13 +129,13 @@ Sur les machines, 2 interfaces réseaux sont présents:
 - eth0: nécessaire à Vagrant
 - eth1: le réseau privé que nous allons utiliser pour kubeadm
 
-Sur le noeud master, en root, lancez la commande suivante:
+Sur le nœud master, en root, lancez la commande suivante:
 
 ```bash
 kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ETH1
 ```
 
-L'operation prends quelques minutes suivant la qualité de la connexion.
+L'opération prends quelques minutes suivant la qualité de la connexion.
 
 Nous allons repasser en utilisateur non root pour la suite. Pour configurer `kubectl` sur le master:
 
@@ -159,7 +159,7 @@ Pour terminer, il faut rajouter un plugin réseau. Nous allons utiliser [calico]
 kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 ```
 
-Nous sommes maintenant pret à rajouter le worker node.
+Nous sommes maintenant prêt à rajouter le worker node.
 
 ## Déploiement du worker node
 
@@ -178,4 +178,4 @@ kubectl get nodes -w
 
 ## Conclusion
 
-Vous avez a votre disposition un cluster de deux noeuds déployés avec kubeadm. Si vous avez le temps, reprenez les TPs minikube et testez les sur ce cluster.
+Vous avez a votre disposition un cluster de deux nœuds déployés avec kubeadm. Si vous avez le temps, reprenez les TPs minikube et testez les sur ce cluster.

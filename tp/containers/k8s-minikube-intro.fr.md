@@ -166,7 +166,7 @@ kubectl get deployments
 ```
 
 Pour avoir plus d'information, il est possible de décrire une ressource, par
-exemple pour decrire le *deployment*:
+exemple pour décrire le *deployment*:
 
 ```bash
 kubectl describe deployment http
@@ -316,7 +316,7 @@ Les objets kubernetes sont déployés avec `kubectl` et notamment avec `kubectl 
 kubectl apply -f helloworld-svc.yaml
 ```
 
-Comme tous les objets, il est possible de decrire le service:
+Comme tous les objets, il est possible de décrire le service:
 
 ```bash
 kubectl describe svc helloworld-svc

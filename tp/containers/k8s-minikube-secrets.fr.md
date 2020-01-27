@@ -4,7 +4,7 @@
 
 Dans ce TP nous allons utiliser les objets notions de *Secrets* et de *ConfigMap*:
 
-- Créer et utiliser une ConfigMap en variable d'environment
+- Créer et utiliser une ConfigMap en variable d'environnement
 - Utiliser une *ConfigMap* en tant que volume
 - Créer et utiliser un *Secret* en tant que secret
 - Utiliser un *Secret* en tant que volume
@@ -62,7 +62,7 @@ spec:
                 key: log.location
 ```
 
-Observez la description du pods. Avec `kubectl exec`, regardez les variable d'environment disponible dans le conteneur.
+Observez la description du pods. Avec `kubectl exec`, regardez les variables d'environnement disponibles dans le conteneur.
 
 ### Utiliser une *ConfigMap* en tant que volume
 
@@ -105,7 +105,7 @@ Décrivez le pods. Avec `kubectl exec`, observez le comportement a l'intérieur 
 
 Les *Secrets*  fonctionnent exactement de la même manière que les *ConfigMap*  a l'exception qu'ils sont stockés encodés en `base64`.
 
-Les valeurs stockées dans un *Secret* au format yaml doivent être encodées au préalable.
+Les valeurs stockées dans un *Secret* au format `yaml` doivent être encodées au préalable.
 
 ```bash
 username=$(echo -n "admin" | base64)

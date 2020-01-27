@@ -206,14 +206,4 @@ curl -v $EXTERNAL_IP
 
 Le dernier type de service est spécifique aux fournisseurs de Cloud. Par exemple, dans le cas d'un cluster sur Amazon Web Service, il est possible de provisionner automatiquement un load balancer et de publier le trafic vers l'extérieur.
 
-Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer mais il est possible d'émuler cette fonctionnalité.
-
-Créez et appliquez le fichier `cloudprovider.yaml`:
-
-```
-```
-
-Ensuite appliquez le fichier `loadbalancer.yaml`:
-
-```
-```
+Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer.

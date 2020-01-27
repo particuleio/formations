@@ -42,7 +42,7 @@ build-html() {
       mkdir -p output-html/tp
       for tp in $(jq -r '.["'"$cours"'"].tp[]' $LIST); do
         echo "Build TP $(basename $tp)"
-        docker run --rm -v $PWD:/formations particule/markdown-pdf:"$DOCKER_TAG" \
+        docker run --rm -u root -v $PWD:/formations particule/markdown-pdf:"$DOCKER_TAG" \
           -o /formations/output-html/tp/$(basename $tp).pdf /formations/tp/$tp.md
       done
     fi

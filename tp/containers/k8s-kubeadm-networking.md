@@ -4,7 +4,8 @@
 
 Les services permettent aux applications déployées sur Kubernetes de communiquer
 ensemble, c'est l'une des briques les plus importantes de la partie réseau.
-Nous allons voir les différents types de services et les notions associées:
+
+Nous allons voir les différents types de services et les notions associées :
 
 - *ClusterIP*
 - *NodePort*
@@ -13,7 +14,7 @@ Nous allons voir les différents types de services et les notions associées:
 
 ## Prérequis
 
-- Cluster Kubernetes `kubeadm` du tp precedent.
+- Cluster Kubernetes `kubeadm` du TP précédent.
 
 ## ClusterIP
 
@@ -21,7 +22,7 @@ Chaque cluster Kubernetes dispose d'un réseau interne pour les services. Le typ
 
 Avoir une seule IP permet de load balancer le trafic automatiquement entre de multiples pods (replicas).
 
-Créez le fichier `clusterip.yaml` et appliquez le sur le cluster:
+Créez le fichier `clusterip.yaml` et appliquez le sur le cluster :
 
 ```yaml
 apiVersion: v1
@@ -69,7 +70,7 @@ Remarquez que, par défaut, le port du service est la même que le port du
 conteneur (80). Il est possible de dissocier le port du conteneur du port
 du service grâce à la notion de *targetPort*.
 
-Créez et appliquez le fichier `clusterip-target.yaml`:
+Créez et appliquez le fichier `clusterip-target.yaml` :
 
 ```yaml
 apiVersion: v1
@@ -112,9 +113,9 @@ Les IPs de service ne sont pas joignables directement car nous sommes situés à
 
 ## NodePort
 
-Les services de type *NodePort* permettent d'exposer un service a l'extérieur du cluster en mappant un port sur tous les noeuds d'un cluster.
+Les services de type *NodePort* permettent d'exposer un service à l'extérieur du cluster en mappant un port sur tous les noeuds d'un cluster.
 
-Créez et appliquez le fichier `nodeport.yaml`:
+Créez et appliquez le fichier `nodeport.yaml` :
 
 ```yaml
 apiVersion: v1
@@ -196,7 +197,7 @@ spec:
 
 Le service est maintenant bind sur l'IP externe du nœud du cluster.
 
-Accédez au service via curl:
+Accédez au service via curl :
 
 ```
 curl -v $EXTERNAL_IP

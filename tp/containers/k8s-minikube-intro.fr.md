@@ -20,7 +20,7 @@ Pré-requis :
 
 ## Préparation
 
-Nous allons tout d’abord récupérer la CLI Kubectl, nécessaire à Minikube.
+Nous allons tout d’abord récupérer la CLI kubectl, nécessaire à Minikube.
 
 ### Linux
 
@@ -68,13 +68,13 @@ Lancer minikube avec Virtualbox comme driver :
 
 ## Cluster info
 
-Kubectl est utilisé pour interagir avec le cluster. Pour voir l'état du cluster:
+Kubectl est utilisé pour interagir avec le cluster. Pour voir l'état du cluster :
 
 ```bash
 kubectl cluster-info
 ```
 
-Lister les nodes:
+Lister les nodes :
 
 ```bash
 kubectl get nodes
@@ -82,38 +82,38 @@ kubectl get nodes
 
 ## Déploiement de conteneurs
 
-Kubectl permet d'interagir avec Kubernetes:
+Kubectl permet d'interagir avec Kubernetes :
 
 ```bash
 kubectl create deployment first-deployment --image=katacoda/docker-http-server
 ```
 
-Lister les pods:
+Lister les pods :
 
 ```bash
 kubectl get pods
 ```
 
 Il est possible d'exposer le port du conteneur sur la VM minikube en utilisant un
-service de type *NodePort*:
+service de type *NodePort* :
 
 ```bash
 kubectl expose deployment first-deployment --port=80 --type=NodePort
 ```
 
-Récupérer le port du services associé:
+Récupérer le port du services associé :
 
 ```bash
 kubectl get svc
 ```
 
-Récupérer l'IP de la VM minikube:
+Récupérer l'IP de la VM minikube :
 
 ```bash
 kubectl get nodes -o wide
 ```
 
-Accéder au service via curl:
+Accéder au service via curl :
 
 ```bash
 curl -v $MINIKUBE_IP:NODE_PORT
@@ -121,13 +121,13 @@ curl -v $MINIKUBE_IP:NODE_PORT
 
 ## Installation du dashboard
 
-Pour démarrer le dashboard sur minikube:
+Pour démarrer le dashboard sur minikube :
 
 ```bash
 minikube addons enable dashboard
 ```
 
-Vérifier le déploiement du dashboard:
+Vérifier le déploiement du dashboard :
 
 ```bash
 kubectl -n kubernetes-dashboard get pods
@@ -135,7 +135,7 @@ kubectl -n kubernetes-dashboard get svc
 ```
 
 Comme pour notre premier déploiement, il est possible d'exposer le service
-associé au dashboard via un *NodePort*:
+associé au dashboard via un *NodePort* :
 
 ```bash
 kubectl -n kubernetes-dashboard edit svc kubernetes-dashboard
@@ -153,20 +153,20 @@ le *NodePort* et accédez au dashboard via un navigateur.
 sans passer par l'utilisation de fichier YAML.
 
 La commande suivante lance un déploiement nommé `http` qui utilise l'image
-`docker-http-server`:
+`docker-http-server` :
 
 ```bash
 kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
 ```
 
-Utilisez kubectl pour lister les *deployments*:
+Utilisez kubectl pour lister les *deployments* :
 
 ```bash
 kubectl get deployments
 ```
 
 Pour avoir plus d'information, il est possible de décrire une ressource, par
-exemple pour décrire le *deployment*:
+exemple pour décrire le *deployment* :
 
 ```bash
 kubectl describe deployment http
@@ -179,7 +179,7 @@ La description contient le nombre de replicas disponibles, les différents
 
 Comme vu en introduction, il est possible de publier un deployment via la notion
 de *Service*. La commande suivante expose le port 80 du conteneur sur un port
-aléatoire de l'host:
+aléatoire de l'host :
 
 ```bash
 kubectl expose deployment http --port=80 --type=NodePort
@@ -217,11 +217,11 @@ Que remarquez vous ?
 
 ### Différence entre un pod et déploiement
 
-Nous utiliserons l’image `hello-world` de Docker comme démonstrateur. Celle ci expose un service web sur le port 80.
+Nous utiliserons l’image `helloworld` de Docker comme démonstrateur. Celle ci expose un service web sur le port 80.
 
 Nous allons d'abord créer un objet de type *Pod*.
 
-Dans un fichier `hello-word-pod.yaml`:
+Dans un fichier `hello-word-pod.yaml` :
 
 ```yaml
 apiVersion: v1
@@ -233,12 +233,12 @@ metadata:
 spec:
   containers:
   - name: helloworld
-    image: helloworld
+    image: particule/helloworld
     ports:
     - containerPort: 80
 ```
 
-Pour appliquer ce fichier sur le cluster:
+Pour appliquer ce fichier sur le cluster :
 
 ```bash
 kubectl apply -f hello-world-pod.yaml
@@ -273,12 +273,12 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: dockercloud/hello-world
+        image: particule/helloworld
         ports:
         - containerPort: 80
 ```
 
-Pour appliquer ce fichier sur le cluster:
+Pour appliquer ce fichier sur le cluster :
 
 ```bash
 kubectl apply -f helloworld-pod.yaml
@@ -310,13 +310,13 @@ spec:
     app: helloworld
 ```
 
-Les objets kubernetes sont déployés avec `kubectl` et notamment avec `kubectl apply`:
+Les objets kubernetes sont déployés avec `kubectl` et notamment avec `kubectl apply` :
 
 ```bash
 kubectl apply -f helloworld-svc.yaml
 ```
 
-Comme tous les objets, il est possible de décrire le service:
+Comme pour tous les objets, il est possible de décrire le service :
 
 ```bash
 kubectl describe svc helloworld-svc
@@ -325,5 +325,5 @@ kubectl describe svc helloworld-svc
 ### Scaler un *deployment* en YAML
 
 Pour scaler le *deployment* sans utiliser la commande `kubectl scale`, éditez le
-fichier YAML et changer le nombre de replicas puis appliquez le fichier sur le 
+fichier YAML et changer le nombre de replicas puis appliquez le fichier sur le
 cluster.

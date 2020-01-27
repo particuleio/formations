@@ -11,7 +11,7 @@ Dans ce TP nous allons utiliser les objets notions de *Secrets* et de *ConfigMap
 
 ## *ConfigMap*
 
-Créez et appliquez le fichier `configmap.yaml`:
+Créez et appliquez le fichier `configmap.yaml` :
 
 ```yaml
 apiVersion: v1
@@ -25,7 +25,7 @@ data:
 
 ### Utiliser une *ConfigMap* en tant que ENV
 
-Créez et appliquez le déploiement suivant:
+Créez et appliquez le déploiement suivant :
 
 ```yaml
 apiVersion: apps/v1
@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: dockercloud/hello-world
+        image: particule/helloworld
         ports:
         - containerPort: 80
         env:
@@ -66,7 +66,7 @@ Observez la description du pods. Avec `kubectl exec`, regardez les variables d'e
 
 ### Utiliser une *ConfigMap* en tant que volume
 
-Créez et appliquez le déploiement suivant:
+Créez et appliquez le déploiement suivant :
 
 ```yaml
 apiVersion: apps/v1
@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: dockercloud/hello-world
+        image: particule/helloworld
         ports:
         - containerPort: 80
         volumeMounts:
@@ -99,11 +99,11 @@ spec:
           name: log-config
 ```
 
-Décrivez le pods. Avec `kubectl exec`, observez le comportement a l'intérieur du conteneur.
+Décrivez le pod. Avec `kubectl exec`, observez le comportement à l'intérieur du conteneur.
 
 ## *Secret*
 
-Les *Secrets*  fonctionnent exactement de la même manière que les *ConfigMap*  a l'exception qu'ils sont stockés encodés en `base64`.
+Les *Secrets*  fonctionnent exactement de la même manière que les *ConfigMap* à l'exception qu'ils sont stockés encodés en `base64`.
 
 Les valeurs stockées dans un *Secret* au format `yaml` doivent être encodées au préalable.
 
@@ -112,7 +112,7 @@ username=$(echo -n "admin" | base64)
 password=$(echo -n "a62fjbd37942dcs" | base64)
 ```
 
-Créez et appliquez:
+Créez et appliquez :
 
 ```bash
 echo "apiVersion: v1
@@ -127,7 +127,7 @@ data:
 
 ### Utiliser un *Secret* en tant que ENV
 
-Reprenez les déploiement utilisés pour les *ConfigMap* et ajoutez une variable d'environnement à partir d'un secret:
+Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez une variable d'environnement à partir d'un secret :
 
 ```yaml
 - name: SECRET_USERNAME
@@ -141,7 +141,7 @@ Observez ensuite le comportement dans le pod avec `kubectl exec`.
 
 ### Utiliser un *Secret* en tant que volume
 
-Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez un volume à partir d'un secret:
+Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez un volume à partir d'un secret :
 
 ```yaml
 volumes:

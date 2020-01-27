@@ -15,6 +15,14 @@
 - kube-scheduler : Implémente les fonctionnalités de scheduling
 - kube-controller-manager : Responsable de l'état du cluster, boucle infinie qui régule l'état du cluster afin d'atteindre un état désiré
 
+### Kubernetes : Composants du Control Plane
+
+![](images/kubernetes/architecture-1.png){height="500px"}
+
+### Kubernetes : Composants du Control Plane
+
+![](images/kubernetes/architecture-2.png){height="500px"}
+
 ### Kubernetes : etcd
 
 - Base de données de type Clé/Valeur (_Key Value Store_)
@@ -39,6 +47,10 @@
 - Responsable de la publication de services
 - Utilise *iptables*
 - Route les paquets à destination des PODs et réalise le load balancing TCP/UDP
+
+### Kubernetes : kube-proxy
+
+![](images/kubernetes/services.png){height="500px"}
 
 ### Kubernetes : kube-controller-manager
 
@@ -68,7 +80,7 @@ Kubernetes n'implémente pas de solution réseau par défaut, mais s'appuie sur 
 
 ### Kubernetes : Aujourd'hui
 
-- Version 1.16.x : stable en production
+- Version 1.17.x : stable en production
 - Solution complète et une des plus utilisées
 - Éprouvée par Google
 

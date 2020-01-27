@@ -35,8 +35,7 @@
 
 ### Kubernetes : Services
 
-![](images/services.png)
-
+![](images/kubernetes/services-1.png){height=500px}
 
 ### Kubernetes : Services
 
@@ -74,13 +73,15 @@ spec:
   externalName: my.database.example.com
 ```
 
-
 ### Kubernetes: Ingress
 
 - L'objet `Ingress` permet d'exposer un service à l'extérieur d'un cluster Kubernetes
 - Il permet de fournir une URL visible permettant d'accéder un Service Kubernetes
 - Il permet d'avoir des terminations TLS, de faire du _Load Balancing_, etc...
 
+### Kubernetes: Ingress
+
+![](images/kubernetes/ingress-1.png){height=500px}
 
 ### Kubernetes : Ingress
 

@@ -17,12 +17,19 @@
 - Resources représentées par les `Deployments`, `Pods`, `Services`, etc...
 - les différentes opérations possibles : `create, list, get, delete, watch, patch`
 
+### RBAC
+
+![](images/kubernetes/rbac-1.png){height="400px"}
 
 ### Service Accounts
 
 - Objet Kubernetes permettant d'identifier une application s'éxecutant dans un pod
 - Par défaut, un `ServiceAccount` par `namespace`
-- Le `ServiceAccount` est formatté ainsi : `system:serviceaccount:<namespace>:<service_account_name>`
+- Le `ServiceAccount` est formatté ainsi :
+
+```bash
+system:serviceaccount:<namespace>:<service_account_name>
+```
 
 
 ### Service Accounts

@@ -187,6 +187,14 @@
       "containers/kubernetes/k8s-installation",
       "containers/kubernetes/k8s-security",
       "containers/kubernetes/conclusion"
+    ],
+    "tp": [
+      "docker/docker-base",
+      "containers/k8s-kubeadm-intro",
+      "containers/k8s-kubeadm-networking",
+      "containers/k8s-minikube-health",
+      "containers/k8s-minikube-intro",
+      "containers/k8s-minikube-secrets"
     ]
   }
 }

@@ -30,6 +30,7 @@ build-html() {
       if [ -f "$COURS_DIR"/"$module"."$LANGUAGE".md ]; then
         cat $COURS_DIR/"$module"."$LANGUAGE".md >> "$COURS_DIR"/slide-"$cours"
       elif [ -f "$COURS_DIR"/"$module"."$FALLBACK_LANGUAGE".md ]; then
+        echo "$module doesn't exist in $LANGUAGE. Falling back into $FALLBACK_LANGUAGE..."
         cat "$COURS_DIR"/"$module"."$FALLBACK_LANGUAGE".md >> "$COURS_DIR"/slide-"$cours"
       else
         echo "module "$module" doesn't exist in any of the languages"
@@ -37,13 +38,23 @@ build-html() {
     done
     TITLE=$(jq -r '.["'"$cours"'"].course_name' $LIST)
 
+    # Build TP
     jq -r '.["'"$cours"'"].tp[]' $LIST  &> /dev/null
     if [ $? -eq 0 ]; then
       mkdir -p output-html/tp
       for tp in $(jq -r '.["'"$cours"'"].tp[]' $LIST); do
-        echo "Build TP $(basename $tp)"
-        docker run --rm -u root -v $PWD:/formations particule/markdown-pdf:"$DOCKER_TAG" \
-          -o /formations/output-html/tp/$(basename $tp).pdf /formations/tp/$tp.md
+        if [ -f tp/"$tp"."$LANGUAGE".md ]; then
+          echo "Build TP $(basename $tp)" "$LANGUAGE"
+          docker run --rm -u root -v $PWD:/formations particule/markdown-pdf:"$DOCKER_TAG" \
+            -o /formations/output-html/tp/$(basename $tp)."$LANGUAGE".pdf /formations/tp/$tp.$LANGUAGE.md
+        elif [ -f tp/"$tp"."$FALLBACK_LANGUAGE".md ]; then
+          echo "$tp doesn't exist in $LANGUAGE. Falling back into $FALLBACK_LANGUAGE..."
+          echo "Build TP $(basename $tp)" "$FALLBACK_LANGUAGE"
+          docker run --rm -u root -v $PWD:/formations particule/markdown-pdf:"$DOCKER_TAG" \
+            -o /formations/output-html/tp/$(basename $tp)."$FALLBACK_LANGUAGE".pdf /formations/tp/$tp.$FALLBACK_LANGUAGE.md
+        else
+          echo "TP $(basename $tp) doesn't exist in any of the languages"
+        fi
       done
     fi
 

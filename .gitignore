@@ -2,6 +2,8 @@ output-html/
 output-pdf/
 *.pdf
 *.html
+*.log
 build/
 beamer*metropolis.sty
 modules.png
+.vagrant

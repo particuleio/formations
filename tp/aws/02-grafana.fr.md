@@ -9,7 +9,7 @@ Monitorer Grafana et le cluster RDS.
 ### IAM
 
 Créer un role IAM pour instance EC2 avec la policy managée
-`CloudWatchReadOnly` avec comme nom `awcc-tp-webserver`.
+`CloudWatchReadOnly` avec comme nom `particule-tp-webserver`.
 
 ### EC2
 

@@ -11,23 +11,23 @@ comprendre l'utilisation des EC2, ALB, SG et Route 53.
 
 Créer 3 security groups:
 
-  - awcc-tp-webapp
-  - awcc-tp-alb
-  - awcc-tp-rds
+  - particule-tp-webapp
+  - particule-tp-alb
+  - particule-tp-rds
   
-`awcc-tp-webapp` doit être accessible sur le port `3000` uniquement par `awcc-tp-alb`.
-`awcc-tp-rds` doit être accessible sur le port `3306` uniquement par `awcc-tp-webapp`.
-`awcc-tp-alb` doit être accessible sur les ports `80` et `443` par internet.
+`particule-tp-webapp` doit être accessible sur le port `3000` uniquement par `particule-tp-alb`.
+`particule-tp-rds` doit être accessible sur le port `3306` uniquement par `particule-tp-webapp`.
+`particule-tp-alb` doit être accessible sur les ports `80` et `443` par internet.
 
 Tous les SG créés doivent être accessibles sur le port `22` par
-`awcc-tp-bastion`.
+`particule-tp-bastion`.
 
 ### RDS
 
 Créer un `subnet group` en utilisant les 3 subnets privés dans le VPC
-`awcc-tp`.
+`particule-tp`.
 
-Créer un cluster Aurora Serverless utilisant ce __subnet group__, le SG `awcc-tp-rds`,
+Créer un cluster Aurora Serverless utilisant ce __subnet group__, le SG `particule-tp-rds`,
 avec un base `grafana` et un utilisateur `root` avec un mot de passe définit
 par vos soins.
 
@@ -35,21 +35,21 @@ Récupérer l'endpoint __read/write__ de ce cluster.
 
 ### ALB
 
-Créer un ALB `awcc-tp-alb` avec un target group par défaut `awcc-tp-default` et
-le SG `awcc-tp-alb`.
-Créer un target group `awcc-tp-webapp` avec un _traffic port_ en `3000`, un
+Créer un ALB `particule-tp-alb` avec un target group par défaut `particule-tp-default` et
+le SG `particule-tp-alb`.
+Créer un target group `particule-tp-webapp` avec un _traffic port_ en `3000`, un
 healthcheck sur le path `/login`.
 
 Faire en sorte que les requêtes qui arrivent sur l'ALB avec le header `Host:
-grafana.awcc.osones.com` soient _forward to_ le target group `awcc-tp-webapp`
-et les autres requêtes à `awcc-tp-default`.
+grafana.particule.com` soient _forward to_ le target group `particule-tp-webapp`
+et les autres requêtes à `particule-tp-default`.
 
 Faire en sorte que l'ALB redirige les requêtes HTTP vers HTTPS.
 
 ### EC2
 
 Créer une instance EC2 de taille `t2.micro` sur un subnet privé du VPC
-`awcc-tp`, avec le SG `awcc-tp-webapp` et la keypair `awcc-tp`.
+`particule-tp`, avec le SG `particule-tp-webapp` et la keypair `particule-tp`.
 
 Se connecter en SSH à cette instance (via le bastion), installer Grafana,
 configurer Grafana pour qu'il stock les sessions dans la base `grafana` sur le

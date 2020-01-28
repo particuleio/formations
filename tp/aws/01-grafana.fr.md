@@ -16,7 +16,7 @@ Créer un __Launch Template__ en utilisant l'AMI créée avec les mêmes
 caractéristiques que l'instances EC2 Grafana que le TP 00.
 
 Créer un autoscaling group (ASG) avec comme Laucnh Template celui précédemment
-créé et ajouter cet ASG dans le target group `awcc-tp-webapp`.
+créé et ajouter cet ASG dans le target group `particule-tp-webapp`.
 
 Stopper l'instance EC2 lancée dans le TP précédent et ne laisser tourner que
 les instances EC2 lancées par l'ASG.

@@ -92,7 +92,7 @@ spec:
         - containerPort: 80
         volumeMounts:
         - name: config-volume
-          path: /etc/config
+          mountPath: /etc/config
       volumes:
       - name: config-volume
         configMap:

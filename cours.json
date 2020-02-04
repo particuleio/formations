@@ -165,7 +165,7 @@
     ]
   },
   "kubernetes-ube": {
-    "course_name": "kubernetes",
+    "course_name": "kubernetes-ube",
     "course_description": "Formation Kubernetes",
     "modules": [
       "intro-particule",

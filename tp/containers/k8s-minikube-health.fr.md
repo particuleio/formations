@@ -115,7 +115,7 @@ Comme les healthcheck ne passent pas, kubernetes indique que 0/1 conteneur est p
 Nous allons maintenant provoquer un crash d'un pod `frontend` :
 
 ```bash
-kubectl exec -it $FRONTEND_POD /usr/bin/curl -s localhost/unhealthy
+kubectl exec -it $FRONTEND_POD -- /usr/bin/curl -s localhost/unhealthy
 ```
 
 Que se passe t- il ? (regardez le compteur de restart).

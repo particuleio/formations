@@ -221,7 +221,7 @@ Nous utiliserons l’image `helloworld` de Docker comme démonstrateur. Celle ci
 
 Nous allons d'abord créer un objet de type *Pod*.
 
-Dans un fichier `hello-word-pod.yaml` :
+Dans un fichier `hello-world-pod.yaml` :
 
 ```yaml
 apiVersion: v1
@@ -281,7 +281,7 @@ spec:
 Pour appliquer ce fichier sur le cluster :
 
 ```bash
-kubectl apply -f helloworld-pod.yaml
+kubectl apply -f helloworld-de.yaml
 ```
 
 Vérifiez que votre pod est en marche avec `kubectl get pods`.

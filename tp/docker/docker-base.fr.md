@@ -253,7 +253,7 @@ Vérifions que notre page est bien accessible :
 ```html
 $ curl http://localhost:8000
 <html>
-  <h1> Osones, l’expertise cloud </h1>
+  <h1> Particule, l’expertise cloud native</h1>
 </html>
 ```
 
@@ -277,7 +277,7 @@ Il est nécessaire d’être root pour accéder à la sous-arborescence
 # ls /var/lib/docker/volumes
 myvolume metadata.db
 # cd /var/lib/docker/volumes/myvolume/_data
-# echo "<html> Hello Osones </html>" > index.html
+# echo "<html> Hello Particule </html>" > index.html
 ```
 
 Montons ce volume dans un conteneur :
@@ -285,7 +285,7 @@ Montons ce volume dans un conteneur :
 ```html
 $ docker run -d -p 8001:80 -v myvolume:/var/www/html mynginx
 $ curl http://localhost:8001
-<html> Hello Osones </html>
+<html> Hello Particule </html>
 ```
 
 Notre volume est correctement monté !

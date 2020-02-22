@@ -13,7 +13,7 @@
     "course_name": "cloud-bp",
     "course_description": "Formation Cloud Bonnes Pratiques",
     "modules": [
-      "intro-osones",
+      "intro-particule",
       "intro",
       "cloud-bp/bp-introduction",
       "cloud-bp/bp-app",

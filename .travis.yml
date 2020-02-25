@@ -3,9 +3,12 @@ branches:
   - master
 services:
 - docker
+env:
+  - XDG_RUNTIME_DIR=$HOME/tmp
 before_install:
   - docker pull particule/revealjs-builder:stable
   - docker pull particule/wkhtmltopdf:stable
+  - mkdir -p $XDG_RUNTIME_DIR
 script:
 - for dir in styles/* ; do if [ -d "$dir" ] ; then aws s3 cp "$dir".css s3://AWS_S3_BUCKET/formations/revealjs/css/theme/
   && aws s3 cp "$(basename $dir)" s3://$AWS_S3_BUCKET/formations/revealjs/css/theme/"$(basename

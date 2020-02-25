@@ -15,7 +15,7 @@
 
 ### Kubernetes : Volumes
 
-- On déclare d'abord le volume et on l'affecte à un service :
+- On déclare d'abord le volume et on l'affecte à un pod :
 
 ```yaml
 apiVersion: v1

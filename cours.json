@@ -4,6 +4,7 @@
     "course_description": "Formation Cloud",
     "modules": [
       "intro-particule",
+      "copyright",
       "intro",
       "cloud/cloud-introduction",
       "cloud/cloud"
@@ -14,6 +15,7 @@
     "course_description": "Formation Cloud Bonnes Pratiques",
     "modules": [
       "intro-particule",
+      "copyright",
       "intro",
       "cloud-bp/bp-introduction",
       "cloud-bp/bp-app",
@@ -27,6 +29,7 @@
     "course_description": "Formation OpenStack administrateur",
     "modules": [
       "intro-particule",
+      "copyright",
       "intro",
       "cloud/cloud-introduction",
       "openstack/openstack-user-introduction",
@@ -47,6 +50,7 @@
     "course_description": "Formation OpenStack administrateur",
     "modules": [
       "intro-particule",
+      "copyright",
       "intro",
       "openstack/openstack-introduction",
       "openstack/openstack-presentation",
@@ -62,6 +66,7 @@
     "course_description": "Formation OpenStack utilisateur",
     "modules": [
       "intro-particule",
+      "copyright",
       "intro",
       "cloud/cloud-introduction",
       "openstack/openstack-introduction",
@@ -79,6 +84,7 @@
     "course_description": "Formation OpenStack Ops Users",
     "modules": [
       "intro-particule",
+      "copyright",
       "intro",
       "openstack/openstack-user-introduction",
       "openstack/openstack-introduction",
@@ -98,6 +104,7 @@
     "course_description": "Formation Docker",
     "modules": [
       "intro-particule",
+      "copyright",
       "containers/containers-introduction",
       "containers/containers-runtimes",
       "containers/docker-concepts",
@@ -121,6 +128,7 @@
     "course_description": "Formation Kubernetes",
     "modules": [
       "intro-particule",
+      "copyright",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
@@ -141,6 +149,7 @@
     "course_description": "Formation Kubernetes Utilisateur",
     "modules": [
       "intro-particule",
+      "copyright",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
@@ -159,6 +168,7 @@
     "course_description": "Formation Kubernetes Opérateur",
     "modules": [
       "intro-particule",
+      "copyright",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-installation",
@@ -172,6 +182,7 @@
     "course_description": "Formation Cloud Amazon Web Services",
     "modules": [
       "intro-particule",
+      "copyright",
       "aws/iam",
       "aws/networking",
       "aws/conclusion"
@@ -182,6 +193,7 @@
     "course_description": "Formation Kubernetes",
     "modules": [
       "intro-particule",
+      "copyright",
       "containers/containers-introduction",
       "containers/containers-runtimes",
       "containers/docker-bsr",

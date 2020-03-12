@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/particuleio/formations.svg?branch=master)](https://travis-ci.com/particuleio/formations)
 
-Supports de formation (sous forme de slides) écrits en Français et traduits en Anglais et réalisés originellement par les employés d'[alter way Cloud Consulting](https://cloud-consulting.alterway.fr/) (ex Osones) et repris depuis 2020 par [Particule](https://particule.io) pour ses offres de [formation](https://particule.io/formations/).
+Supports de formation (sous forme de slides) écrits en Français et traduits en Anglais et réalisés originellement par les employés d'[alter way Cloud Consulting](https://cloud-consulting.alterway.fr/) (ex Osones) et repris depuis 2020 par [Particule](https://particule.io) pour ses offres de [formation](https://particule.io/trainings).
 
 Sont notamment abordés les sujets suivants : le cloud, sa philosophie, le projet Kubernetes, l'administration et l'utilisation de Kubernetes, le principe des conteneurs, l'utilisation de Docker, le projet OpenStack, l'utilisation d'OpenStack, le déploiement d'OpenStack.
 

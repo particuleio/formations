@@ -21,7 +21,7 @@
       "cloud-bp/bp-app",
       "cloud-bp/bp-infra",
       "cloud-bp/bp-orga",
-      "cloud-bp/bp-epilogue"
+      "cloud-bp/bp-conclusion"
     ]
   },
   "openstack": {

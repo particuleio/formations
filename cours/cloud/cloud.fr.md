@@ -1,7 +1,5 @@
 # Le cloud, vue d'ensemble
 
-## Définition formelle
-
 ### Caractéristiques
 
 Fournir un (des) service(s)...

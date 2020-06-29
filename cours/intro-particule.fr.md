@@ -6,7 +6,7 @@
 
 - ex [Osones/Alterway](https://cloud-consulting.alterway.fr)
 - Expertise Cloud Native
-- Expertise Devops
+- Expertise DevOps
 - Nos offres de formations: <https://particule.io/trainings/>
 - Sources : <https://github.com/particuleio/formations/>
 - HTML/PDF : <https://particule.io/formations/>

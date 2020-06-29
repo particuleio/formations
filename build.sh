@@ -36,7 +36,7 @@ build-html() {
         echo "module "$module" doesn't exist in any of the languages"
       fi
     done
-    TITLE=$(jq -r '.["'"$cours"'"].course_name' $LIST)
+    TITLE=$(jq -r '.["'"$cours"'"].course_description' $LIST)
 
     # Build TP
     jq -r '.["'"$cours"'"].tp[]' $LIST  &> /dev/null

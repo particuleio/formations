@@ -1,12 +1,16 @@
 branches:
   only:
   - master
+language: python
+python:
+  - "3.7"
 services:
 - docker
 before_install:
   - docker pull particule/revealjs-builder:stable
   - docker pull particule/wkhtmltopdf:stable
   - docker pull particule/markdown-pdf:stable
+  - pip install -U awscli
 script:
 - for dir in styles/* ; do if [ -d "$dir" ] ; then aws s3 cp "$dir".css s3://AWS_S3_BUCKET/formations/revealjs/css/theme/
   && aws s3 cp "$(basename $dir)" s3://$AWS_S3_BUCKET/formations/revealjs/css/theme/"$(basename

@@ -6,6 +6,7 @@
 @import url(../../lib/font/league-gothic/league-gothic.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 /**
  * Solarized colors by Ethan Schoonover
  */
@@ -17,7 +18,7 @@ html * {
  * GLOBAL STYLES
  *********************************************/
 body {
-  background-image: url(particule/images/logo_small.png);
+  background-image: url(particule/images/logo-particule.png);
   background-color: #fff;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -26,8 +27,8 @@ body {
 }
 
 .reveal {
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 36px;
+  font-family: "Montserrat", "Source Sans Pro", sans-serif;
+  font-size: 33px;
   font-weight: normal;
   color: #383838; }
 
@@ -64,7 +65,7 @@ section.titleslide h1 {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #057D9F;
-  font-family: "League Gothic", Impact, sans-serif;
+  font-family: "Montserrat Medium", "League Gothic", Impact, sans-serif;
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: normal;
@@ -73,13 +74,13 @@ section.titleslide h1 {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.11em; }
+  font-size: 2em; }
 
 .reveal h2 {
-  font-size: 2.11em; }
+  font-size: 2em; }
 
 .reveal h3 {
-  font-size: 1.55em; }
+  font-size: 1.25em; }
 
 /*
  * h6 is for fragment slides with a shape of a list

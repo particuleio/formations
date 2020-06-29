@@ -26,7 +26,7 @@
   },
   "openstack": {
     "course_name": "openstack",
-    "course_description": "Formation OpenStack administrateur",
+    "course_description": "Formation OpenStack",
     "modules": [
       "intro-particule",
       "copyright",
@@ -47,7 +47,7 @@
   },
   "openstack-ops": {
     "course_name": "openstack-ops",
-    "course_description": "Formation OpenStack administrateur",
+    "course_description": "Formation OpenStack opérateur",
     "modules": [
       "intro-particule",
       "copyright",
@@ -120,7 +120,8 @@
       "containers/kubernetes/conclusion"
     ],
     "tp": [
-      "docker/docker-base"
+      "docker/docker-base",
+      "docker/docker-compose"
     ]
   },
   "kubernetes-full": {
@@ -215,6 +216,45 @@
     ],
     "tp": [
       "docker/docker-base",
+      "containers/k8s-kubeadm-intro",
+      "containers/k8s-kubeadm-networking",
+      "containers/k8s-minikube-health",
+      "containers/k8s-minikube-intro",
+      "containers/k8s-minikube-secrets"
+    ]
+  },
+  "conteneurs-ccb": {
+    "course_name": "conteneurs-ccb",
+    "course_description": "Formation Conteneurs",
+    "modules": [
+      "intro-particule",
+      "copyright",
+      "cloud/cloud-introduction",
+      "cloud/cloud",
+      "containers/containers-introduction",
+      "containers/containers-runtimes",
+      "containers/docker-concepts",
+      "containers/docker-bsr",
+      "containers/docker-ecosystem",
+      "containers/docker-hosts",
+      "cloud-bp/bp-introduction",
+      "cloud-bp/bp-app",
+      "cloud-bp/bp-infra",
+      "cloud-bp/bp-orga",
+      "cloud-bp/bp-epilogue",
+      "containers/kubernetes/k8s-governance",
+      "containers/kubernetes/k8s-architecture",
+      "containers/kubernetes/k8s-core-api-objects",
+      "containers/kubernetes/k8s-networking",
+      "containers/kubernetes/k8s-volumes",
+      "containers/kubernetes/k8s-workloads-configuration",
+      "containers/kubernetes/k8s-where-how",
+      "containers/kubernetes/k8s-security",
+      "containers/kubernetes/conclusion"
+    ],
+    "tp": [
+      "docker/docker-base",
+      "docker/docker-compose",
       "containers/k8s-kubeadm-intro",
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",

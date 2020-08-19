@@ -239,7 +239,6 @@
       "containers/docker-hosts",
       "cloud-bp/bp-introduction",
       "cloud-bp/bp-app",
-      "cloud-bp/bp-infra",
       "cloud-bp/bp-orga",
       "cloud-bp/bp-epilogue",
       "containers/kubernetes/k8s-governance",

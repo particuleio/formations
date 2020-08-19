@@ -2,7 +2,7 @@
 
 ### Kubernetes : Volumes
 
-- Fournir du stockage persistent aux PODs
+- Fournir du stockage persistent aux pods
 - Fonctionnent de la même façon que les volumes Docker pour les volumes hôte :
     - EmptyDir ~= volumes docker
     - HostPath ~= volumes hôte
@@ -76,7 +76,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: "slowl"
+  storageClassName: "slow"
   selector:
     matchLabels:
       release: "stable"

@@ -3,7 +3,7 @@
 ### Kubernetes : Network plugins
 
 - Kubernetes n'implémente pas de solution de gestion de réseau par défaut
-- Le réseau est implémenté par des solutions tierces:
+- Le réseau est implémenté par des solutions tierces :
   - [Calico](https://www.projectcalico.org/): IPinIP + BGP
   - [Cilium](https://cilium.io/): eBPF
   - [Weave](https://www.weave.works/)

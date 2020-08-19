@@ -6,6 +6,7 @@
 - Pods
 - Deployments
 - DaemonSets
+- StatefulSets
 - Jobs
 - Cronjobs
 
@@ -195,7 +196,7 @@ spec:
 ### Kubernetes : Job
 
 - Crée des pods et s'assurent qu'un certain nombre d'entre eux se terminent avec succès.
-- Peut éxécuter plusieurs pods en parallèle
+- Peut exécuter plusieurs pods en parallèle
 - Si un noeud du cluster est en panne, les pods sont reschedulés vers un autre noeud.
 
 ### Kubernetes : Job

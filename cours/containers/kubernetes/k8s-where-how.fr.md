@@ -100,7 +100,7 @@ Infrastructure immuable
 - Ne provisionne pas de machine
 - Facilement personnalisabe
 - Respect des best practices
-- Kubernetes v1.17.X
+- Kubernetes v1.18.X
 - Peut être utilisé par d'autres outils
 
 ### kubespray
@@ -117,7 +117,7 @@ Infrastructure immuable
 - Inspiré de Kubespray en plus léger
 - CoreOS/Ubuntu
 - Full Kubeadm
-- Kubernetes v1.17.X
+- Kubernetes v1.18.X
 
 ### Outils de déploiements spécifiques
 

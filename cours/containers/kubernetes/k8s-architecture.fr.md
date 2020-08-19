@@ -46,7 +46,7 @@
 
 - Responsable de la publication de services
 - Utilise *iptables*
-- Route les paquets à destination des PODs et réalise le load balancing TCP/UDP
+- Route les paquets à destination des pods et réalise le load balancing TCP/UDP
 
 ### Kubernetes : kube-proxy
 
@@ -80,7 +80,7 @@ Kubernetes n'implémente pas de solution réseau par défaut, mais s'appuie sur 
 
 ### Kubernetes : Aujourd'hui
 
-- Version 1.17.x : stable en production
+- Version 1.18.x : stable en production
 - Solution complète et une des plus utilisées
 - Éprouvée par Google
 

@@ -121,7 +121,7 @@ Immutable infrastructure
 - Does not take care of bootstrapping machines
 - Best practice configuration and tunable
 - Multiple OS
-- Kubernetes v1.17.X
+- Kubernetes v1.18.X
 - Can be automated and used by other tools
 
 ### kubespray
@@ -139,5 +139,5 @@ Immutable infrastructure
 - CoreOS but basically agnostic (from source)
 - Does not officially take care of infrastructure
 - Full Kubeadm
-- Kubernetes v1.17.X
+- Kubernetes v1.18.X
 

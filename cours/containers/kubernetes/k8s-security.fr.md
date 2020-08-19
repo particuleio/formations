@@ -108,7 +108,7 @@ rules:
 ### ClusterRoleBinding
 
 ```yaml
- kind: ClusterRoleBinding
+kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: salme-reads-all-pods

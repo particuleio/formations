@@ -77,11 +77,6 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: "slow"
-  selector:
-    matchLabels:
-      release: "stable"
-    matchExpressions:
-      - {key: capacity, operator: In, values: [10Gi, 20Gi]}
 ```
 
 
@@ -119,7 +114,7 @@ spec:
 
 ### Kubernetes : CSI
 
-- La plupart des volumes supportés dans Kubernetes supportent maintenant CSI:
+- La plupart des volumes supportés dans Kubernetes supportent maintenant CSI :
   - [Amazon EBS](https://github.com/kubernetes-sigs/aws-ebs-csi-driver)
   - [Google PD](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
   - [Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)

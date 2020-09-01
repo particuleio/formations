@@ -83,7 +83,7 @@ nginx:
 
 ### Écosystème Docker : conclusion
 
-- Le projet Docker est Open Source et n'appartient plus a Docker
+- Le projet Docker est Open Source et n'appartient plus à Docker
 
 - Des outils permettent d'étendre les fonctionnalités de Docker
 

@@ -78,10 +78,7 @@ apt-get update && apt-get install -y apt-transport-https ca-certificates curl so
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 ### Add Docker apt repository.
-add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ## Install containerd
 apt-get update && apt-get install -y containerd.io
@@ -169,6 +166,9 @@ Pour rajouter un worker node, il suffit de copier/coller la commande de join aff
 kubeadm join 10.0.2.15:6443 --token ahcn89.uxju0eocfom721bm \
     --discovery-token-ca-cert-hash sha256:6dbd5196874f122f108faaeff9cb274530a1362d4ea8fccb81f2ce5597765bb4
 ```
+
+Vous pouvez obtenir cette commande `join` plus tard avec la commande `kubeadm
+token create --print-join-command`.
 
 Sur le master, surveillez la liste des nodes :
 

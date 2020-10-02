@@ -1,0 +1,25 @@
+controller:
+  name: ingress-nginx
+  kind: DaemonSet
+  hostNetwork: true
+  resources:
+    limits:
+      cpu: "1000m"
+      memory: "1024Mi"
+    requests:
+      cpu: "300m"
+      memory: "300Mi"
+  ingressClass: nginx
+  service:
+    create: true
+    type: "NodePort"
+    httpPort:
+      enable: true
+      port: "80"
+      targetPort: "80"
+    httpsPort:
+      enable: true
+      port: "443"
+      targetPort: "443"
+rbac:
+  create: true

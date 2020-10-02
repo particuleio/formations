@@ -6,22 +6,11 @@
       "intro-particule",
       "copyright",
       "intro",
-      "cloud/cloud-introduction",
-      "cloud/cloud"
-    ]
-  },
-  "cloud-bp": {
-    "course_name": "cloud-bp",
-    "course_description": "Formation Cloud Bonnes Pratiques",
-    "modules": [
-      "intro-particule",
-      "copyright",
-      "intro",
-      "cloud-bp/bp-introduction",
-      "cloud-bp/bp-app",
-      "cloud-bp/bp-infra",
-      "cloud-bp/bp-orga",
-      "cloud-bp/bp-conclusion"
+      "cloud/introduction",
+      "cloud/cloud-for-app",
+      "cloud/cloud-for-infra",
+      "cloud/cloud-for-orga",
+      "cloud/conclusion"
     ]
   },
   "openstack": {
@@ -124,60 +113,6 @@
       "docker/docker-compose"
     ]
   },
-  "kubernetes-full": {
-    "course_name": "kubernetes",
-    "course_description": "Formation Kubernetes",
-    "modules": [
-      "intro-particule",
-      "copyright",
-      "containers/kubernetes/k8s-governance",
-      "containers/kubernetes/k8s-architecture",
-      "containers/kubernetes/k8s-core-api-objects",
-      "containers/kubernetes/k8s-networking",
-      "containers/kubernetes/k8s-volumes",
-      "containers/kubernetes/k8s-workloads-configuration",
-      "containers/kubernetes/k8s-resources-handling",
-      "containers/kubernetes/k8s-observability-monitoring",
-      "containers/kubernetes/k8s-usage",
-      "containers/kubernetes/k8s-operations",
-      "containers/kubernetes/k8s-installation",
-      "containers/kubernetes/k8s-security",
-      "containers/kubernetes/conclusion"
-    ]
-  },
-  "kubernetes-user": {
-    "course_name": "kubernetes-user",
-    "course_description": "Formation Kubernetes Utilisateur",
-    "modules": [
-      "intro-particule",
-      "copyright",
-      "containers/kubernetes/k8s-governance",
-      "containers/kubernetes/k8s-architecture",
-      "containers/kubernetes/k8s-core-api-objects",
-      "containers/kubernetes/k8s-networking",
-      "containers/kubernetes/k8s-volumes",
-      "containers/kubernetes/k8s-workloads-configuration",
-      "containers/kubernetes/k8s-resources-handling",
-      "containers/kubernetes/k8s-observability-monitoring",
-      "containers/kubernetes/k8s-usage",
-      "containers/kubernetes/k8s-operations",
-      "containers/kubernetes/conclusion"
-    ]
-  },
-  "kubernetes-ops": {
-    "course_name": "kubernetes-ops",
-    "course_description": "Formation Kubernetes Opérateur",
-    "modules": [
-      "intro-particule",
-      "copyright",
-      "containers/kubernetes/k8s-governance",
-      "containers/kubernetes/k8s-architecture",
-      "containers/kubernetes/k8s-installation",
-      "containers/kubernetes/k8s-operations",
-      "containers/kubernetes/k8s-security",
-      "containers/kubernetes/conclusion"
-    ]
-  },
   "aws": {
     "course_name": "Amazon Web Services",
     "course_description": "Formation Cloud Amazon Web Services",
@@ -220,6 +155,8 @@
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",
       "containers/k8s-minikube-intro",
+      "containers/k8s-helm",
+      "containers/k8s-scheduling",
       "containers/k8s-minikube-secrets"
     ]
   },
@@ -237,11 +174,11 @@
       "containers/docker-bsr",
       "containers/docker-ecosystem",
       "containers/docker-hosts",
-      "cloud-bp/bp-introduction",
-      "cloud-bp/bp-app",
-      "cloud-bp/bp-infra",
-      "cloud-bp/bp-orga",
-      "cloud-bp/bp-epilogue",
+      "cloud/introduction",
+      "cloud/app",
+      "cloud/infra",
+      "cloud/orga",
+      "cloud/epilogue",
       "containers/kubernetes/k8s-governance",
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
@@ -259,7 +196,8 @@
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",
       "containers/k8s-minikube-intro",
-      "containers/k8s-minikube-secrets"
+      "containers/k8s-minikube-secrets",
+      "containers/k8s-helm"
     ]
   }
 }

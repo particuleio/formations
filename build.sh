@@ -81,6 +81,7 @@ build-html() {
 build-pdf() {
   mkdir -p output-pdf
   for cours in $((jq keys | jq -r '.[]') < $LIST); do
+    echo "Build "$cours" "$LANUGAGE" ("$OUTPUT")"
     docker run --rm \
       -v $PWD/output-pdf:/output \
       -v $PWD/output-html/"$cours"."$LANGUAGE".html:/index.html \

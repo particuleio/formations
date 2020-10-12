@@ -76,7 +76,7 @@ $ kubectl cluster-info
 
 Lister les nodes :
 
-``bash
+```bash
 $ kubectl get nodes
 ```
 
@@ -148,7 +148,7 @@ Decrivez ensuite l'objet de type *Service* associé et regarder la partie
 *endpoints*:
 
 ```bash
-$ kubectl describe svc http
+$ kubectl describe svc first-deployment
 ```
 
 ```bash

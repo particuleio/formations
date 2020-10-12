@@ -34,10 +34,10 @@ $ kubectl version --client
 Il faut ensuite récupérer le binaire de Minikube
 
 ```bash
-$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-   && sudo install minikube-linux-amd64 /usr/local/bin/minikube
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+$ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 $ minikube version
-$ minikube version: v1.6.2
+minikube version: v1.6.2
 ```
 
 ### Mac
@@ -52,10 +52,10 @@ $ kubectl version --client
 Il faut ensuite récupérer le binaire de Minikube
 
 ```bash
-$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
-  && sudo install minikube-darwin-amd64 /usr/local/bin/minikube
+$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+$ sudo install minikube-darwin-amd64 /usr/local/bin/minikube
 $ minikube version
-$ minikube version: v1.6.2
+minikube version: v1.6.2
 ```
 
 ## Lancement de minikube
@@ -76,7 +76,7 @@ $ kubectl cluster-info
 
 Lister les nodes :
 
-```bash
+``bash
 $ kubectl get nodes
 ```
 
@@ -88,6 +88,12 @@ Kubectl permet d'interagir avec Kubernetes :
 $ kubectl create deployment first-deployment --image=katacoda/docker-http-server
 ```
 
+Lister les Deployments :
+
+```bash
+$ kubectl get deploy
+```
+
 Lister les pods :
 
 ```bash
@@ -95,7 +101,9 @@ $ kubectl get pods
 ```
 
 Il est possible d'exposer le port du conteneur sur la VM minikube en utilisant un
-service de type *NodePort* :
+service de type *NodePort*. La commande suivante expose le port 80 du conteneur sur un port
+aléatoire de l'host :
+
 
 ```bash
 $ kubectl expose deployment first-deployment --port=80 --type=NodePort
@@ -118,6 +126,36 @@ Accéder au service via curl :
 ```bash
 curl -v $MINIKUBE_IP:NODE_PORT
 ```
+
+## Scaler un *deployment*
+
+La commande `kubectl scale` permet d'ajuster le nombre de replica d'un
+*deployment*:
+
+```bash
+$ kubectl scale --replicas=3 deployment first-deployment
+```
+
+Listez ensuite les pods disponibles:
+
+```bash
+$ kubectl get pods
+```
+
+Il y a maintenant 3 pods disponibles pour ce *Deployment*
+
+Decrivez ensuite l'objet de type *Service* associé et regarder la partie
+*endpoints*:
+
+```bash
+$ kubectl describe svc http
+```
+
+```bash
+$ kubectl get endpoints
+```
+
+Que remarquez vous ?
 
 ## Installation du dashboard
 
@@ -146,72 +184,6 @@ Il faut ensuite modifier le type de service en type `NodePort`.
 De la même manière vue précédemment, récupérez l'IP de la VM minikube ainsi que
 le *NodePort* et accédez au dashboard via un navigateur.
 
-
-## Utilisation de kubectl run
-
-`kubectl run` permet de créer rapidement des ressources de type *Deployment*
-sans passer par l'utilisation de fichier YAML.
-
-La commande suivante lance un déploiement nommé `http` qui utilise l'image
-`docker-http-server` :
-
-```bash
-$ kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
-```
-
-Utilisez kubectl pour lister les *deployments* :
-
-```bash
-$ kubectl get deployments
-```
-
-Pour avoir plus d'information, il est possible de décrire une ressource, par
-exemple pour décrire le *deployment* :
-
-```bash
-$ kubectl describe deployment http
-```
-
-La description contient le nombre de replicas disponibles, les différents
-évènements associés et bien d'autres informations.
-
-### Exposer un *deployment*
-
-Comme vu en introduction, il est possible de publier un deployment via la notion
-de *Service*. La commande suivante expose le port 80 du conteneur sur un port
-aléatoire de l'host :
-
-```bash
-$ kubectl expose deployment http --port=80 --type=NodePort
-```
-
-Essayez d'accéder au service via `curl` comme au début du TP.
-
-### Scaler un *deployment*
-
-La commande `kubectl scale` permet d'ajuster le nombre de replica d'un
-*deployment*:
-
-```bash
-$ kubectl scale --replicas=3 deployment http
-```
-
-Listez ensuite les pods disponibles:
-
-```bash
-$ kubectl get pods
-```
-
-Il y a maintenant 3 pods disponibles pour ce *deployment*
-
-Decrivez ensuite l'objet de type *Service* associé et regarder la partie
-*endpoints*:
-
-```bash
-$ kubectl describe svc http
-```
-
-Que remarquez vous ?
 
 ## Les fichiers YAML
 

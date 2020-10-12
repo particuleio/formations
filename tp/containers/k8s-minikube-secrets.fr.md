@@ -108,21 +108,21 @@ Les *Secrets*  fonctionnent exactement de la même manière que les *ConfigMap* 
 Les valeurs stockées dans un *Secret* au format `yaml` doivent être encodées au préalable.
 
 ```bash
-username=$(echo -n "admin" | base64)
-password=$(echo -n "a62fjbd37942dcs" | base64)
+export username=$(echo -n "admin" | base64)
+export password=$(echo -n "a62fjbd37942dcs" | base64)
 ```
 
-Créez et appliquez :
+Créez le fichier `secret.yaml` et appliquez :
 
-```bash
-echo "apiVersion: v1
+```yaml
+apiVersion: v1
 kind: Secret
 metadata:
   name: test-secret
 type: Opaque
 data:
   username: $username
-  password: $password" >> secret.yaml
+  password: $password"
 ```
 
 ### Utiliser un *Secret* en tant que ENV

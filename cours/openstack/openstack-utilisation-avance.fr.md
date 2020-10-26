@@ -1,4 +1,4 @@
-## Utiliser OpenStack - avancé
+## OpenStack - tuilisation avancée
 
 ### Un grand cloud
 
@@ -10,13 +10,13 @@ Tirer parti de :
 ### Affinity / anti-affinity dans Nova
 
 - Demander à Nova de démarrer 2 ou plus instances :
-  - Le plus proche possible (affinity)
-  - Le plus éloigné possible (anti-affinity)
-- Besoin de performances ou besoin de distribution
+  - le plus proche possible (affinity)
+  - le plus éloigné possible (anti-affinity)
+- Besoin de performances ou besoin de résistance aux pannes
 
 ### Flavors
 
-- Un disque de taille nul équivaut à prendre la taille de l’image de base
+- Un disque de taille nulle équivaut à la taille de l’image de base
 
 ### Metadata
 
@@ -30,9 +30,9 @@ Une image cloud c’est :
 
 - Une image disque contenant un OS déjà installé
 - Une image qui peut être instanciée en n machines sans erreur
-- Un OS sachant parler à l’API de metadata du cloud (outil comme `cloud-init`)
-- Détails : <https://docs.openstack.org/image-guide/openstack-images.html>
+- Un OS sachant parler à l’API de metadata du cloud (avec `cloud-init`)
 - La plupart des distributions fournissent aujourd’hui des images cloud
+- Détails : <https://docs.openstack.org/image-guide/openstack-images.html>
 
 ### Cirros
 
@@ -45,7 +45,7 @@ Une image cloud c’est :
 ### Cloud-init
 
 - Cloud-init est un moyen de tirer parti de l’API de metadata, et notamment des user data
-- L’outil est intégré par défaut dans la plupart des images cloud
+- Intégré par défaut dans la plupart des images cloud
 - À partir des user data, cloud-init effectue les opérations de personnalisation de l’instance
 - cloud-config est un format possible de user data
 
@@ -98,5 +98,5 @@ Multiples projets en cours de développement
 
 ### Barbican : Key management as a Service
 
-- Gère des secrets / clés privées
+- Gère des secrets tels que les clés privées
 

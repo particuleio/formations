@@ -63,7 +63,7 @@ Haute disponibilité du IaaS
 
 Guide HA : <https://docs.openstack.org/ha-guide/>
 
-Conférences par Florian Haas, Hastexo : <https://www.openstack.org/community/speakers/profile/398/florian-haas>
+Conférences par Florian Haas, City Network : <https://www.openstack.org/community/speakers/profile/398/florian-haas>
 
 ### Haute disponibilité de l’agent L3 de Neutron
 
@@ -105,8 +105,6 @@ Guide sécurité : <https://docs.openstack.org/security-guide/>
 -   Regions : chaque région a son API
 -   Cells : permet de regrouper plusieurs cloud différents sous une même API
 
-<https://docs.openstack.org/openstack-ops/content/scaling.html#segregate_cloud>
-
 ### Host aggregates / agrégats d’hôtes
 
 -   Spécifique Nova
@@ -147,20 +145,13 @@ Guide sécurité : <https://docs.openstack.org/security-guide/>
 
 ### Ubuntu Cloud Archive (UCA)
 
-![Support d'OpenStack dans Ubuntu via l'UCA](images/ubuntu-cloud-archive.png)
+![Support d'OpenStack dans Ubuntu via l'UCA](images/openstack/uca-support-cycle.png)
 
 ### Packaging d’OpenStack dans les autres distributions
 
 -   OpenStack est intégré dans les dépôts officiels de Debian
 -   Red Hat propose RHOS/RDO (déploiement basé sur TripleO)
 -   Comme Ubuntu, le cycle de release de Fedora est synchronisé avec celui d’OpenStack
-
-### Les distributions OpenStack
-
--   StackOps : historique
--   Mirantis : Fuel
--   HP Helion : Ansible custom
--   etc.
 
 ### TripleO
 
@@ -174,12 +165,11 @@ Guide sécurité : <https://docs.openstack.org/security-guide/>
 -   Le déploiement des hôtes physiques OpenStack peut se faire à l’aide d’outils dédiés
 -   MaaS (Metal as a Service), par Ubuntu/Canonical : se couple avec Juju
 -   Crowbar / OpenCrowbar (initialement Dell) : utilise Chef
--   eDeploy (eNovance) : déploiement par des images
 -   Ironic via TripleO
 
 ### Gestion de configuration
 
--   Puppet, Chef, CFEngine, Saltstack, Ansible, etc.
+-   Ansible, Puppet, Chef, CFEngine, Saltstack, etc.
 -   Ces outils peuvent aider à déployer le cloud OpenStack
 -   ... mais aussi à gérer les instances (section suivante)
 
@@ -188,7 +178,7 @@ Guide sécurité : <https://docs.openstack.org/security-guide/>
 -   *Puppet OpenStack* et *OpenStack Ansible* : modules Puppet et playbooks Ansible
 -   Développés au sein du projet OpenStack
 -   <https://wiki.openstack.org/wiki/Puppet>
--   <https://docs.openstack.org/developer/openstack-ansible/install-guide/>
+-   <https://docs.openstack.org/openstack-ansible/>
 
 ### Déploiement continu
 
@@ -212,8 +202,8 @@ Guide sécurité : <https://docs.openstack.org/security-guide/>
 -   Travaille-t-on sur le bon projet ?
 -   Est-ce que l’API renvoie une erreur ? (le dashboard peut cacher certaines informations)
 -   Si nécessaire d’aller plus loin :
-    -   Regarder les logs sur le cloud controller (/var/log/\<composant\>/\*.log)
-    -   Regarder les logs sur le compute node et le network node si le problème est spécifique réseau/instance
+    -   Regarder les logs sur le(s) contrôleur(s) (/var/log/\<composant\>/\*.log)
+    -   Regarder les logs sur le compute node et le network/controller node si le problème est spécifique réseau/instance
     -   Éventuellement modifier la verbosité des logs dans la configuration
 
 ### Est-ce un bug ?
@@ -235,7 +225,7 @@ Guide sécurité : <https://docs.openstack.org/security-guide/>
 ### Backup
 
 -   Bases de données
--   Mécanisme de déploiement, plutôt que les fichiers de configuration
+-   Mécanisme de déploiement, plutôt que backup des fichiers de configuration
 
 ### Monitoring
 

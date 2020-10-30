@@ -8,6 +8,10 @@
 - Passer en revue chaque composant plus en détails
 - Tour d’horizon des solutions de déploiement
 
+### Architecture simplifiée et principaux composants
+
+![](images/openstack/openstack-archi-main-components.png){ widht=480 height=240 }
+
 ### Architecture détaillée
 
 ![Vue détaillée des services](images/architecture.jpg)
@@ -18,6 +22,7 @@
 
 ### Quelques éléments de configuration généraux
 
+- Il s'agit de fournir un catalogue de services (APIs) hautement disponibles
 - Tous les composants doivent être configurés pour communiquer avec Keystone
 - La plupart doivent être configurés pour communiquer avec MySQL/MariaDB et RabbitMQ
 - Les composants découpés en plusieurs services ont parfois un fichier de configuration par service
@@ -223,6 +228,7 @@ Ces fonctionnalités se basent également sur des plugins
 
 - Horizon est un module Django
 - OpenStack Dashboard est l’implémentation officielle de ce module
+- Généralement déployé sur les contrôleurs
 
 ![Logo du framework web Python Django](images/django-logo.png)
 

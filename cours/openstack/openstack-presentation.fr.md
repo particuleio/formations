@@ -1,8 +1,12 @@
 # OpenStack : le projet
 
-### Vue haut niveau
+### Vue haut niveau (1/2)
 
-![Vue haut niveau](images/openstack-software-diagram.png)
+![Vue haut niveau](images/openstack/openstack-software-diagram.png)
+
+### Vue haut niveau (2/2)
+
+![Vue haut niveau](images/openstack/openstack-user-overview.png){ width=300 height=150 }
 
 ### Historique
 

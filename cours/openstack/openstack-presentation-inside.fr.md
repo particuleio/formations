@@ -14,7 +14,7 @@
 
 ### Implémentation - dépendances
 
-- Base de données : relationnelle SQL (MySQL/MariaDB)
+- Base de données : relationnelle SQL (MariaDB)
 - Communication entre les services : AMQP (RabbitMQ)
 - Mise en cache : Memcached
 - Stockage distribué de configuration (à venir) : etcd
@@ -52,7 +52,8 @@
 
 ### Cycle de développement : 6 mois
 
-- Le planning est publié, exemple : <https://releases.openstack.org/stein/schedule.html>
+- Chaque release porte un nom : <https://governance.openstack.org/tc/reference/release-naming.html#release-name-criteria>
+- Le planning est publié, exemple : <https://releases.openstack.org/wallaby/schedule.html>
 - Milestone releases
 - Freezes : Feature, Requirements, String
 - RC releases
@@ -78,7 +79,7 @@
 
 - Comment contribuer
   - <https://docs.openstack.org/project-team-guide/>
-  - <https://docs.openstack.org/infra/manual/>
+  - <https://docs.opendev.org/opendev/infra-manual/>
 - Informations diverses, sur le wiki
   - <https://wiki.openstack.org/>
 - Les blueprints et bugs sur Launchpad/StoryBoard
@@ -89,25 +90,28 @@
 ### Où trouver des informations sur le développement d’OpenStack
 
 - Les patchs proposés et leurs reviews sont sur Gerrit
-  - <https://review.openstack.org/>
+  - <https://review.opendev.org/>
 - L’état de la CI (entre autres)
-  - <http://status.openstack.org/>
+  - <https://zuul.opendev.org/t/openstack/status>
 - Le code (Git) et les tarballs sont disponibles
-  - <https://git.openstack.org/>
+  - <https://opendev.org/openstack/>
   - <https://tarballs.openstack.org/>
 - IRC
   - Réseau Freenode
-  - Logs discussions et infos réunions : <http://eavesdrop.openstack.org/>
+  - Logs des discussions et infos réunions : <http://eavesdrop.openstack.org/>
 - Mailing-lists
   - <http://lists.openstack.org/>
 
 ### Upstream Training
 
-- Deux jours de formation
+- Avant chaque summit
+- 1,5 jours de formation, en anglais
 - Apprendre à devenir contributeur à OpenStack
 - Les outils
 - Les processes
 - Travailler et collaborer de manière ouverte
+
+<https://docs.openstack.org/upstream-training/>
 
 ### OpenStack Infra
 
@@ -115,17 +119,13 @@
 - Travaille comme les équipes de dev d’OpenStack et utilise les mêmes outils
 - Résultat : Infrastructure as code **open source** <https://opensourceinfra.org/>
 - Utilise du cloud (hybride)
-- Développe certains outils
-  - Zuul
-  - yaml2ical
 
 ### OpenStack Summit
 
-- Tous les 6 mois en milieu de cycle de développpement
+- Tous les 6 mois
 - Aux USA jusqu’en 2013, aujourd'hui alternance Amérique de Nord et Asie/Europe
 - Quelques dizaines au début à des milliers de participants aujourd’hui
 - En parallèle : conférence (utilisateurs, décideurs) et Forum (développeurs/opérateurs, remplace une partie du précédent Design Summit)
-- Détermine le nom de la prochaine release : lieu/ville à proximité du Summit
 
 ### Exemple du Summit d’avril 2013 à Portland
 
@@ -151,14 +151,14 @@
 
 - Depuis 2017
 - Au début de chaque cycle
+- Roadmap fonctionnelle et discussion de sujets techniques
 - Remplace une partie du précédent Design Summit
-- Dédié aux développeurs
+- Dédié aux développeurs, opérateurs et utilisateurs
 
 ### Traduction
 
 - Équipe officielle *i18n*
 - Seules certaines parties sont traduites, comme Horizon
-- La traduction française est aujourd’hui une des plus avancées
 - Utilisation d'une plateforme web basée Zanata : <https://translate.openstack.org/>
 
 ## DevStack : faire tourner rapidement un OpenStack
@@ -173,7 +173,7 @@
 
 ### Fonctionnement de DevStack
 
-- Support d'Ubuntu 16.04/17.04, Fedora 24/25, CentOS/RHEL 7, Debian, OpenSUSE
+- Support d'Ubuntu, Debian, Fedora, CentOS/RHEL, OpenSUSE
 - Un script shell qui fait tout le travail : stack.sh
 - Un fichier de configuration : local.conf
 - Installe toutes les dépendances nécessaires (paquets)
@@ -198,8 +198,8 @@ SERVICE_TOKEN=a682f596-76f3-11e3-b3b2-e716f9080d50
 
 ### Conseils d’utilisation
 
-- DevStack installe beaucoup de choses sur la machine
-- Il est recommandé de travailler dans une VM
+- DevStack installe beaucoup de paquets sur la machine
+- Il est recommandé de travailler dans une machine virtuelle
 - Pour tester tous les composants OpenStack dans de bonnes conditions, plusieurs Go de RAM sont nécessaires
 - L’utilisation de Vagrant est conseillée
 

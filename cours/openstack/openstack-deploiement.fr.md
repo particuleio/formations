@@ -24,7 +24,7 @@
 
 - Il s'agit de fournir un catalogue de services (APIs) hautement disponibles
 - Tous les composants doivent être configurés pour communiquer avec Keystone
-- La plupart doivent être configurés pour communiquer avec MySQL/MariaDB et RabbitMQ
+- La plupart doivent être configurés pour communiquer avec MariaDB et RabbitMQ
 - Les composants découpés en plusieurs services ont parfois un fichier de configuration par service
 - Le fichier de configuration `policy.json` précise les droits nécessaires pour chaque appel API
 
@@ -32,9 +32,9 @@
 
 - OS Linux avec Python
 - Ubuntu
+- Debian, Fedora, CentOS
 - Red Hat
 - SUSE
-- Debian, Fedora, CentOS, etc.
 
 ### Python
 
@@ -44,18 +44,18 @@
 - Comptabilité Python 3 presque complète
 - Afin de ne pas réinventer la roue, beaucoup de dépendances sont nécessaires
 
-### Base de données MySQL/MariaDB
+### Base de données MariaDB
 
 - Permet de stocker la majorité des données gérées par OpenStack
 - Chaque composant a sa propre base
 - OpenStack utilise l’ORM Python SQLAlchemy
 - Support théorique équivalent à celui de SQLAlchemy (et support des migrations)
-- MySQL/MariaDB est l’implémentation la plus largement testée et utilisée
+- MariaDB est l’implémentation la plus largement testée et utilisée
 - SQLite est principalement utilisé dans le cadre de tests et démo
 - Certains déploiements fonctionnent avec PostgreSQL
 
 ![Logo SQLAlchemy](images/sqlalchemy-logo.png){height=40px}
-![Logo MySQL](images/mysql-logo.png){height=40px}
+![Logo MariaDB](images/mariadb-logo.png){height=40px}
 
 ### Passage de messages
 

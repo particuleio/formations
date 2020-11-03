@@ -85,7 +85,7 @@ spec:
 
 - Permet d'assurer le fonctionnement d'un ensemble de Pods
 - Version, Update et Rollback
-- Souvent combiné avec un objet de type *service*
+- Anciennement appelés Replication Controllers
 
 ### Kubernetes : Deployment
 
@@ -115,7 +115,7 @@ spec:
 
 ### Kubernetes : DaemonSet
 
-- Assure que tous les noeuds exécutent une copie du pod sur tous les noeuds du cluster
+- Assure que tous les noeuds exécutent une copie du pod
 - Ne connaît pas la notion de `replicas`.
 - Utilisé pour des besoins particuliers comme :
     - l'exécution d'agents de collection de logs comme `fluentd` ou `logstash`
@@ -128,21 +128,18 @@ spec:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: fluentd-elasticsearch
-  namespace: kube-system
-  labels:
-    k8s-app: fluentd-logging
+  name: fluentd
 spec:
   selector:
     matchLabels:
-      name: fluentd-elasticsearch
+      name: fluentd
   template:
     metadata:
       labels:
-        name: fluentd-elasticsearch
+        name: fluentd
     spec:
       containers:
-      - name: fluentd-elasticsearch
+      - name: fluentd
         image: quay.io/fluentd_elasticsearch/fluentd:v2.5.2
 ```
 
@@ -165,13 +162,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx # has to match .spec.template.metadata.labels
+      app: nginx
   serviceName: "nginx"
   replicas: 3
   template:
     metadata:
       labels:
-        app: nginx # has to match .spec.selector.matchLabels
+        app: nginx
     spec:
       containers:
       - name: nginx

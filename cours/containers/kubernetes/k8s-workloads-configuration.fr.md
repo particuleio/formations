@@ -6,67 +6,76 @@
 - Il peut être créé d'un ensemble de valeurs ou d'un fichier resource Kubernetes (YAML ou JSON)
 - Un `ConfigMap` peut sollicité par plusieurs `pods`
 
-### Kubernetes : ConfigMaps
+### Kubernetes : ConfigMap environnement (1/2)
 
 ```yaml
 apiVersion: v1
 data:
-    redis-config: |
-      maxmemory 2mb
-      maxmemory-policy allkeys-lru
+  username: admin
+  url: https://api.particule.io
 kind: ConfigMap
 metadata:
-  name: redis-config
-  namespace: default
+  name: web-config
 ```
 
-### Kubernetes : ConfigMap environnement
+### Kubernetes : ConfigMap environnement (2/2)
 
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dapi-test-pod
+  name: configmap-env
 spec:
   containers:
     - name: test-container
       image: k8s.gcr.io/busybox
       command: [ "/bin/sh", "-c", "env" ]
       env:
-        - name: SPECIAL_LEVEL_KEY
+        - name: USERNAME
           valueFrom:
             configMapKeyRef:
-              name: special-config
-              key: special.how
-        - name: LOG_LEVEL
+              name: web-config
+              key: username
+        - name: URL
           valueFrom:
             configMapKeyRef:
-              name: env-config
-              key: log_level
+              name: web-config
+              key: url
   restartPolicy: Never
 ```
 
-### Kubernetes: ConfigMap volume
+### Kubernetes : ConfigMap volume (1/2)
+
+```yaml
+apiVersion: v1
+data:
+  redis-config: |
+    maxmemory 2mb
+    maxmemory-policy allkeys-lru
+kind: ConfigMap
+metadata:
+  name: redis-config
+```
+
+### Kubernetes : ConfigMap volume (2/2)
 
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dapi-test-pod
+  name: configmap-volume
 spec:
   containers:
     - name: test-container
       image: k8s.gcr.io/busybox
-      command: [ "/bin/sh", "-c", "ls /etc/config/" ]
+      command: [ "/bin/sh", "-c", "head -v /etc/config/*" ]
       volumeMounts:
-      - name: config-volume
+      e- name: config-volume
         mountPath: /etc/config
   volumes:
     - name: config-volume
       configMap:
-        # Provide the name of the ConfigMap containing the files you want
-        # to add to the container
-        name: special-config
+        name: redis-config
   restartPolicy: Never
 ```
 
@@ -74,7 +83,7 @@ spec:
 
 - Objet Kubernetes de type `secret` utilisé pour stocker des informations sensibles comme les mots de passe, les _tokens_, les clés SSH...
 - Similaire à un `ConfigMap`, à la seule différence que le contenu des entrées présentes dans le champ `data` sont encodés en base64.
-- Il est possible de directement créer un `Secret` spécifique à l'authentification sur un registre Docker privé.
+- Il est possible de directement créer un `Secret` spécifique à l'authentification sur une registry Docker privée.
 - Il est possible de directement créer un `Secret` à partir d'un compte utilisateur et d'un mot de passe.
 
 ### Kubernets : Secrets
@@ -88,14 +97,9 @@ spec:
 
 ### Kubernetes : Secrets
 
-```console
-$ kubectl create secret docker-registry mydockerhubsecret \
---docker-username="employeeusername" --docker-password="employeepassword" \
---docker-email="employee.email@organization.com"
-```
 
 ```console
-kubectl create secret generic dev-db-secret --from-literal=username=devuser --from-literal=password='S!B\*d$zDsb'
+kubectl create secret generic monSuperSecret --from-literal=username='monUser' --from-literal=password='monSuperPassword"
 ```
 
 ### Kubernetes : Secrets
@@ -104,13 +108,11 @@ kubectl create secret generic dev-db-secret --from-literal=username=devuser --fr
 apiVersion: v1
 kind: Secret
 metadata:
-  creationTimestamp: 2016-01-22T18:41:56Z
   name: mysecret
-  namespace: default
-  resourceVersion: "164619"
-  uid: cfee02d6-c137-11e5-8d73-42010af00002
 type: Opaque
 data:
   username: YWRtaW4=
   password: MWYyZDFlMmU2N2Rm
 ```
+
+Les valeurs doivent être encodées en base64.

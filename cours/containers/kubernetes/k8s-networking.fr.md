@@ -4,9 +4,9 @@
 
 - Kubernetes n'implémente pas de solution de gestion de réseau par défaut
 - Le réseau est implémenté par des solutions tierces :
-  - [Calico](https://www.projectcalico.org/): IPinIP + BGP
-  - [Cilium](https://cilium.io/): eBPF
-  - [Weave](https://www.weave.works/)
+  - [Calico](https://www.projectcalico.org/) : IPinIP + BGP
+  - [Cilium](https://cilium.io/) : eBPF
+  - [Weave](https://www.weave.works/) : VXLAN
   - Bien [d'autres](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
 ### Kubernetes : CNI
@@ -19,19 +19,20 @@
 ### Kubernetes : Services
 
 - Abstraction des pods sous forme d'une IP virtuelle de service
-- Rendre un ensemble de pods accessibles depuis l'extérieur
+- Rendre un ensemble de pods accessibles depuis l'extérieur ou l'intérieur du
+  cluster
 - Load Balancing entre les pods d'un même service
+- Selection grâce aux labels
 
 ### Kubernetes : Services
 
-- Load Balancing : intégration avec des cloud provider :
-    - AWS ELB
-    - GCP
-    - Azure Kubernetes Service
-    - OpenStack
-- `NodePort` : chaque noeud du cluster ouvre un port  statique et redirige le trafic vers le port indiqué
 - `ClusterIP` : IP dans le réseau privé Kubernetes (VIP)
-- `LoadBalancer` :  expose le service à l'externe en utilisant le loadbalancer d'un cloud provider (AWS, Google, Azure)
+- `NodePort` : chaque noeud du cluster ouvre un port statique et redirige le trafic vers le port indiqué
+- `LoadBalancer` :  expose le service en externe en utilisant le loadbalancer d'un cloud provider (AWS, Google, Azure)
+    - AWS ELB/ALB/NLB
+    - GCP LoadBalancer
+    - Azure Balancer
+    - OpenStack Octavia
 
 ### Kubernetes : Services
 
@@ -46,16 +47,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend
-  labels:
-    app: guestbook
-    tier: frontend
 spec:
   type: NodePort
   ports:
   - port: 80
   selector:
     app: guestbook
-    tier: frontend
 ```
 
 ### Kubernetes : Services
@@ -96,19 +93,23 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: particule-nodeport
-          servicePort: 80
+          service:
+            name: frontend
+            port:
+              number: 80
 ```
 
 ### Kubernetes : Ingress Controller
 
-Pour utiliser un `Ingress`, il faut un Ingress Controller. Il existe plusieurs offres sur le marché :
+Pour utiliser un `Ingress`, il faut un Ingress Controller. Un `Ingress` permet
+de configurer une règle de reverse proxy sur l'Ingress Controller.
 
+- Nginx Controller : <https://github.com/kubernetes/ingress-nginx>
 - Traefik : <https://github.com/containous/traefik>
 - Istio : <https://github.com/istio/istio>
 - Linkerd : <https://github.com/linkerd/linkerd>
 - Contour : <https://www.github.com/heptio/contour/>
-- Nginx Controller : <https://github.com/kubernetes/ingress-nginx>
 
 

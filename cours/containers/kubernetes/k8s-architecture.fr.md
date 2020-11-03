@@ -80,7 +80,7 @@ Kubernetes n'implémente pas de solution réseau par défaut, mais s'appuie sur 
 
 ### Kubernetes : Aujourd'hui
 
-- Version 1.18.x : stable en production
+- Version 1.19.x : stable en production
 - Solution complète et une des plus utilisées
 - Éprouvée par Google
 

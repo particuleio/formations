@@ -16,13 +16,13 @@ Nous allons déployer deux VM avec Vagrant, pour cela nous avons également beso
 Clonez le répository de formations :
 
 ```bash
-git@github.com:particuleio/formations.git
+$ git clone https://github.com/particuleio/formations.git
 ```
 
 Dans le repertoire `tp/containers/vagrant/kubeadm`:
 
 ```bash
-vagrant up
+$ vagrant up
 Bringing machine 'master' up with 'virtualbox' provider...
 Bringing machine 'node' up with 'virtualbox' provider...
 ```
@@ -32,11 +32,11 @@ Vagrant demandera quelle interface réseau utiliser, choisissez l'interface rés
 Il est ensuite possible de se connecter en SSH sur chaque machine avec les commandes suivantes :
 
 ```bash
-vagrant ssh master
+$ vagrant ssh master
 ```
 
 ```bash
-vagrant ssh node
+$ vagrant ssh node
 ```
 
 ## Préparation des nodes (à realiser sur les deux VM)
@@ -48,22 +48,21 @@ Les opérations suivantes sont à realiser en tant qu'utilisateur root.
 Nous allons utiliser `containerd` en tant que container runtime. Pour préparer les machines, lancez les commandes suivantes :
 
 ```bash
-cat > /etc/modules-load.d/containerd.conf <<EOF
+# cat > /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
 EOF
 
-modprobe overlay
-modprobe br_netfilter
+# modprobe overlay
+# modprobe br_netfilter
 
-# Setup required sysctl params, these persist across reboots.
-cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
+# cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
 net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
-sysctl --system
+# sysctl --system
 ```
 
 Installation de `containerd` :
@@ -72,23 +71,24 @@ Installation de `containerd` :
 # Install containerd
 ## Set up the repository
 ### Install packages to allow apt to use a repository over HTTPS
-apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+$ apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common
 
 ### Add Docker’s official GPG key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 ### Add Docker apt repository.
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+$ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ## Install containerd
-apt-get update && apt-get install -y containerd.io
+$ apt update && apt install -y containerd.io
 
 # Configure containerd
-mkdir -p /etc/containerd
-containerd config default > /etc/containerd/config.toml
+$ sudo mkdir -p /etc/containerd
+$ sudo containerd config default > /etc/containerd/config.toml
 
 # Restart containerd
-systemctl restart containerd
+$ sudo systemctl restart containerd
 ```
 
 ### Installation de kubeadm et kubelet
@@ -96,15 +96,25 @@ systemctl restart containerd
 Ajoutez les dépots de code Kubernetes :
 
 ```bash
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+$ apt update && apt install -y apt-transport-https curl
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+$ cat <<EOF | tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
+$ apt update
+$ apt install -y kubelet kubeadm kubectl
+$ apt-mark hold kubelet kubeadm kubectl
 ```
+
+Sur les machines, 2 interfaces réseaux sont présents :
+
+- eth0: nécessaire à Vagrant
+- eth1: le réseau privé que nous allons utiliser pour kubeadm
+
+Les noms des interfaces peuvent être différents chez vous. Mais l'ordre ne
+devrait pas changer la première est réservée à Vagrant et la seconde est celle
+du réseau privé que vous devez utiliser. Pensez à remplacer "ETH1" dans le
+reste du TP si votre interface est nommée différemment.
 
 Créez et éditez le ficher `/etc/default/kubelet`, pour chaque nœud remplacez avec la bonne adresse IP :
 
@@ -115,21 +125,17 @@ KUBELET_EXTRA_ARGS="--node-ip=NODE_IP_ETH1"
 Démarrez le kubelet :
 
 ```bash
-systemctl daemon-reload
-systemctl restart kubelet
+# systemctl daemon-reload
+# systemctl restart kubelet
 ```
 
 ## Déploiement de master
 
-Sur les machines, 2 interfaces réseaux sont présents :
-
-- eth0: nécessaire à Vagrant
-- eth1: le réseau privé que nous allons utiliser pour kubeadm
 
 Sur le nœud master, en root, lancez la commande suivante :
 
 ```bash
-kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ETH1
+# kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ETH1
 ```
 
 L'opération prend quelques minutes suivant la qualité de la connexion.
@@ -137,9 +143,9 @@ L'opération prend quelques minutes suivant la qualité de la connexion.
 Nous allons repasser en utilisateur non root pour la suite. Pour configurer `kubectl` sur le master :
 
 ```bash
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+$ mkdir -p $HOME/.kube
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 Testez l'accès au cluster :
@@ -147,13 +153,14 @@ Testez l'accès au cluster :
 ```bash
 $ kubectl get nodes
 NAME     STATUS   ROLES    AGE   VERSION
-master   Ready    master   12m   v1.17.2
+master   NotReady    master   12m   v1.17.2
 ```
 
-Pour terminer, il faut rajouter un plugin réseau. Nous allons utiliser [calico](https://www.projectcalico.org/) :
+Pour terminer et rendre définitivement le node `Ready`, il faut rajouter un
+plugin réseau. Nous allons utiliser [calico](https://www.projectcalico.org/) :
 
 ```bash
-kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+$ kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 ```
 
 Nous sommes maintenant prêt à rajouter le worker node.
@@ -163,7 +170,7 @@ Nous sommes maintenant prêt à rajouter le worker node.
 Pour rajouter un worker node, il suffit de copier/coller la commande de join affichée précédemment :
 
 ```bash
-kubeadm join 10.0.2.15:6443 --token ahcn89.uxju0eocfom721bm \
+$ kubeadm join 10.0.2.15:6443 --token ahcn89.uxju0eocfom721bm \
     --discovery-token-ca-cert-hash sha256:6dbd5196874f122f108faaeff9cb274530a1362d4ea8fccb81f2ce5597765bb4
 ```
 
@@ -173,7 +180,7 @@ token create --print-join-command`.
 Sur le master, surveillez la liste des nodes :
 
 ```
-kubectl get nodes -w
+$ kubectl get nodes -w
 ```
 
 ## Conclusion

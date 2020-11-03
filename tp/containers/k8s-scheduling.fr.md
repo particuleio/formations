@@ -15,6 +15,15 @@ Nous allons voir les différentes options offertes par Kubernetes :
 
 - Cluster Kubernetes `kubeadm` du TP précédent.
 
+Par défaut, vous ne pouvez pas schéduler de pod sur un master. Afin de disposer
+de deux nodes pour ce TP, nous allons supprimer cette limite.
+
+```
+$ kubectl taint nodes --all node-role.kubernetes.io/master-
+```
+
+Vous devriez comprendre cette commande à la fin du TP ;)
+
 ## NodeSelector
 
 ```
@@ -62,32 +71,32 @@ Appliquons le label sur un node et regardons :
 $ kubectl get node
 NAME     STATUS   ROLES    AGE     VERSION
 master   Ready    master   46h     v1.19.0
-node     Ready    <none>   9m53s   v1.19.0
-root@master:~# kubectl label node node datacenter=alpha
-node/node labeled
+worker     Ready    <none>   9m53s   v1.19.0
+root@master:~# kubectl label node worker datacenter=alpha
+node/worker labeled
 root@master:~# kubectl get pod -o wide
 NAME                                   READY   STATUS    RESTARTS   AGE    IP                NODE   NOMINATED NODE   READINESS GATES
-pod-datacenter-alpha-dbfd46f9d-7xns5   1/1     Running   0          2m5s   192.168.167.129   node   <none>           <none>
+pod-datacenter-alpha-dbfd46f9d-7xns5   1/1     Running   0          2m5s   192.168.167.129   worker   <none>           <none>
 ```
 
-Notre pod a bien été assigné au node `node`.
+Notre pod a bien été assigné au node `worker`.
 
 Par défaut, un node possède des labels prédéfinis que vous pouvez utiliser :
 
 ```
-$ kubectl describe node node
-Name:               node
+$ kubectl describe node worker
+Name:               worker
 Roles:              <none>
 Labels:             beta.kubernetes.io/arch=amd64
                     beta.kubernetes.io/os=linux
                     datacenter=alpha
                     kubernetes.io/arch=amd64
-                    kubernetes.io/hostname=node
+                    kubernetes.io/hostname=worker
                     kubernetes.io/os=linux
 ```
 
 On peut donc utiliser directement le nom d'un node avec
-`kubernetes.io/hostname=node` pour assigner de façon extrêmement statique un
+`kubernetes.io/hostname=worker` pour assigner de façon extrêmement statique un
 pod à un node.
 
 ## Affinity / Anti Affinity
@@ -99,7 +108,7 @@ contraire, de les forcer sur des nodes différents.
 
 On va ici souhaiter placer tous les pods de ce deployment sur des nodes ayant
 un label `datacenter=alpha`. On se rappelle par rapport à l'exemple précédent
-que seul `node` a ce label.
+que seul `worker` a ce label.
 
 ```
 ---
@@ -138,25 +147,25 @@ On applique :
 ```
 # k get pod -o wide
 NAME                                   READY   STATUS        RESTARTS   AGE   IP                NODE   NOMINATED NODE   READINESS GATES
-pod-affinity-alpha-697b9f5f-d5hhg      1/1     Running       0          23s   192.168.167.131   node   <none>           <none>
-pod-affinity-alpha-697b9f5f-wvjpd      1/1     Running       0          23s   192.168.167.130   node   <none>           <none>
-pod-datacenter-alpha-dbfd46f9d-7xns5   1/1     Terminating   0          17m   192.168.167.129   node   <none>           <none>
+pod-affinity-alpha-697b9f5f-d5hhg      1/1     Running       0          23s   192.168.167.131   worker   <none>           <none>
+pod-affinity-alpha-697b9f5f-wvjpd      1/1     Running       0          23s   192.168.167.130   worker   <none>           <none>
+pod-datacenter-alpha-dbfd46f9d-7xns5   1/1     Terminating   0          17m   192.168.167.129   worker   <none>           <none>
 root@master:~# kubectl scale deploy/pod-affinity-alpha --replicas=5
 deployment.apps/pod-affinity-alpha scaled
 root@master:~# k get pod -o wide
 NAME                                READY   STATUS    RESTARTS   AGE   IP                NODE   NOMINATED NODE   READINESS GATES
-pod-affinity-alpha-697b9f5f-6497d   1/1     Running   0          6s    192.168.167.133   node   <none>           <none>
-pod-affinity-alpha-697b9f5f-c2tqt   1/1     Running   0          6s    192.168.167.134   node   <none>           <none>
-pod-affinity-alpha-697b9f5f-d5hhg   1/1     Running   0          58s   192.168.167.131   node   <none>           <none>
-pod-affinity-alpha-697b9f5f-qq8nv   1/1     Running   0          7s    192.168.167.132   node   <none>           <none>
-pod-affinity-alpha-697b9f5f-wvjpd   1/1     Running   0          58s   192.168.167.130   node   <none>           <none>
+pod-affinity-alpha-697b9f5f-6497d   1/1     Running   0          6s    192.168.167.133   worker   <none>           <none>
+pod-affinity-alpha-697b9f5f-c2tqt   1/1     Running   0          6s    192.168.167.134   worker   <none>           <none>
+pod-affinity-alpha-697b9f5f-d5hhg   1/1     Running   0          58s   192.168.167.131   worker   <none>           <none>
+pod-affinity-alpha-697b9f5f-qq8nv   1/1     Running   0          7s    192.168.167.132   worker   <none>           <none>
+pod-affinity-alpha-697b9f5f-wvjpd   1/1     Running   0          58s   192.168.167.130   worker   <none>           <none>
 ```
 
 On confirme deux choses ici :
 
-- Les deux premiers pods ont bien été schédulés sur `node`
+- Les deux premiers pods ont bien été schédulés sur `worker`
 - En cas de scale out, les nouveaux pods ont bien été schédulés, aussi, sur
-  `node`
+  `worker`
 
 
 Changeons le code de notre Deployment :
@@ -204,25 +213,14 @@ Appliquons :
 ```
 $ k get pod -o wide
 NAME                           READY   STATUS    RESTARTS   AGE   IP                NODE     NOMINATED NODE   READINESS GATES
-pod-antiaff-5d64c764f7-9rjq4   1/1     Running   0          94s   192.168.167.135   node     <none>           <none>
+pod-antiaff-5d64c764f7-9rjq4   1/1     Running   0          94s   192.168.167.135   worker     <none>           <none>
 pod-antiaff-5d64c764f7-flvv7   1/1     Running   0          94s   192.168.219.74    master   <none>           <none>
 ```
 
-Nos deux pods sont bien sur deux nodes différents. Et si nous scalons ?
+Que constate t-on ?
 
-```
-# kubectl scale deploy/pod-antiaff  --replicas=5
-deployment.apps/pod-antiaff scaled
-root@master:~# kubectl get pod
-NAME                           READY   STATUS    RESTARTS   AGE
-pod-antiaff-5d64c764f7-2m5df   0/1     Pending   0          4s
-pod-antiaff-5d64c764f7-7kthw   0/1     Pending   0          4s
-pod-antiaff-5d64c764f7-7vlxm   0/1     Pending   0          4s
-pod-antiaff-5d64c764f7-9rjq4   1/1     Running   0          4m26s
-pod-antiaff-5d64c764f7-flvv7   1/1     Running   0          4m26s
-```
-
-Aucun node n'est disponible pour héberger ces nouveaux pods :
+Si on scale notre deployment avec la commande `kubectl scale`, le comportement
+est il logique par rapport à notre première observation ?
 
 ```
 $ kubectl describe pod pod-antiaff-5d64c764f7-2m5df
@@ -242,10 +240,10 @@ d'empêcher un pod d'être schédulé sur un node. Première règle :
 - Les taints sont appliqués aux nodes
 - Les tolerations sont appliqués aux pods
 
-Plaçons une taint sur nos deux nodes `node` :
+Plaçons une taint sur nos deux nodes `worker` :
 
 ```
-$ kubectl taint node node region=secret:NoSchedule
+$ kubectl taint node worker region=secret:NoSchedule
 $ kubectl taint node master region=secret:NoSchedule
 ```
 
@@ -264,11 +262,6 @@ spec:
   containers:
   - name: alpha
     image: particule/helloworld
-  tolerations:
-  - key: "region"
-    operator: "Equal"
-    value: "secret"
-    effect: "NoSchedule"
 ```
 
 ```
@@ -320,7 +313,7 @@ NAME    READY   STATUS    RESTARTS   AGE
 alpha   1/1     Running   0          4s
 ```
 
-La Taint est toléré, le scheduling est autorisé.
+Que se passe t-il ?
 
 Des effets autre que `NoSchedule` existe, notamment `NoExecute`. Celui ci
 permet notamment de supprimer les pods *déjà* schédulés qui tournent sur un
@@ -329,14 +322,14 @@ node.
 Ajoutons une nouvelle Taint à nos nodes :
 
 ```
-$ kubectl taint node node security=topdefense:NoExecute
+$ kubectl taint node worker security=topdefense:NoExecute
 $ kubectl taint node master security=topdefense:NoExecute
 ```
 
 ```
 $ kubectl get pod -o wide
 NAME    READY   STATUS        RESTARTS   AGE     IP                NODE   NOMINATED NODE   READINESS GATES
-alpha   1/1     Terminating   0          2m42s   192.168.167.136   node   <none>           <none>
+alpha   1/1     Terminating   0          2m42s   192.168.167.136   worker   <none>           <none>
 
 $ kubectl get events
 27s         Normal    TaintManagerEviction   pod/alpha                               Marking for deletion Pod default/alpha

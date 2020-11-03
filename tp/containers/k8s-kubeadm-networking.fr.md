@@ -208,3 +208,45 @@ curl -v $EXTERNAL_IP
 Le dernier type de service est spécifique aux fournisseurs de Cloud. Par exemple, dans le cas d'un cluster sur Amazon Web Service, il est possible de provisionner automatiquement un load balancer et de publier le trafic vers l'extérieur.
 
 Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer..
+
+## Ingress
+
+Nous avons tout d'abord besoin de déployer un Ingress Controller. Nous
+choisissons de déployer nginx-ingress-controller.
+
+```bash
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-3.7.0/deploy/static/provider/baremetal/deploy.yaml
+```
+
+Déployons cet Ingress en réutilisant notre Deployment et notre Service crées en début de TP pour la partie ClusterIP. Ce Service était de type ClusterIP et ne pouvait donc pas être join depuis l'extérieur du cluster et on se propose d'utiliser un Ingress pour qu'il le soit.
+
+```yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: particule
+spec:
+  rules:
+  - host: hello.particule.io
+    http:
+      paths:
+      - path: /tp
+        backend:
+          serviceName: webapp1-clusterip-targetport-svc
+          servicePort: 80
+```
+
+Selon de fichier YAML, via quelle URL puis-je atteindre mon Service ?
+
+L'URL utilisée n'existe pas vraiment alors nous allons devoir tricher un peu
+en modifiant le header "host" de notre requête HTTP pour tromper l'Ingress
+et lui faire accepter notre requête.
+
+```bash
+$ curl -H "Host: hello.particule.io" http://10.42.42.42:30048/tp
+```
+
+- A quoi correspond le port 30048 ? (votre port sera probablement différent)
+- Pourquoi utilisons nous l'IP 10.42.42.42 ?
+- Peut-on utiliser une autre IP ?
+

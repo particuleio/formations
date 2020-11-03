@@ -28,9 +28,11 @@
       "openstack/openstack-presentation-inside",
       "openstack/openstack-utilisation",
       "openstack/openstack-deploiement",
+      "openstack/openstack-deploiement-avance",
       "openstack/openstack-deploiement-prod",
-      "cloud/archi-cloud-dev",
-      "cloud/archi-cloud-infra",
+      "openstack/openstack-deploiement-ansible",
+      "cloud/cloud-for-app",
+      "cloud/cloud-for-infra",
       "openstack/openstack-conclusion"
     ]
   },
@@ -63,29 +65,9 @@
       "cloud/cloud-avance",
       "openstack/openstack-presentation",
       "openstack/openstack-utilisation",
-      "cloud/archi-cloud-dev",
-      "cloud/archi-cloud-infra",
+      "cloud/cloud-for-app",
+      "cloud/cloud-for-infra",
       "openstack/openstack-user-conclusion"
-    ]
-  },
-  "openstack-admin-user": {
-    "course_name": "openstack-admin-user",
-    "course_description": "Formation OpenStack Ops Users",
-    "modules": [
-      "intro-particule",
-      "copyright",
-      "intro",
-      "openstack/openstack-user-introduction",
-      "openstack/openstack-introduction",
-      "openstack/openstack-presentation",
-      "openstack/openstack-presentation-inside",
-      "openstack/openstack-utilisation",
-      "openstack/openstack-deploiement",
-      "openstack/openstack-deploiement-avance",
-      "openstack/openstack-deploiement-prod",
-      "cloud/archi-cloud-dev",
-      "cloud/archi-cloud-infra",
-      "openstack/openstack-conclusion"
     ]
   },
   "docker": {

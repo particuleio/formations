@@ -13,10 +13,10 @@ Nous allons voir les différentes options offertes par Kubernetes :
 
 ## Prérequis
 
-- Cluster Kubernetes `kubeadm` du TP précédent.
+- Cluster Kubernetes avec au moins 2 nodes
 
-Par défaut, vous ne pouvez pas schéduler de pod sur un master. Afin de disposer
-de deux nodes pour ce TP, nous allons supprimer cette limite.
+Si vous avez un noeud `master`, il est probable que vous ne puissiez schéduler
+de pod dessus. Vous pouvez supprimer cettte limite :
 
 ```
 $ kubectl taint nodes --all node-role.kubernetes.io/master-

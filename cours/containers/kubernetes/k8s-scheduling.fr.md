@@ -2,7 +2,7 @@
 
 ### Affinité / Anti-affinité
 
-2 types de règles:
+2 types de règles :
 
 - Affinité de nodes
 - Affinité / Anti-affinité de pod
@@ -49,7 +49,7 @@ spec:
 
 - Permet de scheduler des pods en fonction des labels
 - Sur un même nœud (collocation)
-- Sur des nœud différents
+- Sur des nœuds différents
 
 ### Affinité / Anti-affinité
 
@@ -87,9 +87,9 @@ spec:
 
 ### Taints et Tolerations
 
-- Une teinte permet l'inverse d'une affinité
+- Une taint permet l'inverse d'une affinité
 - Permet à un nœud de refuser des pods
-- Utilise pour dédier des nœud à un certain usage
+- Utilisé pour dédier des nœuds à un certain usage
 
 ```bash
 kubectl taint nodes node1 key=value:NoSchedule
@@ -97,7 +97,7 @@ kubectl taint nodes node1 key=value:NoSchedule
 
 ### Taints and Tolerations
 
-Aucun pod ne pourra être schedulé sur ce nœud a moins de *tolérer* la teinte:
+Aucun pod ne pourra être schedulé sur ce nœud à moins de *tolérer* la taint:
 
 ```yaml
 apiVersion: v1

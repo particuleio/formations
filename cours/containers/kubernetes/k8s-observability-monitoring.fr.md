@@ -14,7 +14,7 @@
 - Gère le trafic à destination du pod
 - Un pod avec une sonde readiness *NotReady* ne reçoit aucun trafic
 - Permet d'attendre que le service dans le conteneur soit prêt avant de router du trafic
-- Un pod *Ready* est ensuite enregistrer dans les *endpoints* du service associé
+- Un pod *Ready* est ensuite enregistré dans les *endpoints* du service associé
 
 ### Sondes : Liveness
 

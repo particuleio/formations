@@ -70,7 +70,7 @@ spec:
       image: k8s.gcr.io/busybox
       command: [ "/bin/sh", "-c", "head -v /etc/config/*" ]
       volumeMounts:
-      e- name: config-volume
+      - name: config-volume
         mountPath: /etc/config
   volumes:
     - name: config-volume

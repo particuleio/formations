@@ -117,6 +117,7 @@
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
       "containers/kubernetes/k8s-networking",
+      "containers/kubernetes/k8s-service-mesh",
       "containers/kubernetes/k8s-volumes",
       "containers/kubernetes/k8s-workloads-configuration",
       "containers/kubernetes/k8s-resources-handling",

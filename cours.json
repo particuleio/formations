@@ -181,5 +181,22 @@
       "containers/k8s-helm",
       "containers/k8s-rbac"
     ]
+  },
+  "istio": {
+    "course_name": "istio",
+    "course_description": "Formation Istio",
+    "modules": [
+      "intro-particule",
+      "copyright",
+      "containers/kubernetes/k8s-service-mesh",
+      "containers/istio/istio-introduction",
+      "containers/istio/istio-architecture",
+      "containers/istio/istio-traffic",
+      "containers/istio/istio-security",
+      "containers/istio/istio-observability"
+    ],
+    "tp": [
+      "containers/istio/istio-introduction"
+    ]
   }
 }

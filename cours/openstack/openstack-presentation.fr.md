@@ -18,14 +18,14 @@
 
 ### Mission
 
-```To produce an ubiquitous Open Source Cloud Computing platform that is
+"To produce an ubiquitous Open Source Cloud Computing platform that is
 easy to use, simple to implement, interoperable between deployments,
 works well at all scales, and meets the needs of users and operators of
-both public and private clouds.```
+both public and private clouds."
 
 ### OpenStack en 2020
 
-```OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores```
+"OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores"
 
 <https://www.openstack.org/software/>
 
@@ -119,7 +119,7 @@ Autres :
 ### La Fondation OpenStack
 
 -   Rebaptisée Open Infrastructure Foundation en 2020
--   Entité de gouvernance principale et représentation juridique 
+-   Entité de gouvernance principale et représentation juridique
 -   Les membres du "Board of Directors" sont issus des entreprises sponsors et des membres individuels élus
 -   Tout le monde peut devenir membre individuel (gratuit, pas de cotisation)
 -   Ressources humaines : marketing, événementiel, release management, quelques développeurs (principalement sur l’infrastructure)
@@ -197,9 +197,9 @@ Autres :
 -   Validée par la Fondation OpenStack
 -   Contenu :
     -   Essentiellement orienté *utilisateur*
-    -   Pré-requis : <https://www.openstack.org/coa/requirements/>
+    -   <https://www.openstack.org/coa/requirements/>
 -   Modalités :
-    -   Examen pratique (hands on), à distance, durée 3 heures maxi
+    -   Examen pratique (hands on), à distance (3h max)
     -   Coût : USD 400
     -   Inscription : <https://www.openstack.org/coa/>
 -   Ressources :
@@ -207,7 +207,7 @@ Autres :
 
 ### Ressources - Communauté francophone et association
 
-![Logo OpenStack-fr](images/openstackfr.png){height=50px}
+![](images/openstackfr.png){height=50px}
 
 -   <https://openstack.fr> - <https://asso.openstack.fr>
 -   Meetups : Paris, Lyon, Toulouse, Montréal, etc.

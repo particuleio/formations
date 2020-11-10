@@ -198,16 +198,13 @@ GET /v2.0/networks/d32019d3-bc6e-4319-9c1d-6722fc136a22
 
 - **Google Cloud Platform**
 - **Microsoft Azure**
-- Rackspace
-- DreamHost
 - DigitalOcean
+- Alibaba Cloud
 - En France :
-  - Cloudwatt (Orange Business Services)
-  - Numergy (SFR)
-  - OVH
-  - Ikoula
-  - Scaleway
-  - Outscale
+    - Scaleway
+    - OVH
+    - Outscale
+    - Ikoula
 
 ### Faire du IaaS privé
 

@@ -7,10 +7,10 @@
 - Toutes les fonctionnalités sont accessibles par l’**API**
 - Les clients (y compris le dashboard Horizon) utilisent l’API
 - Des **identifiants** sont nécessaires :
-  - utilisateur
-  - mot de passe
-  - projet (aka tenant)
-  - domaine
+    - utilisateur
+    - mot de passe
+    - projet (aka tenant)
+    - domaine
 
 ### Les APIs OpenStack
 
@@ -138,7 +138,7 @@ Ressources gérées :
 ### Service metadata
 
 - API pour les instances
-- Pour obtenir la clé publique, l'adresse IP, les user data,... 
+- Pour obtenir la clé publique, l'adresse IP, les user data,...
 - URL spécifique : `curl http://169.254.169.254/openstack`
 
 ## Cinder : Stockage block
@@ -287,7 +287,7 @@ Outre les fonctions réseau de base niveaux 2 et 3, Neutron peut fournir d’aut
 
 ### API
 
-Version courante : V2 
+Version courante : V2
 
 L'API Octavia permet de gérer les ressources suivantes :
 
@@ -339,7 +339,7 @@ resources:
       fixed_ips:
         - subnet_id: { get_param: subnet_id }
 outputs:
-  fixed_ip: { get_attr: [ instance, first_address ] 
+  fixed_ip: { get_attr: [ instance, first_address ]
 ```
 
 ## Horizon : Dashboard web

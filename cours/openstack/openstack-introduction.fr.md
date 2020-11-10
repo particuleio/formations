@@ -10,14 +10,14 @@
 
 ### Pré-requis de la formation
 
--   Compétences d’administration système Linux tel qu’Ubuntu
+-   Compétences d’administration système Linux
     -   Gestion des paquets
-    -   Manipulation de fichiers de configuration et de services
-    -   LVM (Logical Volume Management) et systèmes de fichiers
+    -   Manipulation de fichiers de configuration/services
+    -   LVM et systèmes de fichiers
 -   Notions :
-    -   Virtualisation : KVM (Kernel-Based Virtual Machine), libvirt
+    -   Virtualisation : KVM, libvirt
     -   Réseau : iptables, namespaces
     -   SQL
--   Optionnel :
+-   Optionnel:
     -   À l’aise dans un environnement Python
 

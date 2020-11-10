@@ -131,14 +131,14 @@ display_help() {
 
     -t theme            Theme to use. Default: particule
 
-    -u revealjsURL      RevealJS URL that need to be use. If you build formation
-                        supports on local environment you should git
+    -u revealjsURL      RevealJS URL that need to be use. If you are building
+                        training courses on a local environment you should git
                         clone https://github.com/hakimel/reveal.js and set
                         this variable to your local copy.
                         This option is also necessary even if you only want PDF
                         output. Default: https://particule.io/formations/revealjs
 
-    -c course           Course to build, "all" for build them all !
+    -c course           Which course to build: "all" to build them all !
 
     -l language         Language in which you want the course to be built. Default: fr
 EOF

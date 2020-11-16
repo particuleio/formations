@@ -15,13 +15,13 @@ Nous allons déployer deux VM avec Vagrant, pour cela nous avons également beso
 
 Clonez le répository de formations :
 
-```bash
+```console
 $ git clone https://github.com/particuleio/formations.git
 ```
 
 Dans le repertoire `tp/containers/vagrant/kubeadm`:
 
-```bash
+```console
 $ vagrant up
 Bringing machine 'master' up with 'virtualbox' provider...
 Bringing machine 'node' up with 'virtualbox' provider...
@@ -31,11 +31,11 @@ Vagrant demandera quelle interface réseau utiliser, choisissez l'interface rés
 
 Il est ensuite possible de se connecter en SSH sur chaque machine avec les commandes suivantes :
 
-```bash
+```console
 $ vagrant ssh master
 ```
 
-```bash
+```console
 $ vagrant ssh node
 ```
 
@@ -47,7 +47,7 @@ Les opérations suivantes sont à realiser en tant qu'utilisateur root.
 
 Nous allons utiliser `containerd` en tant que container runtime. Pour préparer les machines, lancez les commandes suivantes :
 
-```bash
+```console
 # cat > /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
@@ -67,9 +67,9 @@ EOF
 
 Installation de `containerd` :
 
-```bash
-# Install containerd
-## Set up the repository
+```console
+### Install containerd
+### Set up the repository
 ### Install packages to allow apt to use a repository over HTTPS
 
 $ apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common
@@ -80,14 +80,14 @@ $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 ### Add Docker apt repository.
 $ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-## Install containerd
+### Install containerd
 $ apt update && apt install -y containerd.io
 
-# Configure containerd
+### Configure containerd
 $ sudo mkdir -p /etc/containerd
 $ sudo containerd config default > /etc/containerd/config.toml
 
-# Restart containerd
+### Restart containerd
 $ sudo systemctl restart containerd
 ```
 
@@ -95,7 +95,7 @@ $ sudo systemctl restart containerd
 
 Ajoutez les dépots de code Kubernetes :
 
-```bash
+```console
 $ apt update && apt install -y apt-transport-https curl
 $ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 $ cat <<EOF | tee /etc/apt/sources.list.d/kubernetes.list
@@ -118,13 +118,13 @@ reste du TP si votre interface est nommée différemment.
 
 Créez et éditez le ficher `/etc/default/kubelet`, pour chaque nœud remplacez avec la bonne adresse IP :
 
-```bash
+```console
 KUBELET_EXTRA_ARGS="--node-ip=NODE_IP_ETH1"
 ```
 
 Démarrez le kubelet :
 
-```bash
+```console
 # systemctl daemon-reload
 # systemctl restart kubelet
 ```
@@ -134,7 +134,7 @@ Démarrez le kubelet :
 
 Sur le nœud master, en root, lancez la commande suivante :
 
-```bash
+```console
 # kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ETH1
 ```
 
@@ -142,7 +142,7 @@ L'opération prend quelques minutes suivant la qualité de la connexion.
 
 Nous allons repasser en utilisateur non root pour la suite. Pour configurer `kubectl` sur le master :
 
-```bash
+```console
 $ mkdir -p $HOME/.kube
 $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -150,7 +150,7 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 Testez l'accès au cluster :
 
-```bash
+```console
 $ kubectl get nodes
 NAME     STATUS   ROLES    AGE   VERSION
 master   NotReady    master   12m   v1.17.2
@@ -159,7 +159,7 @@ master   NotReady    master   12m   v1.17.2
 Pour terminer et rendre définitivement le node `Ready`, il faut rajouter un
 plugin réseau. Nous allons utiliser [calico](https://www.projectcalico.org/) :
 
-```bash
+```console
 $ kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
 ```
 
@@ -169,7 +169,7 @@ Nous sommes maintenant prêt à rajouter le worker node.
 
 Pour rajouter un worker node, il suffit de copier/coller la commande de join affichée précédemment :
 
-```bash
+```console
 $ kubeadm join 10.0.2.15:6443 --token ahcn89.uxju0eocfom721bm \
     --discovery-token-ca-cert-hash sha256:6dbd5196874f122f108faaeff9cb274530a1362d4ea8fccb81f2ce5597765bb4
 ```
@@ -179,7 +179,7 @@ token create --print-join-command`.
 
 Sur le master, surveillez la liste des nodes :
 
-```
+```console
 $ kubectl get nodes -w
 ```
 

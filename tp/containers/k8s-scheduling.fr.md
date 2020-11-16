@@ -18,7 +18,7 @@ Nous allons voir les différentes options offertes par Kubernetes :
 Si vous avez un noeud `master`, il est probable que vous ne puissiez schéduler
 de pod dessus. Vous pouvez supprimer cettte limite :
 
-```
+```console
 $ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
@@ -26,7 +26,7 @@ Vous devriez comprendre cette commande à la fin du TP ;)
 
 ## NodeSelector
 
-```
+```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -59,15 +59,15 @@ l'assignation du pod à un node possédant un label `datacenter=alpha`.
 Si on applique, on voit que notre pod reste en pending car aucun node ne
 possède un label à cette valeur.
 
-```
-# k get pod
+```console
+$ kubectl get pod
 NAME                                   READY   STATUS    RESTARTS   AGE
 pod-datacenter-alpha-dbfd46f9d-7xns5   0/1     Pending   0          10s
 ```
 
 Appliquons le label sur un node et regardons :
 
-```
+```console
 $ kubectl get node
 NAME     STATUS   ROLES    AGE     VERSION
 master   Ready    master   46h     v1.19.0
@@ -83,7 +83,7 @@ Notre pod a bien été assigné au node `worker`.
 
 Par défaut, un node possède des labels prédéfinis que vous pouvez utiliser :
 
-```
+```console
 $ kubectl describe node worker
 Name:               worker
 Roles:              <none>
@@ -110,7 +110,7 @@ On va ici souhaiter placer tous les pods de ce deployment sur des nodes ayant
 un label `datacenter=alpha`. On se rappelle par rapport à l'exemple précédent
 que seul `worker` a ce label.
 
-```
+```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -144,8 +144,8 @@ spec:
 
 On applique :
 
-```
-# k get pod -o wide
+```console
+# kubectl get pod -o wide
 NAME                                   READY   STATUS        RESTARTS   AGE   IP                NODE   NOMINATED NODE   READINESS GATES
 pod-affinity-alpha-697b9f5f-d5hhg      1/1     Running       0          23s   192.168.167.131   worker   <none>           <none>
 pod-affinity-alpha-697b9f5f-wvjpd      1/1     Running       0          23s   192.168.167.130   worker   <none>           <none>
@@ -170,7 +170,7 @@ On confirme deux choses ici :
 
 Changeons le code de notre Deployment :
 
-```
+```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -210,8 +210,8 @@ app=scheduling".
 
 Appliquons :
 
-```
-$ k get pod -o wide
+```console
+$ kubectl get pod -o wide
 NAME                           READY   STATUS    RESTARTS   AGE   IP                NODE     NOMINATED NODE   READINESS GATES
 pod-antiaff-5d64c764f7-9rjq4   1/1     Running   0          94s   192.168.167.135   worker     <none>           <none>
 pod-antiaff-5d64c764f7-flvv7   1/1     Running   0          94s   192.168.219.74    master   <none>           <none>
@@ -222,7 +222,7 @@ Que constate t-on ?
 Si on scale notre deployment avec la commande `kubectl scale`, le comportement
 est il logique par rapport à notre première observation ?
 
-```
+```console
 $ kubectl describe pod pod-antiaff-5d64c764f7-2m5df
 [...]
 Events:
@@ -242,7 +242,7 @@ d'empêcher un pod d'être schédulé sur un node. Première règle :
 
 Plaçons une taint sur nos deux nodes `worker` :
 
-```
+```console
 $ kubectl taint node worker region=secret:NoSchedule
 $ kubectl taint node master region=secret:NoSchedule
 ```
@@ -252,7 +252,7 @@ schédulé sur ce node.
 
 Exemple :
 
-```
+```yaml
 ---
 apiVersion: v1
 kind: Pod
@@ -264,7 +264,7 @@ spec:
     image: particule/helloworld
 ```
 
-```
+```console
 $ kubectl get pod
 NAME    READY   STATUS    RESTARTS   AGE
 alpha   0/1     Pending   0          3s
@@ -290,7 +290,7 @@ tains des nodes.
 
 Si on ajoute une Toleration :
 
-```
+```yaml
 ---
 apiVersion: v1
 kind: Pod
@@ -307,7 +307,7 @@ spec:
     effect: "NoSchedule"
 ```
 
-```
+```console
 $ kubectl get pod
 NAME    READY   STATUS    RESTARTS   AGE
 alpha   1/1     Running   0          4s
@@ -321,12 +321,12 @@ node.
 
 Ajoutons une nouvelle Taint à nos nodes :
 
-```
+```console
 $ kubectl taint node worker security=topdefense:NoExecute
 $ kubectl taint node master security=topdefense:NoExecute
 ```
 
-```
+```console
 $ kubectl get pod -o wide
 NAME    READY   STATUS        RESTARTS   AGE     IP                NODE   NOMINATED NODE   READINESS GATES
 alpha   1/1     Terminating   0          2m42s   192.168.167.136   worker   <none>           <none>

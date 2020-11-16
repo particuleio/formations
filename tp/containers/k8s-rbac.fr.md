@@ -36,7 +36,7 @@ Le kubeconfig généré contient les crédentials pour un user `red`.
 
 Lister les pods avec ce kubeconfig :
 
-```
+```console
 $ export KUBECONFIG=kubeconfig
 $ kubectl get pod
 ```

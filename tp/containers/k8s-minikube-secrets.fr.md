@@ -109,9 +109,9 @@ Les *Secrets* fonctionnent exactement de la même manière que les *ConfigMap* �
 
 Les valeurs stockées dans un *Secret* au format `yaml` doivent être encodées au préalable.
 
-```bash
-echo -n "admin" | base64
-echo -n "password" | base64
+```console
+$ echo -n "admin" | base64
+$ echo -n "password" | base64
 ```
 
 Créez le fichier `secret.yaml` et appliquez :

@@ -14,7 +14,7 @@ Télécharger la dernière version release par la communauté :
 
 <https://github.com/helm/helm/releases>
 
-```bash
+```console
 $ curl -fsSL https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz -o helm-v3.3.1-linux-amd64.tar.gz
 $ tar -zxvf helm-v3.3.1-linux-amd64.tar.gz
 $ chmod +x linux-amd64/helm
@@ -30,7 +30,7 @@ Le fichier de values à utiliser se trouve dans `tp/containers/helm/values.yml`
 
 Chargeons le repository Helm de notre release :
 
-```
+```console
 $ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 $ helm repo update
 ```
@@ -38,7 +38,7 @@ $ helm repo update
 Nous devons ensuite trouver le nom du chart que l'on souhaite utiliser ainsi
 que sa version :
 
-```
+```console
 $ helm search repo nginx
 NAME                      	CHART VERSION	APP VERSION	DESCRIPTION
 ingress-nginx/ingress-nginx	2.15.0       	0.35.0     	Ingress controller for Kubernetes using NGINX a...
@@ -52,7 +52,7 @@ On retient la nom du chart et sa version pour le déploiement de la Release.
 
 ### Installation d'une Release
 
-```
+```console
 $ helm install ingress-nginx --version 2.15.0 --values values.yml ingress-nginx/ingress-nginx
 ```
 
@@ -61,7 +61,7 @@ $ helm install ingress-nginx --version 2.15.0 --values values.yml ingress-nginx/
 On se propose de changer les CPU Requests et les Memory Requests. Passons les
 respectivement à 500m et 500Mi et déclenchons un update :
 
-```
+```console
 $ helm upgrade ingress-nginx --values values.yml ingress-nginx/ingress-nginx
 Release "ingress-nginx" has been upgraded. Happy Helming!
 NAME: ingress-nginx
@@ -111,7 +111,7 @@ Si finalement nous considérons que les anciennes CPU Requests et les Memory
 Requests étaient mieux adaptées, nous pouvons décider de revenir en arrière
 avec l'aide de la fonction `rollback` de Helm.
 
-```
+```console
 $ helm history ingress-nginx
 REVISION	UPDATED                 	STATUS    	CHART               	APP VERSION	DESCRIPTION
 1       	Mon Sep  7 18:02:11 2020	superseded	ingress-nginx-2.15.0	0.35.0     	Install complete

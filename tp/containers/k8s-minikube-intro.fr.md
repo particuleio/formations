@@ -24,16 +24,16 @@ Nous allons tout d’abord récupérer la CLI kubectl, nécessaire à Minikube.
 
 ### Linux
 
-```bash
+```console
 $ curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-$ chmod +x ./kubectl
+# chmod +x ./kubectl
 $ sudo mv ./kubectl /usr/local/bin/kubectl
 $ kubectl version --client
 ```
 
 Il faut ensuite récupérer le binaire de Minikube
 
-```bash
+```console
 $ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 $ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 $ minikube version
@@ -42,7 +42,7 @@ minikube version: v1.6.2
 
 ### Mac
 
-```bash
+```console
 $ curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl"
 $ chmod +x ./kubectl
 $ sudo mv ./kubectl /usr/local/bin/kubectl
@@ -51,7 +51,7 @@ $ kubectl version --client
 
 Il faut ensuite récupérer le binaire de Minikube
 
-```bash
+```console
 $ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
 $ sudo install minikube-darwin-amd64 /usr/local/bin/minikube
 $ minikube version
@@ -62,7 +62,7 @@ minikube version: v1.6.2
 
 Lancer minikube avec Virtualbox comme driver :
 
-```bash
+```console
 $ minikube start --vm-driver=virtualbox
 ```
 
@@ -70,13 +70,13 @@ $ minikube start --vm-driver=virtualbox
 
 Kubectl est utilisé pour interagir avec le cluster. Pour voir l'état du cluster :
 
-```bash
+```console
 $ kubectl cluster-info
 ```
 
 Lister les nodes :
 
-```bash
+```console
 $ kubectl get nodes
 ```
 
@@ -84,19 +84,19 @@ $ kubectl get nodes
 
 Kubectl permet d'interagir avec Kubernetes :
 
-```bash
+```console
 $ kubectl create deployment first-deployment --image=katacoda/docker-http-server
 ```
 
 Lister les Deployments :
 
-```bash
+```console
 $ kubectl get deploy
 ```
 
 Lister les pods :
 
-```bash
+```console
 $ kubectl get pods
 ```
 
@@ -105,25 +105,25 @@ service de type *NodePort*. La commande suivante expose le port 80 du conteneur 
 aléatoire de l'host :
 
 
-```bash
+```console
 $ kubectl expose deployment first-deployment --port=80 --type=NodePort
 ```
 
 Récupérer le port du services associé :
 
-```bash
+```console
 $ kubectl get svc
 ```
 
 Récupérer l'IP de la VM minikube :
 
-```bash
+```console
 $ kubectl get nodes -o wide
 ```
 
 Accéder au service via curl :
 
-```bash
+```console
 curl -v $MINIKUBE_IP:NODE_PORT
 ```
 
@@ -132,13 +132,13 @@ curl -v $MINIKUBE_IP:NODE_PORT
 La commande `kubectl scale` permet d'ajuster le nombre de replica d'un
 *deployment*:
 
-```bash
+```console
 $ kubectl scale --replicas=3 deployment first-deployment
 ```
 
 Listez ensuite les pods disponibles:
 
-```bash
+```console
 $ kubectl get pods
 ```
 
@@ -147,11 +147,11 @@ Il y a maintenant 3 pods disponibles pour ce *Deployment*
 Decrivez ensuite l'objet de type *Service* associé et regarder la partie
 *endpoints*:
 
-```bash
+```console
 $ kubectl describe svc first-deployment
 ```
 
-```bash
+```console
 $ kubectl get endpoints
 ```
 
@@ -161,13 +161,13 @@ Que remarquez vous ?
 
 Pour démarrer le dashboard sur minikube :
 
-```bash
+```console
 minikube addons enable dashboard
 ```
 
 Vérifier le déploiement du dashboard :
 
-```bash
+```console
 $ kubectl -n kubernetes-dashboard get pods
 $ kubectl -n kubernetes-dashboard get svc
 ```
@@ -175,7 +175,7 @@ $ kubectl -n kubernetes-dashboard get svc
 Comme pour notre premier déploiement, il est possible d'exposer le service
 associé au dashboard via un *NodePort* :
 
-```bash
+```console
 $ kubectl -n kubernetes-dashboard edit svc kubernetes-dashboard
 ```
 
@@ -212,7 +212,7 @@ spec:
 
 Pour appliquer ce fichier sur le cluster :
 
-```bash
+```console
 $ kubectl apply -f hello-world-pod.yaml
 ```
 
@@ -252,7 +252,7 @@ spec:
 
 Pour appliquer ce fichier sur le cluster :
 
-```bash
+```console
 $ kubectl apply -f helloworld-de.yaml
 ```
 
@@ -284,13 +284,13 @@ spec:
 
 Les objets kubernetes sont déployés avec `kubectl` et notamment avec `kubectl apply` :
 
-```bash
+```console
 $ kubectl apply -f helloworld-svc.yaml
 ```
 
 Comme pour tous les objets, il est possible de décrire le service :
 
-```bash
+```console
 $ kubectl describe svc helloworld-svc
 ```
 

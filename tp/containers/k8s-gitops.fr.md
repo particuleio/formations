@@ -38,7 +38,7 @@ Clonez la et gardez en local, nous la modifierons plus tard.
 
 Déployons Flux avec Helm avec le fichier de values suivants :
 
-```
+```yaml
 syncGarbageCollection:
   enabled: true
 git:
@@ -48,7 +48,7 @@ registry:
   automationInterval: "2m"
 ```
 
-```
+```console
 $ kubectl create namspace flux
 $ helm repo add fluxcd https://charts.fluxcd.io
 $ helm repo update
@@ -60,7 +60,7 @@ clés à **lire/écrire** dans votre répository. En effet, Flux a aussi besoin
 d'écrire dans votre repository pour y commit les changements de version d'image
 Docker ainsi que pour y placer des tags lui permettant de se repérer.
 
-```
+```console
 $ kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC2OEG/277kY2Q+/p9NoYYfWvncDQUbgwwhHPKCWvjFiVwewcMQooSHw+egr4nTSWZPsMfwrwLTRD6BXTnofLa8MrhNKjXdp1YR+lrLlBYmL7EPFjxvAhFu1aA77odSMQzLJQNl5/2Ef+m+VnfNFKrB+m6VjELAA5VNvQ2qni3jcYbYrr9mjxQkZnDlkZNz9iIwbw/GSUaAH9gYtUNcClFZaZR0POp96C5L5Jc0tyO41Zzj77UlpLYDlUUK8iX9U507/HgHNsA9fvJDt+lGfa+0xgHCN3gzdxsgNFVAF1A/RRW0/d/QnQ8g7PE4oNiYwMyWUuAHZMtLZqI0xdUQ8SVPtNFtDeyOkrm3vpYlQE2S8cBof96oLR8wDyPzAU6QYdS2QPxWNumdi2fK0iQbcEs+qLIY5+pD0f+60OV5YVz8QsVejp/rtrGPb39o9tAuDdwGYeRs0Agn6DnyZzcafk16uxzJ4DANZ6N6YX0IbVESFIQf0qYXz7azyOq0ill+CMM= root@flux-77c7d965d-w8sql
@@ -76,7 +76,7 @@ Reprenons notre application clonée plus tôt. Nous allons créer une première
 image Docker (version `1.0.0`) à partir de cette application. Nommez là par rapport à votre
 compte sur Docker Hub.
 
-```
+```console
 $ docker build -t monapp:1.0.0 .
 $ docker push monapp
 ```
@@ -85,7 +85,7 @@ $ docker push monapp
 
 Voici le yaml à utiliser :
 
-```
+```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -132,7 +132,8 @@ Constatez le succès du déploiement sur le cluster.
 
 Ajoutez, commitez et pushez cette ressource Service :
 
-```
+```yaml
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -152,7 +153,7 @@ Constatez que vous pouvez joindre votre application via son NodePort.
 Modifiez l'application en changeant la couleur du background dans le fichier
 index.php
 
-```
+```css
 body {
   background-color:red;
 
@@ -162,7 +163,7 @@ body {
 Utilisez une autre couleur et rebuildez l'application en la tagant avec un
 nouveau numéro de version.
 
-```
+```console
 $ docker build -t monapp:2.0.0
 $ docker push monapp:2.0.0
 ```
@@ -181,7 +182,7 @@ Versionning pour ne déployer que certaines versions.
 
 Ajoutez cette nouvelle annotation à notre Deployment :
 
-```
+```yaml
 flux.weave.works/tag.helloworld: "semver:~2.0"
 ```
 

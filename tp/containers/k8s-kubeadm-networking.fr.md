@@ -62,8 +62,8 @@ Ce fichier déploie une application web ainsi que 2 replicas.
 
 Regardez l'IP de service:
 
-```bash
-kubectl get svc
+```console
+$ kubectl get svc
 ```
 
 Remarquez que, par défaut, le port du service est la même que le port du
@@ -199,8 +199,8 @@ Le service est maintenant bind sur l'IP externe du nœud du cluster.
 
 Accédez au service via curl :
 
-```
-curl -v $EXTERNAL_IP
+```console
+$ curl -v $EXTERNAL_IP
 ```
 
 ## Load Balancer
@@ -214,7 +214,7 @@ Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer
 Nous avons tout d'abord besoin de déployer un Ingress Controller. Nous
 choisissons de déployer nginx-ingress-controller.
 
-```bash
+```console
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-3.7.0/deploy/static/provider/baremetal/deploy.yaml
 ```
 
@@ -242,7 +242,7 @@ L'URL utilisée n'existe pas vraiment alors nous allons devoir tricher un peu
 en modifiant le header "host" de notre requête HTTP pour tromper l'Ingress
 et lui faire accepter notre requête.
 
-```bash
+```console
 $ curl -H "Host: hello.particule.io" http://10.42.42.42:30048/tp
 ```
 

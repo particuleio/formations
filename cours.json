@@ -196,7 +196,10 @@
       "containers/istio/istio-observability"
     ],
     "tp": [
-      "containers/istio/istio-introduction"
+      "containers/istio/istio-introduction",
+      "containers/istio/istio-traffic",
+      "containers/istio/istio-security",
+      "containers/istio/istio-observability"
     ]
   }
 }

@@ -2,14 +2,14 @@
 
 ### Composants
 
-- Plan de donnée : composé de proxy [Envoy](https://www.envoyproxy.io/)
-- Plan de contrôle: `Istiod` qui pilote la configuration du plan de donnée
+- Plan de données : composé de proxy [Envoy](https://www.envoyproxy.io/)
+- Plan de contrôle : `Istiod` qui pilote la configuration du plan de donnée
 
 ### Topologies
 
 Istio supporte de multiples méthodes de déploiement :
 
-- un ou plusieurs cluster
+- un ou plusieurs clusters
 - un ou plusieurs réseaux
 - un ou plusieurs plan de contrôle
 - un ou plusieurs mesh
@@ -24,24 +24,24 @@ Single cluster : la configuration la plus simple et communément utilisée
 
 ### Topologies
 
-Multi cluster:
+Multi cluster :
 
 ![](images/istio/multi-cluster.svg){height="400px"}
 
 ### Sidecar
 
 Un sidecar est un conteneur fonctionnant à coté d'un autre conteneur au sein
-d'un même pods. Dans un mesh Istio, chaque pods dispose d'un conteneur Envoy
+d'un même pod. Dans un mesh Istio, chaque pods dispose d'un conteneur Envoy
 qui proxy le trafic et s'intègre à Istio. C'est grâce à ce conteneur que le
 code de l'application n'a pas besoin d'être modifié et que l'intégration
 devient transparente pour l'application.
 
 ### Sidecar
 
-Il existe plusieurs façons d'injecter ce sidecar dans les pods:
+Il existe plusieurs façons d'injecter ce sidecar dans les pods :
 
 - manuellement via `istioctl`
 - automatiquement via Kubernetes et un `MutatingAdmissionWebhook`
-- automatiquement via webhook + CNI: recommandée
+- automatiquement via webhook + CNI : recommandée
 
 

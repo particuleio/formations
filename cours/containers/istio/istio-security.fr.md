@@ -11,7 +11,7 @@ Istio fournit des composants pour :
 ### Sécurité
 
 Ces fonctionnalités sont principalement mises en place grâce au
-[mTLS](https://en.wikipedia.org/wiki/Mutual_authentication): mutual TLS entre
+[mTLS](https://en.wikipedia.org/wiki/Mutual_authentication) : mutual TLS entre
 les différents services.
 
 ### Sécurité
@@ -34,7 +34,7 @@ les différents services.
 Istio fourni 2 méthodes d'authentification :
 
 - Service to Service: via mTLS
-- End User: via des fournisseur d'identités compatibles avec [OpenID connect](https://openid.net/connect/):
+- End User: via des fournisseurs d'identités compatibles avec [OpenID connect](https://openid.net/connect/):
     - Keycloak
     - Auth0
     - Firebase
@@ -44,7 +44,7 @@ Istio fourni 2 méthodes d'authentification :
 ### Sécurité : mTLS
 
 Le chiffrement du trafic ainsi que l'authentification est réalisé via mTLS. Il
-existe 3 modes:
+existe 3 modes :
 
 - PERMISSIVE : accepte du trafic en clair ainsi qu'en mTLS, recommandé lorsque tous les services ne sont pas encore migrés en mTLS
 - STRICT: mTLS uniquement
@@ -76,11 +76,11 @@ spec:
 
 ### Sécurité : Authentication Policy
 
-S'appliquent:
+S'appliquent :
 
-- Au niveau du cluster/mesh global: non namespacées
-- Au sein d'un namespace: namespacées
-- Au sein d'un namespace: namespacées + selector :
+- Au niveau du cluster/mesh global : non namespacées
+- Au sein d'un namespace : namespacées
+- Au sein d'un namespace : namespacées + selector :
 
 ```yaml
 selector:
@@ -96,7 +96,7 @@ En plus de l'authentification, Istio fournit une couche d'autorisation qui perme
 
 ### Sécurité : Authorization policies
 
-- Fonctionnent avec les protocoles HTTP, HTTPS, HTTP2, GRPC et TCP
+- Fonctionnent avec les protocoles HTTP, HTTPS, HTTP2, gRPC et TCP
 - ALLOW and DENY
 - Sont scopées de la même façon que les *Authentication Policy*
 
@@ -133,6 +133,6 @@ spec:
 - Comme pour les *NetworkPolicy*, par défaut aucune politique n'est activée
 - Possibilité d'appliquer des règles globales au service mesh tel qu'un `deny-all` pour sécuriser par défaut
 - Les *Authorization policies* sont équivalentes à des pare feu applicatifs et peuvent s'overlapper avec la solution de CNI utilisée
-- Possibilité d'intégration avec certains CNI: [Calico et Istio](https://docs.projectcalico.org/security/tutorials/app-layer-policy/enforce-policy-istio)
+- Possibilité d'intégration avec certains CNI : [Calico et Istio](https://docs.projectcalico.org/security/tutorials/app-layer-policy/enforce-policy-istio)
 
 

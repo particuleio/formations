@@ -57,7 +57,7 @@ spec:
 
 ### Virtual Services
 
-Routage entre deux versions d'un même service avec pourcentage:
+Routage entre deux versions d'un même service avec pourcentage :
 
 ```yaml
 spec:
@@ -106,7 +106,7 @@ spec:
 
 - Contrôlent les opérations réalisées sur le trafic pour une destination donnée
 - Groupement des services en *subset* pour utilisation avec les *VirtualServices*
-- Techniques de répartition de charge:
+- Techniques de répartition de charge :
     - `random`
     - `weight`
     - `least request`
@@ -197,7 +197,7 @@ spec:
 Par défaut les sidecar disposent de la connaissance et de la possibilité de
 joindre tous les services du mesh. Il est possible de limiter les services
 joignables par certains sidecars, par exemple dans le cas de larges clusters où
-la consommation CPU/RAM des sidecar peut devenir non négligeable.
+la consommation CPU/RAM des sidecars peut devenir non négligeable.
 
 ### Sidecars
 
@@ -258,7 +258,7 @@ spec:
 
 ### Résilience et tests
 
-- Circuit Breakers : permettent de limiter le nombre de connections à un service en fonction de paramètres afin d'éviter une surcharge
+- Circuit Breakers : permettent de limiter le nombre de connexions à un service en fonction de paramètres afin d'éviter une surcharge
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -279,7 +279,7 @@ spec:
 
 ### Résilience et tests
 
-Fault Injection:
+Fault Injection :
 
 - Tester la résilience d'une application
 - Ajout de latence

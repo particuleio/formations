@@ -2,14 +2,14 @@
 
 ### Présentation
 
-- Fourni une implémentation du concept de service mesh
+- Fournit une implémentation du concept de service mesh
 - Open Sourcé en 2017 par Google, IBM et Lyft
 
 ![](images/istio/logo.png){height="200px"}
 
 ### Fonctionnalités
 
-- Load balancing  TCP, GRPC, HTTP et websocket
+- Load balancing  TCP, gRPC, HTTP et websocket
 - Gestion de politiques de sécurité et de routage applicatif
 - Métriques, logs et traçage applicatif au sein des clusters Kubernetes
 - Sécurisation des communication via mTLS
@@ -24,7 +24,7 @@
     - Timeout
     - Retry
     - Circuit Breaker
-- Simplifie la mise en place de mise à jour automatiques :
+- Simplifie la mise en place de mises à jour automatiques :
     - Canary
     - Blue Green
 - Réparation automatisée
@@ -46,7 +46,7 @@
 
 Istio fonctionne nativement avec Kubernetes mais peut s'intégrer à d'autres systèmes comme :
 
-- Service enregistrés avec Consul
+- Services enregistrés avec Consul
 - Machines virtuelles
 
 

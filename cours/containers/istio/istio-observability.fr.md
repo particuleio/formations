@@ -2,10 +2,10 @@
 
 ### Observabilité
 
-Istio fournit par défaut un service de télémétrie pour toutes les communication au sein du mesh:
+Istio fournit par défaut un service de télémétrie pour toutes les communications au sein du mesh :
 
-- Métriques applicative: dashboard et compatibilité [prometheus](https://prometheus.io/)
-- Traçage applicatif : integration avec les solutions les plus utilisées:
+- Métriques applicatives : dashboard et compatibilité [prometheus](https://prometheus.io/)
+- Traçage applicatif : integration avec les solutions les plus utilisées :
     - [Zipkin](https://istio.io/latest/docs/tasks/observability/distributed-tracing/zipkin/)
     - [Jaeger](https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/)
     - [Lightstep](https://istio.io/latest/docs/tasks/observability/distributed-tracing/lightstep/)

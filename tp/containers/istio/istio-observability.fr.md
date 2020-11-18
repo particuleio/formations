@@ -1,8 +1,8 @@
-# Travaux Pratiques: Istio - observabilité
+# Travaux Pratiques : Istio - observabilité
 
 ## Introduction
 
-Dans ce TP nous allons voir comment accéder au dashboard Grafana , Jaeger et
+Dans ce TP nous allons voir comment accéder au dashboard Grafana, Jaeger et
 Kiali
 
 ## Prérequis
@@ -17,11 +17,11 @@ l'état d'un mesh Istio.
 
 Pour accéder à Kiali :
 
-```
-istioctl dashboard kiali --address 0.0.0.0
+```console
+$ istioctl dashboard kiali --address 0.0.0.0
 ```
 
-Il est ensuite possible d'accéder a Kiali depuis l'IP du contrôleur à l'URL
+Il est ensuite possible d'accéder a Kiali depuis l'IP du master à l'URL
 [http://10.42.42.42:20001](http://10.42.42.42:20001) :
 
 ![](../../images/istio/kiali-v1.png)
@@ -30,18 +30,18 @@ Il est ensuite possible d'accéder a Kiali depuis l'IP du contrôleur à l'URL
 
 Pour accéder à Grafana :
 
-```
-istioctl dashboard grafana --address 0.0.0.0
+```console
+$ istioctl dashboard grafana --address 0.0.0.0
 ```
 
-Il est ensuite possible d'accéder à Grafana depuis l'IP du contrôleur à l'URL
+Il est ensuite possible d'accéder à Grafana depuis l'IP du master à l'URL
 [http://10.42.42.42:3000](http://10.42.42.42:3000) :
 
 ![](../../images/istio/grafana-1.png)
 
 ![](../../images/istio/grafana-2.png)
 
-Par défaut, Grafana contient des dashboard fourni par Istio afin de visualiser
+Par défaut, Grafana contient des dashboards fourni par Istio afin de visualiser
 diffèrent type de métrique telles que :
 
 - Le plan de contrôle
@@ -54,23 +54,25 @@ Installez [`Jaeger`](https://www.jaegertracing.io/) qui est une solution open
 source dans la CNCF et intégré à Istio.
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/jaeger.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/jaeger.yaml
 ```
 
 Il faut ensuite générer du trafic à destination de l'application. Par défaut, la
-valeur d'échantillonnage est de 1%:
+valeur d'échantillonnage est de 1% :
 
 ```console
-for i in $(seq 1 100); do curl -s -o /dev/null "http://$GATEWAY_URL/productpage"; done
+$ for i in $(seq 1 100); do
+  curl -s -o /dev/null "http://$GATEWAY_URL/productpage";
+done
 ```
 
 Accédez ensuite au dashboard de Jaeger :
 
-```
-istioctl dashboard jaeger --address 0.0.0.0
+```console
+$ istioctl dashboard jaeger --address 0.0.0.0
 ```
 
-Il est ensuite possible d'accéder à Jaeger depuis l'IP du contrôleur à l'URL
+Il est ensuite possible d'accéder à Jaeger depuis l'IP du master à l'URL
 [http://10.42.42.42:3000](http://10.42.42.42:16686) :
 
 ![](../../images/istio/jaeger-1.png)

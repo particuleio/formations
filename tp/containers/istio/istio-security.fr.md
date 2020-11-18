@@ -12,35 +12,35 @@ Nous allons réutiliser le cluster kubeadm ainsi que le TP Istio - Introduction
 
 Nous allons activer mTLS de manière globale (mesh complet).
 
-L'exemple qui suit utilise deux namespace `foo` et `bar`, avec deux services,
+L'exemple qui suit utilise deux namespaces `foo` et `bar`, avec deux services,
 httpbin et sleep, fonctionnant tous les deux avec un proxy Envoy sidecar.
 
-Nous allons egalement deployer des service sans sidecar Envoy dans un namespace
+Nous allons également deployer des services sans sidecar Envoy dans un namespace
 `legacy` ou l'injection de sidecar est désactivée.
 
 Créez les namespaces :
 
 ```console
-kubectl create ns foo
-kubectl create ns bar
-kubectl create ns legacy
-kubectl label namespace foo istio-injection=enabled
-kubectl label namespace bar istio-injection=enabled
+$ kubectl create ns foo
+$ kubectl create ns bar
+$ kubectl create ns legacy
+$ kubectl label namespace foo istio-injection=enabled
+$ kubectl label namespace bar istio-injection=enabled
 ```
 
 Déployez ensuite les services :
 
 ```console
-kubectl apply -f ~/istio-1.7.4/samples/sleep/sleep.yaml -n foo
-kubectl apply -f ~/istio-1.7.4/samples/sleep/sleep.yaml -n bar
-kubectl apply -f ~/istio-1.7.4/samples/httpbin/httpbin.yaml -n foo
-kubectl apply -f ~/istio-1.7.4/samples/httpbin/httpbin.yaml -n bar
+$ kubectl apply -f ~/istio-1.7.4/samples/sleep/sleep.yaml -n foo
+$ kubectl apply -f ~/istio-1.7.4/samples/sleep/sleep.yaml -n bar
+$ kubectl apply -f ~/istio-1.7.4/samples/httpbin/httpbin.yaml -n foo
+$ kubectl apply -f ~/istio-1.7.4/samples/httpbin/httpbin.yaml -n bar
 ```
 
 Et enfin dans le namespace `legacy` :
 
 ```console
-kubectl apply -f ~/istio-1.7.4/samples/sleep/sleep.yaml -n legacy
+$ kubectl apply -f ~/istio-1.7.4/samples/sleep/sleep.yaml -n legacy
 ```
 
 Vérifiez l'état des pods. La commande suivant permet de vérifier la

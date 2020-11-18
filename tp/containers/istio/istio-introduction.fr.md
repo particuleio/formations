@@ -1,4 +1,4 @@
-# Travaux Pratiques: Istio - installation
+# Travaux Pratiques : Istio - installation
 
 ## Introduction
 
@@ -8,29 +8,29 @@ ainsi que l'opérateur `istio`.
 ## Prérequis
 
 Nous allons réutiliser le cluster `kubeadm` déployé avec Vagrant et déployer sur
-celui ci. Nous allons travailler sur le nœud contrôleur avec `kubectl` installé.
+celui ci. Nous allons travailler sur le nœud master avec `kubectl` installé.
 
-Nettoyez les ressources crées précédemment afin d'avoir un cluster vide.
+Nettoyez les ressources créées précédemment afin d'avoir un cluster vide.
 
 ## Untaint du master
 
-Pour des questions de ressources, nous allons utiliser également le contrôleur,
-pour cela nous allons le `untaint`:
+Pour des questions de ressources, nous allons utiliser également le master,
+pour cela nous allons l'`untaint` :
 
 ```console
-kubectl taint nodes --all node-role.kubernetes.io/master-
+$ kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
-## Installation de metallb
+## Installation de MetalLB
 
 Afin de disposer de la fonctionnalité de Load Balancing pour les services
-Kubernetes, nous allons déployer [metallb](https://metallb.universe.tf/installation/) :
+Kubernetes, nous allons déployer [MetalLB](https://metallb.universe.tf/installation/) :
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 # On first install only
-kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+$ kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -48,10 +48,10 @@ data:
 EOF
 ```
 
-Vérifiez l'état des pods metallb :
+Vérifiez l'état des pods MetalLB :
 
 ```console
-k -n metallb-system get pods
+$ kubectl -n metallb-system get pods
 NAME                          READY   STATUS    RESTARTS   AGE
 controller-65db86ddc6-rj5m4   1/1     Running   0          3m1s
 speaker-f2xzp                 1/1     Running   0          3m1s
@@ -61,10 +61,10 @@ speaker-w4sjp                 1/1     Running   0          3m1s
 ## Installation de `istioctl`
 
 ```console
-curl -sL https://istio.io/downloadIstioctl | sh -
-export PATH=$PATH:$HOME/.istioctl/bin
+$ curl -sL https://istio.io/downloadIstioctl | sh -
+$ export PATH=$PATH:$HOME/.istioctl/bin
 
-istioctl
+$ istioctl
 Istio configuration command line utility for service operators to
 debug and diagnose their Istio mesh.
 
@@ -108,7 +108,7 @@ Use "istioctl [command] --help" for more information about a command.
 ## Installation de l'opérateur `istio`
 
 ```console
-istioctl operator init
+$ istioctl operator init
 ```
 
 ## Installation de Istio
@@ -117,7 +117,7 @@ Il est ensuite possible de decrire un fichier YAML avec la configuration de
 `istio`, par example :
 
 ```console
-vim istio-install.yaml
+$ vim istio-install.yaml
 ```
 
 ```yaml
@@ -140,69 +140,69 @@ spec:
       logLevel: info
 ```
 
-Créons ensuite le namespace `istio-system` pour appliquer le manifeste:
+Créons ensuite le namespace `istio-system` pour appliquer le manifeste :
 
 ```console
-kubectl create ns istio-system
+$ kubectl create ns istio-system
 
-kubectl apply -f istio-install.yaml
+$ kubectl apply -f istio-install.yaml
 ```
 
-Vérifiez que les pods Istio démarrent bien dans le namespace `istio-system`:
+Vérifiez que les pods Istio démarrent bien dans le namespace `istio-system` :
 
 ```console
-kubectl -n istio-system get pods
+$ kubectl -n istio-system get pods
 ```
 
-Vérifiez que les *Custom Resources Definition* sont bien présentes:
+Vérifiez que les *Custom Resources Definition* sont bien présentes :
 
 ```console
-kubectl get crds | grep istio
+$ kubectl get crds | grep istio
 ```
 
 Nous allons activer l'injection de sidecar automatiquement sur le namespace
-`default`:
+`default` :
 
 ```console
-kubectl label namespace default istio-injection=enabled
+$ kubectl label namespace default istio-injection=enabled
 ```
 
-Téléchargez ensuite Istio ainsi que les démonstrations associées:
+Téléchargez ensuite Istio ainsi que les démonstrations associées :
 
-```
-curl -L https://istio.io/downloadIstio | sh -
+```console
+$ curl -L https://istio.io/downloadIstio | sh -
 ```
 
-Un dossier `istio-1.7.4` est créé dans le répertoire en cours.
+Un dossier `istio-1.7.4` est créé dans le répertoire courant.
 
 ## Deploiement des addons
 
-Nous allons installer prometheus, grafana et Kiali afin de pouvoir visualiser la
+Nous allons installer Prometheus, Grafana et Kiali afin de pouvoir visualiser la
 suite du TP.
 
-Kiali:
+Kiali :
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
 
-# attendre quelques secondes que les CRD soient installées puis lancer une
-# seconde fois
+### attendre quelques secondes que les CRD soient installées puis lancer une
+### seconde fois
 
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
 ```
 
-Prometheus et Grafana:
+Prometheus et Grafana :
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/grafana.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/grafana.yaml
 
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/prometheus.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/prometheus.yaml
 ```
 
 Vérifiez que les pods sont bien UP :
 
 ```console
-kubectl -n istio-system get pods
+$ kubectl -n istio-system get pods
 NAME                                    READY   STATUS    RESTARTS   AGE
 grafana-57bb676c4c-fssps                1/1     Running   0          37s
 istio-cni-node-59t8g                    2/2     Running   4          40h

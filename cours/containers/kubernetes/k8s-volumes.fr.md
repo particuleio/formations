@@ -71,7 +71,7 @@ kind: PersistentVolumeClaim
 metadata:
     name: storage-claim
 spec:
-    accessModes:
+  accessModes:
     - ReadWriteOnce
   resources:
     requests:

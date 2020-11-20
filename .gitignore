@@ -8,3 +8,4 @@ beamer*metropolis.sty
 modules.png
 .vagrant
 *.sample
+kubeconfig

@@ -10,7 +10,23 @@ ainsi que l'opérateur `istio`.
 Nous allons réutiliser le cluster `kubeadm` déployé avec Vagrant et déployer sur
 celui ci. Nous allons travailler sur le nœud master avec `kubectl` installé.
 
-Nettoyez les ressources créées précédemment afin d'avoir un cluster vide.
+Détruisez les machines Vagrant `kubeadm` et déployez les machines `istio` qui
+disposent de plus de ressources.
+
+Dans le dossier `vagrant/kubeadm` :
+
+```console
+$ vagrant destroy
+```
+
+Dans le dossier `vagrant/istio` :
+
+```console
+$ vagrant up
+```
+
+Déployez le cluster avec les instructions `kubeadm` comme vu dans le précèdent
+TP.
 
 ## Untaint du master
 

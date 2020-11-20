@@ -96,7 +96,7 @@ prometheus             ClusterIP      10.108.53.116    <none>        9090/TCP   
 
 L'application est accessible depuis l'URL [http://10.42.42.10/productpage](http://10.42.42.10/productpage) :
 
-![](../../images/istio/bookinfo.png)
+![](https://particule.io/formations/images/istio/bookinfo.png)
 
 Nous allons ensuite appliquer les règles de destinations vue pendant le cours
 afin de définir les `subset` des différents services :
@@ -197,7 +197,7 @@ $ istioctl dashboard kiali --address 0.0.0.0
 Il est ensuite possible d'accéder à Kiali depuis l'IP du master à l'URL
 [http://10.42.42.42:20001](http://10.42.42.42:20001) :
 
-![](../../images/istio/kiali-v1.png)
+![](https://particule.io/formations/images/istio/kiali-v1.png)
 
 Déployez maintenant le fichier `virtual-service-reviews-v2-v3.yaml`, que
 remarquez vous ?

@@ -91,10 +91,16 @@ $ git checkout stable/<release>
 
 Dans __`/opt/openstack-ansible/playbooks`__, avec le wrapper `openstack-ansible` :
 
-- `openstack-ansible setup-hosts.yml` -> création des conteneurs
-- `openstack-ansible setup-infrastructure.yml` -> déploiement des services infra
-- `openstack-ansible setup-openstack.yml` -> déploiement des services OpenStack
--  enchaînement automatique avec `openstack-ansible setup-everything.yml`
+1. Création des conteneurs LXC :
+  - `openstack-ansible setup-hosts.yml `
+2. Déploiement des services infra :
+  - `openstack-ansible setup-infrastructure.yml`
+3. Déploiement des services OpenStack :
+  - `openstack-ansible setup-openstack.yml`
+
+Enchaînement automatique :
+
+`openstack-ansible setup-everything.yml`
 
 ### Mettre à jour
 
@@ -102,22 +108,22 @@ Dans __`/opt/openstack-ansible`__ :
 
 - `git pull`
 - `git checkout` de la release cible
-- Relancer `scripts/bootstrap-ansible.sh`
-- Relancer `playbooks/openstack-ansible setup-everything.yml`
+- `scripts/bootstrap-ansible.sh`
+- `cd playbooks; openstack-ansible setup-everything.yml`
 
 ### Sécurité
 
-- Rôle `ansible-hardening` <http://docs.openstack.org/developer/ansible-hardening/>
-
+- Rôle `ansible-hardening`
 - Lancée par `setup-hosts.yml`
-
 - Durcissement des hosts
-
 - Implémente les exigences exprimées dans le _Security Technical Implementation Guide_
+
+<http://docs.openstack.org/developer/ansible-hardening/>
 
 ### openstack-ansible-ops
 
 - Outils pour OSA
+
 - Exemples :
   - Supprimer les anciens *venvs*
   - Restaurer RabbitMQ

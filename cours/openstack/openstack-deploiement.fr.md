@@ -38,7 +38,7 @@
 
 ### Python
 
-![Logo Python](images/python-powered.png){height=50px}
+![Logo Python](images/python-powered.png){ width=100 height=50 }
 
 - OpenStack est compatible Python 2.7
 - Comptabilité Python 3 presque complète
@@ -230,7 +230,7 @@ Ces fonctionnalités se basent également sur des plugins
 - OpenStack Dashboard est l’implémentation officielle de ce module
 - Généralement déployé sur les contrôleurs
 
-![Logo du framework web Python Django](images/django-logo.png)
+![Logo du framework web Python Django](images/django-logo.png){ width=100 height=50 }
 
 ### Configuration
 
@@ -264,7 +264,7 @@ Ces fonctionnalités se basent également sur des plugins
 
 ### Schéma
 
-![Architecture Swift](images/swift-schema.png)
+![Architecture Swift](images/swift-schema.png){ width=200 height=300 }
 
 ## Ceilometer : Collecte de métriques
 

@@ -7,10 +7,10 @@
 - Toutes les fonctionnalités sont accessibles par l’**API**
 - Les clients (y compris le dashboard Horizon) utilisent l’API
 - Des **identifiants** sont nécessaires :
-    - utilisateur
-    - mot de passe
-    - projet (aka tenant)
-    - domaine
+  - utilisateur
+  - mot de passe
+  - projet (aka tenant)
+  - domaine
 
 ### Les APIs OpenStack
 
@@ -22,7 +22,7 @@
 
 ```Un cloud OpenStack déployé dans les règles de l'art fournit des APIs hautement disponibles.```
 
-(La haute-disponibilté des machines virtuelles est un autre sujet)
+(La haute-disponibilité des instances est un autre sujet)
 
 <https://developer.openstack.org/#api>
 
@@ -87,7 +87,7 @@ Keystone est responsable de l'authentification, des autorisations et du catalogu
 
 ### Scénario d’utilisation typique
 
-![Interactions avec Keystone](images/keystone-scenario.png)
+![Interactions avec Keystone](images/keystone-scenario.png){ width=400 height=265 }
 
 ## Nova : Compute
 
@@ -139,7 +139,7 @@ Ressources gérées :
 
 - API pour les instances
 - Pour obtenir la clé publique, l'adresse IP, les user data,...
-- URL spécifique : `curl http://169.254.169.254/openstack`
+- URL spécifique : `curl http://169.254.169.254/openstack
 
 ## Cinder : Stockage block
 
@@ -203,7 +203,6 @@ L’utilisateur peut définir un certain nombre de propriétés dont certaines s
 Une image cloud c’est :
 
 - Une image disque contenant un OS déjà installé
-- Une image qui peut être instanciée en n machines sans erreur
 - Un OS sachant parler à l’API de metadata du cloud (avec `cloud-init`)
 - Détails : <https://docs.openstack.org/image-guide/openstack-images.html>
 
@@ -217,10 +216,10 @@ La plupart des distributions Linux fournissent des images régulièrement mises 
 
 - **Cloud-init** est un moyen de tirer parti de l’API de metadata, et notamment des user data
 - Intégré par défaut dans la plupart des images cloud
-- À partir des user data, cloud-init effectue les opérations de personnalisation de l’instance
-- cloud-config est un format possible de user data
+- À partir des **user data**, cloud-init effectue les opérations de personnalisation de l’instance
+- **cloud-config** est un format possible de user data
 
-Exemple cloud-config :
+Exemple `cloud-config` :
 
 ```bash
 #cloud-config
@@ -283,7 +282,7 @@ Outre les fonctions réseau de base niveaux 2 et 3, Neutron peut fournir d’aut
 
 ### Composants : vue aérienne
 
-![Composants Octavia](images/openstack/octavia-component-overview.png)
+![Composants Octavia](images/openstack/octavia-component-overview.png){ width=500 height=300 }
 
 ### API
 
@@ -296,8 +295,8 @@ L'API Octavia permet de gérer les ressources suivantes :
 - **Pool**
 - **Member**
 - **Health monitor**
-- **Policies**
 - **Rules**
+- **Policies**
 
 ## Heat : Orchestration
 
@@ -327,7 +326,6 @@ resources:
     type: OS::Nova::Server
     properties:
       name: { get_param: instance_name }
-      key_name: my_ssh_key
       image: cirros
       flavor: m1.small
       networks:
@@ -339,7 +337,7 @@ resources:
       fixed_ips:
         - subnet_id: { get_param: subnet_id }
 outputs:
-  fixed_ip: { get_attr: [ instance, first_address ]
+  fixed_ip: { get_attr: [ instance, first_address ] 
 ```
 
 ## Horizon : Dashboard web
@@ -360,3 +358,4 @@ outputs:
 - Notion de projet courant, possibilité de basculer d'un projet à l'autre
 - Une zone “admin” restreinte
 - Support multilingue
+

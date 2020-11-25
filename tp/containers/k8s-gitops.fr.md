@@ -24,19 +24,17 @@ CD.
 
 ## Préparation de l'environnement
 
-Créez un repository sur Github.
-
-
 Pour notre application, nous allons utiliser cette application de démonstration
 :
 
 <https://github.com/particuleio/helloworld>
 
-Clonez la et gardez en local, nous la modifierons plus tard.
+Vous pouvez soit la cloner et la pusher dans un nouveau repository ou bien
+directement la forker dans votre environnement.
 
 ### Installation de Flux CD
 
-Déployons Flux avec Helm avec le fichier de values suivants :
+Déployons Flux avec Helm avec le fichier de `values` suivants :
 
 ```yaml
 syncGarbageCollection:

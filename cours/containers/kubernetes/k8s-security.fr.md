@@ -14,7 +14,7 @@
 3 entités sont utilisées :
 
 - Utilisateurs représentés par les `Users` ou les `ServiceAccounts`
-- Resources représentées par les `Deployments`, `Pods`, `Services`, etc...
+- Ressources représentées par les `Deployments`, `Pods`, `Services`, etc...
 - les différentes opérations possibles : `create, list, get, delete, watch, patch`
 
 ### RBAC

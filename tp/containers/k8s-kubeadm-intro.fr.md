@@ -72,23 +72,23 @@ Installation de `containerd` :
 ### Set up the repository
 ### Install packages to allow apt to use a repository over HTTPS
 
-$ apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common
+# apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common
 
 ### Add Docker’s official GPG key
-$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 ### Add Docker apt repository.
-$ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ### Install containerd
-$ apt update && apt install -y containerd.io
+# apt update && apt install -y containerd.io
 
 ### Configure containerd
-$ sudo mkdir -p /etc/containerd
-$ sudo containerd config default > /etc/containerd/config.toml
+# mkdir -p /etc/containerd
+# containerd config default > /etc/containerd/config.toml
 
 ### Restart containerd
-$ sudo systemctl restart containerd
+# systemctl restart containerd
 ```
 
 ### Installation de kubeadm et kubelet
@@ -96,14 +96,14 @@ $ sudo systemctl restart containerd
 Ajoutez les dépots de code Kubernetes :
 
 ```console
-$ apt update && apt install -y apt-transport-https curl
-$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-$ cat <<EOF | tee /etc/apt/sources.list.d/kubernetes.list
+# apt update && apt install -y apt-transport-https curl
+# curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+# cat <<EOF | tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
-$ apt update
-$ apt install -y kubelet kubeadm kubectl
-$ apt-mark hold kubelet kubeadm kubectl
+# apt update
+# apt install -y kubelet kubeadm kubectl
+# apt-mark hold kubelet kubeadm kubectl
 ```
 
 Sur les machines, 2 interfaces réseaux sont présents :
@@ -144,8 +144,8 @@ Nous allons repasser en utilisateur non root pour la suite. Pour configurer `kub
 
 ```console
 $ mkdir -p $HOME/.kube
-$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+$ sudo -E cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo -E chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 Testez l'accès au cluster :

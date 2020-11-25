@@ -60,9 +60,9 @@ rules:
   verbs: ["get", "list"]
 ```
 
-Ce Role donne les droits de `get` et `list` sur les Pods et les Services.
+Ce `Role` donne les droits de `get` et `list` sur les `Pods` et les `Services`.
 
-Il faut maintenant lier ce Role avec notre User :
+Il faut maintenant lier ce `Role` avec notre User :
 
 ```yaml
 ---
@@ -141,10 +141,10 @@ Que constatez vous ?
 
 ## Accès depuis un pod
 
-Il est possible de donner un accès non pas à un User mais à un ServiceAccount :
+Il est possible de donner un accès non pas à un User mais à un `ServiceAccount` :
 
 ```console
-$ kubectl create serviceaccount monServiceAccount
+$ kubectl create serviceaccount monserviceaccount
 ```
 
 ```yaml
@@ -155,15 +155,15 @@ metadata:
   name: rb-red
 subjects:
 - kind: ServiceAccount
-  name: monServiceAccount
+  name: monserviceaccount
 roleRef:
   kind: Role
   name: access-pod-svc
   apiGroup: rbac.authorization.k8s.io
 ```
 
-On va maintenant crer un Pod en le faisant utiliser notre ServiceAccount. Le
-Pod va automatiquement hériter des droits affectés au ServiceAccount.
+On va maintenant crer un `Pod` en le faisant utiliser notre `ServiceAccount`. Le
+Pod va automatiquement hériter des droits affectés au `ServiceAccount`.
 
 ```yaml
 ---
@@ -172,14 +172,14 @@ kind: Pod
 metadata:
   name: kubectl
 spec:
-  serviceAccountName: monServiceAccount
+  serviceAccountName: monserviceaccount
   containers:
   - name: kubectl
     image: particule/kubectl
     command: ["/bin/sh", "-c", "sleep 1000"]
 ```
 
-On se connecte ensuite au Pod pour effectuer les commandes :
+On se connecte ensuite au `Pod` pour effectuer les commandes :
 
 ```console
 $ kubectl exec -it kubectl -- /bin/sh
@@ -192,11 +192,11 @@ Que constatez vous ?
 
 ## ClusterRole et ClusterRoleBinding
 
-On souhaite maintenant utiliser des ClusterRole pour donner des droits à des
+On souhaite maintenant utiliser des `ClusterRole` pour donner des droits à des
 ressources non namespacées ou à l'ensemble des ressources namespacées du
 cluster.
 
-On crée un ClusterRole :
+On crée un `ClusterRole` :
 
 ```yaml
 ---
@@ -210,7 +210,7 @@ rules:
   verbs: ["get", "list"]
 ```
 
-Et le ClusterRoleBinding associé :
+Et le `ClusterRoleBinding` associé :
 
 ```yaml
 ---
@@ -221,7 +221,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   namespace: default
-  name: monServiceAccount
+  name: monserviceaccount
 roleRef:
   kind: ClusterRole
   name: access-node
@@ -229,10 +229,10 @@ roleRef:
 ```
 
 La spécificité ici est que nous devons spécifier le namespace dans lequel
-existe notre ServiceAccount étant donné que le ClusterRoleBinding est non
+existe notre `ServiceAccount` étant donné que le `ClusterRoleBinding` est non
 namespacé.
 
-On se connecte ensuite au Pod pour effectuer les commandes :
+On se connecte ensuite au `Pod` pour effectuer les commandes :
 
 ```console
 $ kubectl exec -it kubectl -- /bin/sh

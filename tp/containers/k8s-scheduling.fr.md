@@ -108,7 +108,7 @@ contraire, de les forcer sur des nodes différents.
 
 On va ici souhaiter placer tous les pods de ce deployment sur des nodes ayant
 un label `datacenter=alpha`. On se rappelle par rapport à l'exemple précédent
-que seul `worker` a ce label.
+que seul `worker` à ce label.
 
 ```yaml
 ---
@@ -152,7 +152,7 @@ pod-affinity-alpha-697b9f5f-wvjpd      1/1     Running       0          23s   19
 pod-datacenter-alpha-dbfd46f9d-7xns5   1/1     Terminating   0          17m   192.168.167.129   worker   <none>           <none>
 root@master:~# kubectl scale deploy/pod-affinity-alpha --replicas=5
 deployment.apps/pod-affinity-alpha scaled
-root@master:~# k get pod -o wide
+root@master:~# kubectl get pod -o wide
 NAME                                READY   STATUS    RESTARTS   AGE   IP                NODE   NOMINATED NODE   READINESS GATES
 pod-affinity-alpha-697b9f5f-6497d   1/1     Running   0          6s    192.168.167.133   worker   <none>           <none>
 pod-affinity-alpha-697b9f5f-c2tqt   1/1     Running   0          6s    192.168.167.134   worker   <none>           <none>
@@ -235,10 +235,10 @@ Events:
 ## Taints et Tolerations
 
 Ces deux éléments permettent à l'inverse du nodeSelector et des (anti)affinity
-d'empêcher un pod d'être schédulé sur un node. Première règle :
+d'empêcher un pod d'être schédulé sur un node. Premières règles :
 
-- Les taints sont appliqués aux nodes
-- Les tolerations sont appliqués aux pods
+- Les taints sont appliquées aux nodes
+- Les tolerations sont appliquées aux pods
 
 Plaçons une taint sur nos deux nodes `worker` :
 
@@ -246,6 +246,8 @@ Plaçons une taint sur nos deux nodes `worker` :
 $ kubectl taint node worker region=secret:NoSchedule
 $ kubectl taint node master region=secret:NoSchedule
 ```
+
+Une taint est toujours de la forme `key=value:effect` avec `value` optionnelle.
 
 Cela signifie que si un pod ne tolère pas cette taint, il ne pourra être
 schédulé sur ce node.
@@ -286,7 +288,7 @@ Events:
 ```
 
 On voit que le pod ne peut être schédulé nul part car il ne tolère aucune des
-tains des nodes.
+taints des nodes.
 
 Si on ajoute une Toleration :
 

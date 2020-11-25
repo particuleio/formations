@@ -131,7 +131,7 @@ spec:
   http:
   - route:
     - destination:
-        host: productpageG
+        host: productpage
         subset: v1
 ---
 apiVersion: networking.istio.io/v1alpha3

@@ -24,7 +24,7 @@ $ istioctl dashboard kiali --address 0.0.0.0
 Il est ensuite possible d'accéder a Kiali depuis l'IP du master à l'URL
 [http://10.42.42.42:20001](http://10.42.42.42:20001) :
 
-![](../../images/istio/kiali-v1.png)
+![](https://particule.io/formations/images/istio/kiali-v1.png)
 
 ## Visualisation avec Grafana
 
@@ -37,9 +37,9 @@ $ istioctl dashboard grafana --address 0.0.0.0
 Il est ensuite possible d'accéder à Grafana depuis l'IP du master à l'URL
 [http://10.42.42.42:3000](http://10.42.42.42:3000) :
 
-![](../../images/istio/grafana-1.png)
+![](https://particule.io/formations/images/istio/grafana-1.png)
 
-![](../../images/istio/grafana-2.png)
+![](https://particule.io/formations/images/istio/grafana-2.png)
 
 Par défaut, Grafana contient des dashboards fourni par Istio afin de visualiser
 diffèrent type de métrique telles que :
@@ -75,8 +75,8 @@ $ istioctl dashboard jaeger --address 0.0.0.0
 Il est ensuite possible d'accéder à Jaeger depuis l'IP du master à l'URL
 [http://10.42.42.42:3000](http://10.42.42.42:16686) :
 
-![](../../images/istio/jaeger-1.png)
+![](https://particule.io/formations/images/istio/jaeger-1.png)
 
-![](../../images/istio/jaeger-2.png)
+![](https://particule.io/formations/images/istio/jaeger-2.png)
 
 

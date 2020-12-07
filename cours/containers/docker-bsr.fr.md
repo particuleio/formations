@@ -163,17 +163,17 @@ docker import mon-image.tar backup/mon-conteneur
 
 - `-e` “VARIABLE=valeur”
 
-- `–restart=always`
+- `--restart=always`
 
-- `–name=mon-conteneur`
+- `--name=mon-conteneur`
 
 ### Run : ...dont certaines un peu dangereuses
 
-- `–privileged` (Accès à tous les devices)
+- `--privileged` (Accès à tous les devices)
 
-- `–pid=host` (Accès aux PID de l’host)
+- `--pid=host` (Accès aux PID de l’host)
 
-- `–net=host` (Accès à la stack IP de l’host)
+- `--net=host` (Accès à la stack IP de l’host)
 
 ### Run : se “connecter” à un conteneur
 

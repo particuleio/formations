@@ -36,8 +36,6 @@
 
 - Photon (VMware)
 
-- Ubuntu Snappy Core (Ubuntu)
-
 ### CoreOS : philosophie
 
 - Trois "channels" : stable, beta, alpha

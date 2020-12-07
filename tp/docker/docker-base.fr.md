@@ -37,7 +37,7 @@ répertoire.
 
 Nous utiliserons le serveur web Nginx comme démonstrateur.
 
-Copier/coller ce dockerfile dans un fichier Dockerfile :
+Copier/coller ce contenu dans un fichier nommé `Dockerfile` :
 
 ```bash
 FROM ubuntu:16.04
@@ -48,14 +48,25 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-Pour construire notre image :
+Par convention, un Dockerfile ne prend jamais d'extension et commence par une
+majuscule.
+
+Pour construire notre image nommée `mynginx` :
 
 ```bash
 $ docker build -t mynginx .
 ```
 
-Notez bien le point à la fin de la commande ! Il permet de dire à docker que le
-Dockerfile à builder se trouve dans notre répertoire courant.
+Notez bien le point à la fin de la commande ! Il permet de dire à Docker que le
+Dockerfile à builder se trouve dans notre répertoire courant. Si on veut
+construire plusieurs images, la bonne pratique est de créer un dossier par
+image et d'y placer les Dockerfile correspondants.
+
+Il est possible de renommer une image avec la commande `tag` :
+
+```bash
+$ docker tag mynginx maSuperImageNginx
+```
 
 Une fois que les différentes layers ont été construites, vous devriez retrouver
 votre image en local :
@@ -64,7 +75,11 @@ votre image en local :
 $ docker image ls
 REPOSITORY            	TAG             	IMAGE ID        	CREATED          	SIZE
 mynginx               	latest          	62d27f54b98b    	About a minute ago   212MB
+maSuperImageNginx      	latest          	62d27f54b98b    	About a minute ago   212MB
 ```
+
+On voit bien que nos deux images ont exactement le même ID (ce sont les
+**mêmes** images !) mais avec chacun un nom différent.
 
 ### Différence CMD et ENTRYPOINT
 
@@ -192,7 +207,7 @@ Reprenons notre image mynginx
 $ docker run -d -p 8000:80 mynginx
 ```
 
-Nous exposer le port 8000 de notre host vers le port 80 de notre conteneur.
+Nous avons exposé le port 8000 de notre host vers le port 80 de notre conteneur.
 
 Vérifions que notre conteneur est bien en écoute :
 
@@ -209,6 +224,9 @@ $ curl http://localhost:8000
 </body>
 </html>
 ```
+
+Que se passe t-il si vous essayer d'accéder à `http://localhost:80` depuis
+votre host ? Pourquoi ?
 
 Peut-on accéder à cette page html avec une autre URL ? un autre port ?
 

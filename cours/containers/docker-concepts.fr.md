@@ -138,7 +138,7 @@ NETWORK ID      NAME      DRIVER
 
 - Quelques exemples d'overlay :
     - Flannel : UDP et VXLAN
-    - Weave : UDP
+    - Weave : VXLAN
 
 ### Réseau : multihost overlay
 

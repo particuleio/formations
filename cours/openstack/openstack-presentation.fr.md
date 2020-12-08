@@ -18,14 +18,14 @@
 
 ### Mission
 
-```To produce an ubiquitous Open Source Cloud Computing platform that is
+"To produce an ubiquitous Open Source Cloud Computing platform that is
 easy to use, simple to implement, interoperable between deployments,
 works well at all scales, and meets the needs of users and operators of
-both public and private clouds.```
+both public and private clouds."
 
 ### OpenStack en 2020
 
-```OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores```
+"OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores."
 
 <https://www.openstack.org/software/>
 
@@ -136,11 +136,9 @@ Autres :
 
 <https://openinfra.dev/about/open-infrastructure/>
 
-```
-    "The integration of open alternatives for all the different forms that compute storage
-     and networking are taking now and in the future.  The interoperable open source components
-     are production ready, scale easily, and businesses can rely on them for real and emerging workloads."
-```
+"The integration of open alternatives for all the different forms that compute storage
+ and networking are taking now and in the future.  The interoperable open source components
+ are production ready, scale easily, and businesses can rely on them for real and emerging workloads."
 
 -   Au-delà d'OpenStack, des nouveaux projets sont incubés :
     -   Airship

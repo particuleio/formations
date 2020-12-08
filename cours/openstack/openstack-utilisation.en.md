@@ -80,7 +80,7 @@ Keystone is responsible for authentication and authorization and service catalog
 
 ### Typical usage scenario
 
-![Interactions with Keystone](images/keystone-scenario.png)
+![Interactions with Keystone](images/keystone-scenario.png){ width=400 height=265 }
 
 ## Nova: Compute
 

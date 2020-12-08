@@ -33,7 +33,7 @@
 
 ### Python
 
-![Python logo](images/python-powered.png){height=50px}
+![Python logo](images/python-powered.png){ width=100 height=50 }
 
 - OpenStack is Python 2.7 compatible
 - Python 3 comptability almost complete
@@ -224,7 +224,7 @@ These features are also based on plugins
 - Horizon is a Django module
 - OpenStack Dashboard is the official implementation of this module
 
-![Python Django web framework logo](images/django-logo.png)
+![Python Django web framework logo](images/django-logo.png){ width=100 height=50 }
 
 ### Configuration
 
@@ -258,7 +258,7 @@ These features are also based on plugins
 
 ### Diagram
 
-![Swift architecture](images/swift-schema.png)
+![Swift architecture](images/swift-schema.png){ width=200 height=300 }
 
 ## Ceilometer: Metrics collection
 

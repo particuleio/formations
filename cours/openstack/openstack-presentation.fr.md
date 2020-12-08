@@ -6,7 +6,7 @@
 
 ### Vue haut niveau (2/2)
 
-![Vue haut niveau](images/openstack/openstack-user-overview.png){ width=300 height=150 }
+![Vue haut niveau](images/openstack/openstack-user-overview.png){ width=400 height=300 }
 
 ### Historique
 
@@ -25,7 +25,7 @@ both public and private clouds."
 
 ### OpenStack en 2020
 
-"OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores"
+"OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores."
 
 <https://www.openstack.org/software/>
 
@@ -118,23 +118,27 @@ Autres :
 
 ### La Fondation OpenStack
 
--   Rebaptisée Open Infrastructure Foundation en 2020
+-   Rebaptisée **Open Infrastructure Foundation** en 2020
 -   Entité de gouvernance principale et représentation juridique
 -   Les membres du "Board of Directors" sont issus des entreprises sponsors et des membres individuels élus
 -   Tout le monde peut devenir membre individuel (gratuit, pas de cotisation)
 -   Ressources humaines : marketing, événementiel, release management, quelques développeurs (principalement sur l’infrastructure)
--   600 organisations à travers le monde
--   100 000 membres individuels dans 187 pays
+-   600 organisations dans le monde, 100 000 membres, 187 pays
+-   <https://osf.dev>
 
-<https://osf.dev/>
-
-### La Fondation OpenStack/Open Infrastructure Foundation
+### Open Infrastructure Foundation
 
 ![Les principales entités de la Fondation](images/foundation.png)
 
 ### Open Infrastructure
 
--   En 2018, la Fondation s'élargit à l'**Open Infrastructure**
+-   En 2018, la Fondation OpenStack s'élargit à l'**Open Infrastructure**
+
+<https://openinfra.dev/about/open-infrastructure/>
+
+"The integration of open alternatives for all the different forms that compute storage
+ and networking are taking now and in the future.  The interoperable open source components
+ are production ready, scale easily, and businesses can rely on them for real and emerging workloads."
 
 -   Au-delà d'OpenStack, des nouveaux projets sont incubés :
     -   Airship
@@ -197,17 +201,17 @@ Autres :
 -   Validée par la Fondation OpenStack
 -   Contenu :
     -   Essentiellement orienté *utilisateur*
-    -   <https://www.openstack.org/coa/requirements/>
+    -   Pré-requis : <https://www.openstack.org/coa/requirements/>
 -   Modalités :
-    -   Examen pratique (hands on), à distance (3h max)
+    -   Examen pratique (hands on), à distance, durée 3 heures maxi
     -   Coût : USD 400
     -   Inscription : <https://www.openstack.org/coa/>
 -   Ressources :
     -   Handbook : <https://www.openstack.org/coa/handbook/>
 
-### Ressources - Communauté francophone et association
+### Communauté francophone et association
 
-![](images/openstackfr.png){height=50px}
+![Logo OpenStack-fr](images/openstackfr.png){height=50px}
 
 -   <https://openstack.fr> - <https://asso.openstack.fr>
 -   Meetups : Paris, Lyon, Toulouse, Montréal, etc.

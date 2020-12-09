@@ -43,6 +43,17 @@ $ vagrant ssh node
 
 Les opérations suivantes sont à realiser en tant qu'utilisateur root.
 
+### Désactivation de la swap
+
+Le Kubelet ne supporte pas la swap et il est donc nécessaire de la désactiver.
+
+```console
+# swapoff -a
+# sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+```
+
+Rédémarrez ensuite les deux VM.
+
 ### Installation d'une container runtime
 
 Nous allons utiliser `containerd` en tant que container runtime. Pour préparer les machines, lancez les commandes suivantes :
@@ -167,17 +178,17 @@ Nous sommes maintenant prêt à rajouter le worker node.
 
 ## Déploiement du worker node
 
-Pour rajouter un worker node, il suffit de copier/coller la commande de join affichée précédemment :
+Pour rajouter un worker node, il suffit d'utiliser la commande `join`, affichée précédemment à la fin de commande `kubeadm init`, sur le worker node.
 
 ```console
-$ kubeadm join 10.0.2.15:6443 --token ahcn89.uxju0eocfom721bm \
-    --discovery-token-ca-cert-hash sha256:6dbd5196874f122f108faaeff9cb274530a1362d4ea8fccb81f2ce5597765bb4
+# kubeadm join 10.42.42.42:6443 --token xxxxxxxxxxxxxxxx \
+    --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 Vous pouvez obtenir cette commande `join` plus tard avec la commande `kubeadm
-token create --print-join-command`.
+token create --print-join-command` depuis le node Master.
 
-Sur le master, surveillez la liste des nodes :
+Sur le Master, surveillez la liste des nodes :
 
 ```console
 $ kubectl get nodes -w
@@ -185,4 +196,4 @@ $ kubectl get nodes -w
 
 ## Conclusion
 
-Vous avez à votre disposition un cluster de deux nœuds déployés avec kubeadm. Si vous avez le temps, reprenez les TPs minikube et testez les sur ce cluster.
+Vous avez à votre disposition un cluster de deux nœuds déployés avec kubeadm.

@@ -108,6 +108,7 @@ spec:
 ```
 
 ```
+$ kubectl apply -f debug.yaml
 $ kubectl exec -it debug -- /bin/bash
 ```
 
@@ -129,6 +130,13 @@ helloworld   NodePort    10.103.251.40   <none>        80:30315/TCP   3h6m
 Grâce à ce NodePort, avec quelle adresse pouvez vous accéder à ce service ?
 (indice, la liste des Nodes peut être récupérée avec `kubectl get node`)
 
+
+Supprimer le Deployment et le Service :
+
+```console
+$ kubectl delete deployment/helloworld service/helloworld
+```
+
 ## Modification de l'image
 
 Déployez le Deployment et le Service ci dessous. Deux ressources peuvent être
@@ -141,7 +149,7 @@ kind: Deployment
 metadata:
   name: color
 spec:
-  replicas: 20
+  replicas: 5
   selector:
     matchLabels:
       app: color

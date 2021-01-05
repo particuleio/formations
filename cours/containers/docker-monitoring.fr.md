@@ -16,7 +16,7 @@ Monitorer des serveur est une problématique résolu depuis de nombreuses année
 
 - Shinken
 
-- Centreons
+- Centreon
 
 - Icinga
 

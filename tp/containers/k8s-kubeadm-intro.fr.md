@@ -39,9 +39,12 @@ $ vagrant ssh master
 $ vagrant ssh node
 ```
 
-## Préparation des nodes (à realiser sur les deux VM)
+## Préparation des nodes
 
-Les opérations suivantes sont à realiser en tant qu'utilisateur root.
+Toutes ces actions sont à réaliser **sur les deux VM**.
+
+- Les opérations commançant par **#** sont à realiser en tant qu'utilisateur root.
+- Les opérations commançant par **$** sont à realiser en tant qu'utilisateur **non** root.
 
 ### Désactivation de la swap
 
@@ -119,18 +122,18 @@ EOF
 
 Sur les machines, 2 interfaces réseaux sont présents :
 
-- eth0: nécessaire à Vagrant
-- eth1: le réseau privé que nous allons utiliser pour kubeadm
+- enp0s3: nécessaire à Vagrant
+- enp0s8: le réseau privé que nous allons utiliser pour kubeadm
 
 Les noms des interfaces peuvent être différents chez vous. Mais l'ordre ne
 devrait pas changer la première est réservée à Vagrant et la seconde est celle
-du réseau privé que vous devez utiliser. Pensez à remplacer "ETH1" dans le
+du réseau privé que vous devez utiliser. Pensez à remplacer "enp0s8" dans le
 reste du TP si votre interface est nommée différemment.
 
 Créez et éditez le ficher `/etc/default/kubelet`, pour chaque nœud remplacez avec la bonne adresse IP :
 
 ```console
-KUBELET_EXTRA_ARGS="--node-ip=NODE_IP_ETH1"
+KUBELET_EXTRA_ARGS="--node-ip=IP_ENP0S8"
 ```
 
 Démarrez le kubelet :
@@ -146,7 +149,7 @@ Démarrez le kubelet :
 Sur le nœud master, en root, lancez la commande suivante :
 
 ```console
-# kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ETH1
+# kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ENP0S8
 ```
 
 L'opération prend quelques minutes suivant la qualité de la connexion.
@@ -178,7 +181,7 @@ Nous sommes maintenant prêt à rajouter le worker node.
 
 ## Déploiement du worker node
 
-Pour rajouter un worker node, il suffit d'utiliser la commande `join`, affichée précédemment à la fin de commande `kubeadm init`, sur le worker node.
+Pour rajouter un worker node, il suffit d'utiliser la commande `join` (sur le worker node), affichée précédemment à la fin de commande `kubeadm init`.
 
 ```console
 # kubeadm join 10.42.42.42:6443 --token xxxxxxxxxxxxxxxx \

@@ -2,8 +2,8 @@
 
 ## Introduction
 
-Dans ce TP, nous allons déployer un cluster avec KIND (Kubernetes in Docker).
-Une installation pour Linux ainsi qu'une installation est disponible.
+Dans ce TP, nous allons déployer un cluster avec [KIND](https://kind.sigs.k8s.io/) (Kubernetes in Docker).
+Une installation pour Linux ainsi qu'une installation pour Windows sont disponibles.
 
 ## Installation Linux
 

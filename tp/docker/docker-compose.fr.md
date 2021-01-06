@@ -63,16 +63,16 @@ services:
     networks:
       - gogs_network
   gogs_db:
-  image: mysql:5.6
-  volumes:
-    - gogs_db_data:/var/lib/mysql
-  environment:
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=gogs
-  networks:
-    gogs_network:
-      aliases:
-        - mysql
+    image: mysql:5.6
+    volumes:
+      - gogs_db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=gogs
+    networks:
+      gogs_network:
+        aliases:
+          - mysql
 volumes:
   gogs_server_data:
     driver: local

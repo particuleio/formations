@@ -13,8 +13,8 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.define "node" do |node|
-    node.vm.hostname = "node"
+  config.vm.define "worker" do |worker|
+    node.vm.hostname = "worker"
     node.vm.network "private_network", ip: "10.42.42.43", name: "vboxnet0"
     node.vm.provider "virtualbox" do |vb|
       vb.cpus = "1"

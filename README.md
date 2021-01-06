@@ -18,12 +18,12 @@ Auteurs originaux :
 
 HTML et PDF construits automatiquement : <https://particule.io/formations/>
 
-* OpenStack User [PDF](https://particule.io/formations/pdf/openstack-user.fr.pdf)/[HTML](https://particule.io/formations/openstack-user.fr.html)
-* OpenStack Ops [PDF](https://particule.io/formations/pdf/openstack-ops.fr.pdf)/[HTML](https://particule.io/formations/openstack-ops.fr.html)
-* Kubernetes User [PDF](https://particule.io/formations/pdf/kubernetes-user.fr.pdf)/[HTML](https://particule.io/formations/kubernetes-user.fr.html)
-* Kubernetes Ops [PDF](https://particule.io/formations/pdf/kubernetes-ops.fr.pdf)/[HTML](https://particule.io/formations/kubernetes-ops.fr.html)
+* Kubernetes [PDF](https://particule.io/formations/pdf/kubernetes-ube.fr.pdf)/[HTML](https://particule.io/formations/kubernetes-ube.fr.html)
+* Conteneurs [PDF](https://particule.io/formations/pdf/conteneurs-ccb.fr.pdf)/[HTML](https://particule.io/formations/conteners-ccb.fr.html)
 * Cloud [PDF](https://particule.io/formations/pdf/cloud.fr.pdf)/[HTML](https://particule.io/formations/cloud.fr.html)
 * Docker [PDF](https://particule.io/formations/pdf/docker.fr.pdf)/[HTML](https://particule.io/formations/docker.fr.html)
+* OpenStack User [PDF](https://particule.io/formations/pdf/openstack-user.fr.pdf)/[HTML](https://particule.io/formations/openstack-user.fr.html)
+* OpenStack Ops [PDF](https://particule.io/formations/pdf/openstack-ops.fr.pdf)/[HTML](https://particule.io/formations/openstack-ops.fr.html)
 
 ## Prérequis
 
@@ -44,12 +44,32 @@ HTML et PDF construits automatiquement : <https://particule.io/formations/>
 
 Les supports de formation (slides) sont écrits en Markdown. Chaque fichier dans `cours/` est un module indépendant.
 
-`cours.json` définit les cours à partir des modules.
+`cours.json` définit les cours à partir des modules et des TP.
+
+```
+{
+  "kubernetes": {
+    "course_name": "kubernetes",
+    "course_description": "Formation Kubernetes",
+    "modules": [
+      "kubernetes-intro",
+      "kubernetes-architecture",
+      "kubernetes-usage",
+      "kubernetes-conclusion"
+    ],
+    "tp": [
+      "k8s-install",
+      "k8s-scheduling",
+      "k8s-secrets"
+    ]
+  }
+}
+```
 
 Il est possible de générer ces slides sous différents formats :
 
-1. HTML / reveal.js
-2. PDF à partir du HTML / reveal.js
+1. HTML (`reveal.js` pour les cours, `grip` pour les TP)
+2. PDF à partir du HTML
 3. PDF à partir de LaTeX / Beamer
 
 Deux méthodes de build sont disponibles :
@@ -67,8 +87,6 @@ Les Dockerfiles des images Docker sont disponibles ici :
 
 - [revealjs-builder](https://hub.docker.com/r/particule/revealjs-builder)
 - [wkhtmltopdf](https://hub.docker.com/r/particule/wkhtmltopdf)
-
-Un daemon Docker est donc le seul pré-requis pour le build via `build.sh`
 
 ```
  USAGE : ./build.sh options
@@ -89,7 +107,7 @@ Un daemon Docker est donc le seul pré-requis pour le build via `build.sh`
     -l language         Language in which you want the course to be built. Default: fr
 ```
 
-#### Theme
+#### Thème
 
 Les thèmes sont stockés dans `styles/`. Un thème est constitué de :
 
@@ -116,11 +134,13 @@ demandée.
 ./build.sh -c docker -l fr -o html
 ./build.sh -o pdf
 ./build.sh -c openstack-user -u ~/reveal.js
-./build.sh -c kubernetes-ops -l en -t customer
+./build.sh -c kubernetes -l en -t customer
 ```
 
 - Les fichiers HTML se trouvent dans `output-html/`
+- Les TP HTML dans `output-html/tp/`
 - Les PDF se trouvent dans `output-pdf/`
+- Les TP PDF dans `output-pdf/tp/`
 
 En ayant puller au préalable les deux images Docker et en ayant une copie
 locale de reveal.js (spécifié avec `-u`), les builds se font uniquement en

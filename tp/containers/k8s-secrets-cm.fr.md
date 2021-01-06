@@ -9,6 +9,11 @@ Dans ce TP nous allons utiliser les objets notions de *Secrets* et de *ConfigMap
 - Créer et utiliser un *Secret* en tant que secret
 - Utiliser un *Secret* en tant que volume
 
+## Prérequis
+
+- Un cluster Kubernetes
+- `kubectl`
+
 ## ConfigMap
 
 Créez et appliquez le fichier `configmap.yaml` :

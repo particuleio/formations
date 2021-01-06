@@ -131,15 +131,15 @@
       "containers/kubernetes/conclusion"
     ],
     "tp": [
-      "docker/docker-base",
       "containers/k8s-kubeadm-intro",
+      "containers/k8s-kind-install",
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",
       "containers/k8s-minikube-intro",
       "containers/k8s-pods-deployments",
       "containers/k8s-helm",
       "containers/k8s-scheduling",
-      "containers/k8s-minikube-secrets",
+      "containers/k8s-secrets-cm",
       "containers/k8s-rbac"
     ]
   },
@@ -177,9 +177,9 @@
       "containers/k8s-kubeadm-intro",
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",
-      "containers/k8s-minikube-intro",
       "containers/k8s-pods-deployments",
-      "containers/k8s-minikube-secrets",
+      "containers/k8s-scheduling",
+      "containers/k8s-secrets-cm",
       "containers/k8s-helm",
       "containers/k8s-rbac"
     ]

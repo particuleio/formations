@@ -14,7 +14,7 @@ Nous allons voir les différentes options offertes par Kubernetes :
 
 ## Prérequis
 
-- Cluster Kubernetes >= 1.19
+- Cluster Kubernetes >= 1.20
 - `kubectl`
 - `kubeadm`
 

@@ -14,7 +14,7 @@ Nous allons voir les différentes options offertes par Kubernetes :
 
 ## Prérequis
 
-- Cluster Kubernetes >= 1.19
+- Cluster Kubernetes >= 1.20
 - `kubectl`
 - `kubeadm`
 
@@ -26,10 +26,11 @@ l'utilisateur. Pour que ce certificat soit valide, ce certificat doit avoir ét�
 signé par l'autorité de certification interne à Kubernetes.
 
 Pour créer ce certificat, on va utiliser une fonction de `kubeadm`. Pour cela,
-connectez vous à un noeud master et lancez la commande suivante :
+connectez vous à un noeud master et lancez les commandes suivantes :
 
 ```console
-$ kubeadm alpha kubeconfig user --client-name red > kubeconfig
+$ kubectl get cm -n kube-system kubeadm-config -o jsonpath='{ .data.ClusterConfiguration }' > cluster-configuration.yaml
+$ kubeadm alpha kubeconfig user --client-name red --config=cluster-configuration.yaml > kubeconfig
 ```
 
 Le kubeconfig généré contient les crédentials pour un user `red`.

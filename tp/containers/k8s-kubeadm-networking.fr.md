@@ -159,8 +159,10 @@ Ce type de service permet d'exposer un ensemble de pods sur tous les noeuds d'un
 
 ## ExternalIP
 
+Créez et appliquez le fichier `external-ip.yaml` en remplaçant `HOSTIP` par l'IP externe du nœud du cluster :
+
 ```yaml
-Version: v1
+apiVersion: v1
 kind: Service
 metadata:
   name: webapp1-externalip-svc

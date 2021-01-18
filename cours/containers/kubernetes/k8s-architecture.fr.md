@@ -17,7 +17,7 @@
 
 ### Kubernetes : Composants du Control Plane
 
-![](images/kubernetes/architecture-1.png){height="500px"}
+![](images/kubernetes/kubernetes-architecture.png){height="500px"}
 
 ### Kubernetes : Composants du Control Plane
 
@@ -44,13 +44,9 @@
 
 ### Kubernetes : kube-proxy
 
-- Responsable de la publication de services
+- Responsable de la publication des Services
 - Utilise *iptables*
-- Route les paquets à destination des pods et réalise le load balancing TCP/UDP
-
-### Kubernetes : kube-proxy
-
-![](images/kubernetes/services.png){height="500px"}
+- Route les paquets à destination des conteneurs et réalise le load balancing TCP/UDP
 
 ### Kubernetes : kube-controller-manager
 
@@ -71,17 +67,21 @@
     - Applique les modifications si besoin (upgrade, rollback).
 - Surveille l'état des services du cluster via l'API server (*kube-apiserver*).
 
+### Kubernetes : Kubelet
+
+- Assure la communication entre les nodes et l'apiserver
+- En charge de créer les conteneurs au travers de l'interface Container Runtime
+  Interface (CRI)
+- Peut fonctionner avec différentes container runtimes
+
+### Kubernetes : Kubelet
+
+![](images/kubernetes/kubelet-cri.png){height="500px"}
+
 ### Kubernetes: Network
 
-Kubernetes n'implémente pas de solution réseau par défaut, mais s'appuie sur des solutions tierces qui implémentent les fonctionnalités suivantes:
+Kubernetes n'implémente pas de solution réseau par défaut, mais s'appuie sur des solutions tierces qui implémentent les fonctionnalités suivantes :
 
 - Chaque pods reçoit sa propre adresse IP
 - Les pods peuvent communiquer directement sans NAT
-
-### Kubernetes : Aujourd'hui
-
-- Version 1.19.x : stable en production
-- Solution complète et une des plus utilisées
-- Éprouvée par Google
-
 

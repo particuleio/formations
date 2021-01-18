@@ -89,9 +89,9 @@ Permettent d'exécuter des conteneurs sur un système
 
 - docker: historique
 
-- containerd: implementation de reference
+- containerd: implémentation de référence
 
-- cri-o: implementation Open Source développée par redhat
+- cri-o: implémentation Open Source développée par RedHat
 
 - kata containers: Conteneurs dans des VMs
 

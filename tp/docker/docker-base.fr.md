@@ -65,7 +65,7 @@ image et d'y placer les Dockerfile correspondants.
 Il est possible de renommer une image avec la commande `tag` :
 
 ```bash
-$ docker tag mynginx maSuperImageNginx
+$ docker tag mynginx masuperimagenginx
 ```
 
 Une fois que les différentes layers ont été construites, vous devriez retrouver
@@ -75,11 +75,11 @@ votre image en local :
 $ docker image ls
 REPOSITORY            	TAG             	IMAGE ID        	CREATED          	SIZE
 mynginx               	latest          	62d27f54b98b    	About a minute ago   212MB
-maSuperImageNginx      	latest          	62d27f54b98b    	About a minute ago   212MB
+masuperimagenginx      	latest          	62d27f54b98b    	About a minute ago   212MB
 ```
 
 On voit bien que nos deux images ont exactement le même ID (ce sont les
-**mêmes** images !) mais avec chacun un nom différent.
+**mêmes** images !) mais avec deux noms différents.
 
 ### Différence CMD et ENTRYPOINT
 

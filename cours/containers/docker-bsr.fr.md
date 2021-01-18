@@ -121,7 +121,7 @@ docker commit mon-conteneur backup/mon-conteneur
 docker run -it backup/mon-conteneur
 ```
 
-- Exporter un conteneur :
+- Exporter une image :
 
 ```bash
 docker save -o mon-image.tar backup/mon-conteneur

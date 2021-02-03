@@ -6,7 +6,7 @@
 
 ### Implémentation
 
-- Tout est développé en Python (Django pour la partie web)
+- Tout est développé en Python (framework Django pour la partie web)
 - Chaque projet est découpé en plusieurs services (exemple : API, scheduler, etc.)
 - Réutilisation de composants existants et de bibliothèques existantes
 - Utilisation des bibliothèques `oslo.*` (développées par et pour OpenStack) : logs, config, etc.
@@ -14,19 +14,19 @@
 
 ### Implémentation - dépendances
 
-- Base de données : relationnelle SQL (MariaDB)
+- Base de données : relationnelle SQL (MariaDB-Galera)
 - Communication entre les services : AMQP (RabbitMQ)
 - Mise en cache : Memcached
-- Stockage distribué de configuration (à venir) : etcd
+- Load balancing: HAProxy
 
 ## Modèle de développement
 
-### Statistiques (2017)
+### Statistiques (2020)
 
-- 2344 développeurs
-- 65823 changements (commits)
+- 1375 contributeurs
+- 43650 changements (commits)
 
-<https://www.openstack.org/assets/reports/OpenStack-AnnualReport2017.pdf>
+<https://www.openstack.org/annual-reports/2020-openinfra-foundation-annual-report>
 
 ### Développement du projet : en détails
 
@@ -157,9 +157,9 @@
 
 ### Traduction
 
-- Équipe officielle *i18n*
+- SIG officielle *i18n*
 - Seules certaines parties sont traduites, comme Horizon
-- Utilisation d'une plateforme web basée Zanata : <https://translate.openstack.org/>
+- Utilisation d'une plateforme web basée sur Zanata : <https://translate.openstack.org/>
 
 ## DevStack : faire tourner rapidement un OpenStack
 
@@ -202,4 +202,3 @@ SERVICE_TOKEN=a682f596-76f3-11e3-b3b2-e716f9080d50
 - Il est recommandé de travailler dans une machine virtuelle
 - Pour tester tous les composants OpenStack dans de bonnes conditions, plusieurs Go de RAM sont nécessaires
 - L’utilisation de Vagrant est conseillée
-

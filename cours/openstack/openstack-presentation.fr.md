@@ -23,7 +23,7 @@ easy to use, simple to implement, interoperable between deployments,
 works well at all scales, and meets the needs of users and operators of
 both public and private clouds."
 
-### OpenStack en 2020
+### OpenStack en 2021
 
 "OpenStack is one of the top 3 most active open source projects and manages 10 million compute cores."
 
@@ -43,6 +43,7 @@ both public and private clouds."
 -   Stein (2019.1), Train (2019.2)
 -   Ussuri (2020.1), **Victoria** (2020.2)
 -   Premier semestre 2021 : Wallaby
+-   Second semestre 2021 : Xena
 
 ### Sponsors/contributeurs ...
 
@@ -123,7 +124,8 @@ Autres :
 -   Les membres du "Board of Directors" sont issus des entreprises sponsors et des membres individuels élus
 -   Tout le monde peut devenir membre individuel (gratuit, pas de cotisation)
 -   Ressources humaines : marketing, événementiel, release management, quelques développeurs (principalement sur l’infrastructure)
--   600 organisations dans le monde, 100 000 membres, 187 pays
+-   710 organisations dans le monde, 110 000 membres, 182 pays
+-   Rapport annuel: <https://www.openstack.org/annual-reports/2020-openinfra-foundation-annual-report/>
 -   <https://osf.dev>
 
 ### Open Infrastructure Foundation
@@ -215,7 +217,6 @@ Autres :
 
 -   <https://openstack.fr> - <https://asso.openstack.fr>
 -   Meetups : Paris, Lyon, Toulouse, Montréal, etc.
--   OpenStack Days France (Paris) : <https://openstackdayfrance.fr/>
 -   Présence à des événements tels que *Paris Open Source Summit*
 -   Canaux de communication :
     -   openstack-fr@lists.openstack.org

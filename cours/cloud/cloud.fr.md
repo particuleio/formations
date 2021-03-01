@@ -218,7 +218,8 @@ GET /v2.0/networks/d32019d3-bc6e-4319-9c1d-6722fc136a22
 ![OpenStack logo](images/openstack.png){height="100px"}
 
 - Naissance en 2010
-- Fondation OpenStack depuis 2012
+- Fondation OpenStack depuis 2012...
+- ...rebaptisée Open Infrastructure Foundation en 2020 (<https://openinfra.dev/>)
 - Écrit en Python et distribué sous licence Apache 2.0
 - Soutien très large de l'industrie et contributions variées
 
@@ -231,7 +232,7 @@ GET /v2.0/networks/d32019d3-bc6e-4319-9c1d-6722fc136a22
 ### Solutions de PaaS privé
 
 - Cloud Foundry, Fondation (<https://www.cloudfoundry.org>)
-- OpenShift, Red Hat (<https://www.openshift.org>)
+- OKD, Red Hat (<https://www.okd.io>)
 - Solum, OpenStack (<https://wiki.openstack.org/wiki/Solum>)
 
 ## Les concepts Infrastructure as a Service
@@ -410,7 +411,7 @@ Cf. <https://12factor.net/>
 - Le logiciel est responsable de garantir les données
 - Les pannes matérielles sont prises en compte et gérées
 - Le projet **Ceph** et le composant **OpenStack Swift** implémentent du SDS
-- Voir aussi **Scality**
+- Voir aussi Scality, OpenIO, OpenSDS,...
 
 ### SDS - Théorème CAP
 

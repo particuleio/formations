@@ -203,5 +203,26 @@
       "containers/istio/istio-security",
       "containers/istio/istio-observability"
     ]
+  },
+  "kubernetes-eks": {
+    "course_name": "kubernetes-eks",
+    "course_description": "Formation Amazon EKS",
+    "modules": [
+      "intro-particule",
+      "copyright",
+      "intro",
+      "containers/kubernetes/k8s-governance",
+      "containers/eks/eks-intro",
+      "containers/eks/eks-bootstrap",
+      "containers/eks/eks-nodes",
+      "containers/eks/eks-networking",
+      "containers/eks/eks-storage",
+      "containers/eks/eks-deploy",
+      "containers/eks/eks-auth",
+      "containers/eks/eks-integrations",
+      "containers/eks/eks-conclusion"
+    ],
+    "tp": [
+    ]
   }
 }

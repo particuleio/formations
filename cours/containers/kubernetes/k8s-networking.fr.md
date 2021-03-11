@@ -18,29 +18,19 @@
 
 ### Kubernetes : Services
 
-- Abstraction des pods sous forme d'une IP virtuelle de service
-- Rendre un ensemble de pods accessibles depuis l'extérieur ou l'intérieur du
+- Abstraction des Pods sous forme d'une IP virtuelle de Service
+- Rendre un ensemble de Pods accessibles depuis l'extérieur ou l'intérieur du
   cluster
-- Load Balancing entre les pods d'un même service
-- Selection grâce aux labels
+- Load Balancing entre les Pods d'un même Service
+- Sélection des Pods faisant parti d'un Service grâce aux labels
 
 ### Kubernetes : Services
 
-- `ClusterIP` : IP dans le réseau privé Kubernetes (VIP)
-- `NodePort` : chaque noeud du cluster ouvre un port statique et redirige le trafic vers le port indiqué
-- `LoadBalancer` :  expose le service en externe en utilisant le loadbalancer d'un cloud provider (AWS, Google, Azure)
-    - AWS ELB/ALB/NLB
-    - GCP LoadBalancer
-    - Azure Balancer
-    - OpenStack Octavia
+![](images/kubernetes/service.png){height=400px}
 
-### Kubernetes : Services
+### Kubernetes : Services ClusterIP
 
-![](images/kubernetes/services-1.png){height=500px}
-
-### Kubernetes : Services
-
-- Exemple de service (on remarque la sélection sur le label et le mode d'exposition):
+- Exemple de Service (on remarque la sélection sur le label et le mode d'exposition):
 
 ```yaml
 apiVersion: v1
@@ -48,20 +38,38 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
   - port: 80
   selector:
     app: guestbook
 ```
 
+### Kubernetes : Service NodePort
+
+`NodePort` : chaque noeud du cluster ouvre un port statique et redirige le trafic vers le port indiqué
+
+![](images/kubernetes/nodeport.png){height=400px}
+
+### Kubernetes : Service LoadBalancer
+
+- `LoadBalancer` :  expose le Service en externe en utilisant le loadbalancer d'un cloud provider
+    - AWS ELB/ALB/NLB
+    - GCP LoadBalancer
+    - Azure Balancer
+    - OpenStack Octavia
+
+### Kubernetes : Service LoadBalancer
+
+![](images/kubernetes/svc-loadbalancer.png){height=400px}
+
 ### Kubernetes : Services
 
-Il est aussi possible de mapper un service avec un nom de domaine en spécifiant le paramètre `spec.externalName`.
+Il est aussi possible de mapper un Service avec un nom de domaine en spécifiant le paramètre `spec.externalName`.
 
 ```yaml
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: my-service
   namespace: prod
@@ -72,13 +80,13 @@ spec:
 
 ### Kubernetes: Ingress
 
-- L'objet `Ingress` permet d'exposer un service à l'extérieur d'un cluster Kubernetes
+- L'objet `Ingress` permet d'exposer un Service à l'extérieur d'un cluster Kubernetes
 - Il permet de fournir une URL visible permettant d'accéder un Service Kubernetes
 - Il permet d'avoir des terminations TLS, de faire du _Load Balancing_, etc...
 
 ### Kubernetes: Ingress
 
-![](images/kubernetes/ingress-1.png){height=500px}
+![](images/kubernetes/ingress.png){height=400px}
 
 ### Kubernetes : Ingress
 

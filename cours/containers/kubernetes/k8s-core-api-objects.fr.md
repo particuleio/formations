@@ -44,16 +44,6 @@ spec:
     - containerPort: 80
 ```
 
-### Kubernetes : Labels
-
-- La commande `kubectl get pods`, par défaut, ne liste pas les labels. Il est possible de les voir en utilisant `--show-labels`:
-
-```console
-$ kubectl get pods --show-labels
-NAME      READY     STATUS    RESTARTS   AGE       LABELS
-nginx     1/1       Running   0          31s       app=nginx,env=prod
-```
-
 ### Kubernetes : Pod
 
 - Ensemble logique composé de un ou plusieurs conteneurs
@@ -66,26 +56,19 @@ nginx     1/1       Running   0          31s       app=nginx,env=prod
 
 ### Kubernetes : Pod
 
-- Les Pods sont définis en YAML comme les fichiers `docker-compose` :
+Les Pods sont définis en YAML comme les fichiers `docker-compose` :
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    ports:
-    - containerPort: 80
-```
+![](images/kubernetes/pod.png)
 
 ### Kubernetes : Deployment
 
 - Permet d'assurer le fonctionnement d'un ensemble de Pods
 - Version, Update et Rollback
 - Anciennement appelés Replication Controllers
+
+### Kubernetes : Deployment
+
+![](images/kubernetes/deployment.png)
 
 ### Kubernetes : Deployment
 

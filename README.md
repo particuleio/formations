@@ -10,7 +10,7 @@ Sources : <https://github.com/particuleio/formations/>
 
 Auteurs originaux :
 
-* Adrien Cunin <adrien@adriencuin.fr>
+* Adrien Cunin <adrien@adriencunin.fr>
 * Pierre Freund <pierre.freund@gmail.com>
 * Romain Guichard <romain@particule.io>
 * Kevin Lefevre <kevin@particule.io>

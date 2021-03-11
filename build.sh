@@ -71,7 +71,7 @@ build-html() {
           docker run -u root --rm \
             -v $PWD:/formations \
             particule/grip:"$DOCKER_TAG" \
-            --export /formations/$(basename $tp).md /formations/output-html/tp/$(basename $tp)."$LANGUAGE".html
+            --export --title="$TITLE $(basename $tp)" /formations/$(basename $tp).md /formations/output-html/tp/$(basename $tp)."$LANGUAGE".html
         elif [ -f tp/"$tp"."$FALLBACK_LANGUAGE".md ]; then
           echo "$tp doesn't exist in $LANGUAGE. Falling back into $FALLBACK_LANGUAGE..."
           # concat TP + copyright
@@ -80,7 +80,7 @@ build-html() {
           docker run --rm \
             -v $PWD:/formations \
             particule/grip:"$DOCKER_TAG" \
-            --export /formations/$tp.md /formations/output-html/tp/$(basename $tp).$FALLBACK_LANGUAGE.html
+            --export --title="$TITLE $(basename $tp)" /formations/$tp.md /formations/output-html/tp/$(basename $tp).$FALLBACK_LANGUAGE.html
         else
           echo "TP $(basename $tp) doesn't exist in any of the languages"
         fi

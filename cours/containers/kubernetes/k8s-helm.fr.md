@@ -1,52 +1,50 @@
 # Kubernetes : Helm
 
-## Helm : Qu'est-ce que Helm ? (what)
+## Qu'est-ce que Helm ?
 
 - Outil de packaging d'application Kubernetes
-- Developpe en Go
+- Developpé en Go
 - Actuellement en v3
-- Incubated project CNCF
+- Projet *graduated* de la CNCF
 
-github.com/helm/helm
+<https://github.com/helm/helm>
 
-## Helm : Pourquoi Helm ? (why)
+## Pourquoi Helm ?
 
-  - Applique le principe D.R.Y (Don't Repeat Yourself)
-    - Mechanisme de templating
-    - Variabilisation des ressources generees
-  - Single point of authority
-  - Easy to host, version, share (public & private repositories)
+  - Applique le principe DRY (Don't Repeat Yourself)
+    - Mécanisme de templating (Go templating)
+    - Variabilisation des ressources générées
+  - Facilité de versionnement et de partage (repository Helm)
   - Helm permet d'administrer les Releases
     - Rollbacks / upgrades d'applications
 
-## Helm : Compare a des manifestes YAML
-
-  - Permet de mettre en place le DRY (Dont Repeat Yourself)
-    - customisation via fichier de configuration YAML
-  - Definition d'une seule source de verite
-    - Les ressources sont packagees
-    - On ne deploie plus de manifeste manuellement
-  - Packages deployees via des Releases
-
-## Helm : Concepts
+## Concepts
 
 Concept | Description
 --------|------------------------------------------------------------------------
 Chart   | Ensemble de ressources permettant de definir une application Kubernetes
 Config  | Valeurs permettant de configurer un Chart (`values.yaml`)
-Release | Chart deploye avec une Config
+Release | Chart deployé avec une Config
+
+## Comparaison avec des manifests YAML
+
+  - Permet de mettre en place le DRY (Don't Repeat Yourself)
+    - customisation via fichier de configuration YAML
+  - Définition d'une seule source de vérité
+    - Les ressources sont packagées
+  - Packages déployés via des Releases
 
 
-## Helm : Structure d'un Chart
+## Structure d'un Chart
 
-- Chart.yaml pour definir le chart ainsi que ses metadatas
-- values.yaml sert a definir les valeurs de configuration du Chart par defaut
+- Chart.yaml pour définir le chart ainsi que ses metadatas
+- values.yaml sert à definir les valeurs de configuration du Chart par défaut
 - `crds/`: Dossier qui recense les CRDs
 - `templates/`: les templates de manifeste Kubernetes en YAML
 
-### Helm : Chart.yaml
+### Chart.yaml
 
-Le fichier de configuration du Chart dans lequel sont definies
+Le fichier de configuration du Chart dans lequel sont définies
 ses metadatas.
 
 ```yaml
@@ -61,7 +59,7 @@ appVersion: 0.50.3
 dependencies: []
 ```
 
-### Helm : Structure du values.yaml
+### Structure du values.yaml
 
 - Chaque attribut est ensuite disponible au niveau des templates
 
@@ -81,7 +79,7 @@ namespaceOverride: ""
 commonLabels: {}
 ```
 
-### Helm : Surcharge du values.yaml
+### Surcharge du values.yaml
 
 ```yaml
 ---
@@ -98,16 +96,15 @@ tree
 │   ├── application.yaml
 │   ├── configuration.yaml
 │   └── secrets.yaml
-├── values-dev.yaml
 ├── values-production.yaml
 ├── values-staging.yaml
 └── values.yaml
 ```
 
-### Helm : Templates
+### Templates
 
 Helm permet de variabiliser les manifestes Kubernetes,
-permettant de creer et configurer des ressources dynamiquement,
+permettant de créer et configurer des ressources dynamiquement,
 en se basant sur la configuration.
 
 ```yaml
@@ -126,13 +123,13 @@ spec:
     name: helloworld
 ```
 
-## Helm : Gestion des repositories
+## Gestion des repositories
 
 - What is helm repository
 - How to create helm repository (private?)
 - How to publish to helm repository
 
-## Helm : Commandes communes
+## Commandes communes
 
 ```console
 $ helm repo add stable https://charts.helm.sh/stable
@@ -144,13 +141,11 @@ NAME: airflow-1616524477
 NAMESPACE: defaul
 ...
 $ helm upgrade airflow-1616524477 stable/airflow
-helm upgrade  airflow-1616524477 stable/airflow
+helm upgrade airflow-1616524477 stable/airflow
 Release "airflow-1616524477" has been upgraded. Happy Helming!
 $ helm rollback airflow-1616524477
 Rollback was a success! Happy Helming!
 $ helm uninstall airflow-1616524477
 release "airflow-1616524477" uninstalled
 ```
-
-## Conclusion
 

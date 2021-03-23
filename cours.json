@@ -124,6 +124,7 @@
       "containers/kubernetes/k8s-scheduling",
       "containers/kubernetes/k8s-observability-monitoring",
       "containers/kubernetes/k8s-usage",
+      "containers/kubernetes/k8s-helm",
       "containers/kubernetes/k8s-operations",
       "containers/kubernetes/k8s-where-how",
       "containers/kubernetes/k8s-installation",
@@ -168,6 +169,7 @@
       "containers/kubernetes/k8s-volumes",
       "containers/kubernetes/k8s-workloads-configuration",
       "containers/kubernetes/k8s-where-how",
+      "containers/kubernetes/k8s-helm",
       "containers/kubernetes/k8s-security",
       "containers/kubernetes/conclusion"
     ],

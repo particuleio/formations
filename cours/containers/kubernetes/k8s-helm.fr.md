@@ -125,9 +125,11 @@ spec:
 
 ## Gestion des repositories
 
-- What is helm repository
-- How to create helm repository (private?)
-- How to publish to helm repository
+  - Un Repository Helm permet de distribuer et versionner des Charts
+  - Contient un `index.yaml` listant les Charts packagés disponibles par version
+  - Deux méthodes de déploiement possibles
+    - Via HTTP en tant que fichiers statiques
+    - Via OCI en utilisant une Registry (depuis Helm v3)
 
 ## Commandes communes
 

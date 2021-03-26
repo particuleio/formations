@@ -104,8 +104,8 @@ tree
 ### Templates
 
 Helm permet de variabiliser les manifestes Kubernetes,
-permettant de créer et configurer des ressources dynamiquement,
-en se basant sur la configuration.
+permettant de créer et configurer des ressources dynamiquement.
+Le langage Go Template est utilisé.
 
 ```yaml
 apiVersion: apps/v1

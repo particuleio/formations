@@ -37,8 +37,11 @@ $ git clone https://github.com/particuleio/formations.git
 $ cd formations/tp/containers/kind
 ```
 
+Installez la ligne de commande `kubectl` :
+<https://kubernetes.io/fr/docs/tasks/tools/install-kubectl/>
+
 ```console
-$ kind create cluster --config mutli-node-1-controler-1-worker.yaml
+$ kind create cluster --config multi-node-1-controler-1-worker.yaml
 
 [...]
 

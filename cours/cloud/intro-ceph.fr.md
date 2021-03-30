@@ -1,7 +1,7 @@
 ### Ceph
 
--   Projet totalement parallèle à OpenStack
--   Supporté par une entreprise (Inktank) récemment rachetée par Red Hat
+-   Projet totalement indépendant d'OpenStack
+-   Supporté par Red Hat
 -   Fournit d’abord du stockage objet
 -   L’accès aux données se fait via RADOS :
     -   Accès direct depuis une application avec librados

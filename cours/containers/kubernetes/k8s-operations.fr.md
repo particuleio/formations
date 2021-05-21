@@ -106,7 +106,7 @@ kubectl port-forward my-svc 6000
 kubectl cluster-info
 kubectl get events
 kubectl describe node <NODE_NAME>
-kubectl  logs (-f) <POD_NAME>
+kubectl logs [-f] <POD_NAME>
 ```
 
 ### Kubectl : Maintenance
@@ -124,7 +124,7 @@ kubectl describe nodes
 
 ```console
 kubectl cordon <NODE_NAME>
-kubectl drain <NDOE_NAME>
+kubectl drain <NODE_NAME>
 kubectl uncordon <NODE_NAME>
 ```
 

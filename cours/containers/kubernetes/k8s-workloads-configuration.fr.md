@@ -2,7 +2,7 @@
 
 ### Kubernetes : ConfigMaps
 
-- Objet Kubernetes permettant stocker séparer les fichiers de configuration
+- Objet Kubernetes permettant de stocker séparément les fichiers de configuration
 - Il peut être créé d'un ensemble de valeurs ou d'un fichier resource Kubernetes (YAML ou JSON)
 - Un `ConfigMap` peut sollicité par plusieurs `pods`
 
@@ -88,10 +88,10 @@ spec:
 
 ### Kubernets : Secrets
 
-- S'utilisent de la même façon que les ConfigMap
+- S'utilisent de la même façon que les `ConfigMap`
 - La seule différence est le stockage en base64
 - 3 types de secrets:
-  - `Generic`: valeurs arbitraire comme dans une *ConfigMap*
+  - `Generic`: valeurs arbitraire comme dans une `ConfigMap`
   - `tls`: certificat et clé pour utilisation avec un serveur web
   - `docker-registry`: utilisé en tant que `imagePullSecret` par un pod pour pouvoir pull les images d'une registry privée
 

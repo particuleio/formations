@@ -63,7 +63,6 @@ Infrastructure immuable
 - Control plane managé par AWS
 - Amazon Linux / Ubuntu
 - CloudFormation / [Terraform](https://github.com/terraform-aws-modules/terraform-aws-eks) / [eksctl](https://eksctl.io/)
-- Kubernetes v1.14.X
 
 ### GKE
 
@@ -73,14 +72,12 @@ Infrastructure immuable
 - Premier sur le marché
 - COS / Ubuntu
 - Terraform / Google Cloud SDK
-- Kubernetes v1.15.X
 
 ### AZURE AKS
 
 ![](images/kubernetes/aks_v.png){height="200px"}
 
 - Control plane managé par Azure
-- Kubernetes v1.15.X
 
 ### OPENSTACK MAGNUM
 
@@ -88,7 +85,6 @@ Infrastructure immuable
 
 - Control plane managé par OpenStack
 - Basé sur OpenStack Heat
-- Kubernetes v1.16.X : Stein release
 - Proposé sur certains public cloud basés sur OpenStack
 
 ### Outils de déploiements agnostiques
@@ -100,7 +96,6 @@ Infrastructure immuable
 - Ne provisionne pas de machine
 - Facilement personnalisabe
 - Respect des best practices
-- Kubernetes v1.18.X
 - Peut être utilisé par d'autres outils
 
 ### kubespray
@@ -109,7 +104,6 @@ Infrastructure immuable
 - Dense, permet d'installer un nombre important de plugins
 - Multiples OS
 - Support Kubeadm
-- Kubernetes v1.16.X
 
 ### symplegma
 
@@ -117,7 +111,6 @@ Infrastructure immuable
 - Inspiré de Kubespray en plus léger
 - CoreOS/Ubuntu
 - Full Kubeadm
-- Kubernetes v1.18.X
 
 ### Outils de déploiements spécifiques
 
@@ -127,7 +120,6 @@ Infrastructure immuable
 - Cycle de release lent
 - Facilement personnalisable
 - CoreOS ❤
-- Kubernetes v1.15.X
 
 ### kops
 
@@ -135,7 +127,5 @@ Infrastructure immuable
 - Cycle de release lent
 - Facilement personnalisable
 - Multiples OS
-- Kubernetes v1.15.X
 - Supporte Cloudformation and Terraform
-
 

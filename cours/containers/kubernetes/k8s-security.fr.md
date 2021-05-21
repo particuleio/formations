@@ -195,7 +195,7 @@ spec:
 
 ### Admission Controllers
 
-- Interceptes les requêtes sur l'API Kubernetes
+- Interceptent les requêtes sur l'API Kubernetes
 - Peut effectuer des modifications si nécessaires
 - Conception personnalisée possible
 

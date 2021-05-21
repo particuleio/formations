@@ -64,7 +64,6 @@ Immutable infrastructure
 - Quite new
 - Amazon Linux / Ubuntu
 - CloudFormation / [Terraform](https://github.com/terraform-aws-modules/terraform-aws-eks) / [eksctl](https://eksctl.io/)
-- Kubernetes v1.14.X
 
 ### GKE
 
@@ -74,7 +73,6 @@ Immutable infrastructure
 - First managed Kubernetes
 - COS / Ubuntu
 - Terraform / Google Cloud SDK
-- Kubernetes v1.15.X
 
 ### AZURE AKS
 
@@ -82,7 +80,6 @@ Immutable infrastructure
 
 - Managed Control Plane by Azure
 - Quite new
-- Kubernetes v1.15.X
 
 ### OPENSTACK MAGNUM
 
@@ -90,7 +87,6 @@ Immutable infrastructure
 
 - Managed Control Plane on OpenStack Cloud
 - Based on Heat Stacks
-- Kubernetes v1.16.X on Stein release
 - Available on some public Clouds
 
 ### Cloud specific deployment tools
@@ -101,7 +97,6 @@ Immutable infrastructure
 - Slow development
 - Easily tunable
 - Uses CoreOS ❤
-- Kubernetes v1.15.X
 
 ### kops
 
@@ -109,7 +104,6 @@ Immutable infrastructure
 - Heavy development
 - Easily tunable
 - Multiple OS
-- Kubernetes v1.15.X
 - Supports Cloudformation and Terraform
 
 ### Infrastructure agnostic deployment tools
@@ -121,7 +115,6 @@ Immutable infrastructure
 - Does not take care of bootstrapping machines
 - Best practice configuration and tunable
 - Multiple OS
-- Kubernetes v1.18.X
 - Can be automated and used by other tools
 
 ### kubespray
@@ -130,7 +123,6 @@ Immutable infrastructure
 - Quite dense
 - Multiple OS
 - Kubeadm support
-- Kubernetes v1.16.X
 
 ### symplegma
 
@@ -139,5 +131,4 @@ Immutable infrastructure
 - CoreOS but basically agnostic (from source)
 - Does not officially take care of infrastructure
 - Full Kubeadm
-- Kubernetes v1.18.X
 

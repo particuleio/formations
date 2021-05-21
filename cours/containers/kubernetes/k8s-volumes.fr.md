@@ -60,7 +60,7 @@ parameters:
 
 - Ressource utilisée et vue comme une requête pour solliciter du stockage persistant
 - Offre aux PV une variété d'options en fonction du cas d'utilisation
-- Utilisé par les `StatefulSets` pour solliciter du stockage (Utilisaltion du champ `volumeClaimTemplates`)
+- Utilisé par les `StatefulSets` pour solliciter du stockage (Utilisation du champ `volumeClaimTemplates`)
 
 
 ### Kubernetes : PersistentVolumeClaims
@@ -84,7 +84,7 @@ spec:
 
 - Composant de stockage dans le cluster kubernetes
 - Stockage externe aux noeuds du cluster
-- Cycle de vie d'indépendant du pod qui le consomme
+- Cycle de vie indépendant du pod qui le consomme
 - Peut être provisionné manuellement par un administrateur ou dynamiquement grâce à une `StorageClass`
 
 ### Kubernetes : PersistentVolume

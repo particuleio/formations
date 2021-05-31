@@ -41,8 +41,8 @@ both public and private clouds."
 -   Ocata (2017.1), Pike (2017.2)
 -   Queens (2018.1), Rocky (2018.2)
 -   Stein (2019.1), Train (2019.2)
--   Ussuri (2020.1), **Victoria** (2020.2)
--   Premier semestre 2021 : Wallaby
+-   Ussuri (2020.1), Victoria (2020.2)
+-   **Wallaby** (2021.1)
 -   Second semestre 2021 : Xena
 
 ### Sponsors/contributeurs ...
@@ -74,13 +74,13 @@ both public and private clouds."
 
 -   Identity : Keystone
 -   Compute : Nova, Placement
--   Storage : Cinder (block), Swift (object)
+-   Storage : Cinder (block), Swift (object), Manila (shared file system)
 -   Networking : Neutron (sdn), Octavia (lbaas), Designate (dns)
 -   Image : Glance
 -   Dashboard : Horizon
 -   Telemetry : Ceilometer
 -   Alerting : AODH
--   Orchestration : Heat
+-   Orchestration : Heat (infra as code), Mistral (workflow), Blazar (resource reservation)
 
 <https://www.openstack.org/software/project-navigator/>
 
@@ -91,12 +91,11 @@ Et aussi :
 -   Bare metal : Ironic
 -   Container : Magnum
 -   Message Queue : Zaqar
--   Function : Qinling
 -   Database : Trove
 -   Data processing : Sahara
--   Shared File System : Manila
 -   Key management : Barbican
 -   Billing : Cloudkitty
+-   Application catalog : Murano
 -   ...
 
 ### Les principaux composants OpenStack (3/3)
@@ -220,5 +219,5 @@ Autres :
 -   Présence à des événements tels que *Paris Open Source Summit*
 -   Canaux de communication :
     -   openstack-fr@lists.openstack.org
-    -   \#openstack-fr@Freenode
+    -   \#openstack-fr@oftc
 

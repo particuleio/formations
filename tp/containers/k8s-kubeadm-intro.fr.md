@@ -24,7 +24,7 @@ Dans le repertoire `tp/containers/vagrant/kubeadm`:
 ```console
 $ vagrant up
 Bringing machine 'master' up with 'virtualbox' provider...
-Bringing machine 'node' up with 'virtualbox' provider...
+Bringing machine 'worker' up with 'virtualbox' provider...
 ```
 
 Vagrant demandera quelle interface réseau utiliser, choisissez l'interface réseau utilisée pour se connecter à Internet.
@@ -36,7 +36,7 @@ $ vagrant ssh master
 ```
 
 ```console
-$ vagrant ssh node
+$ vagrant ssh worker
 ```
 
 ## Préparation des nodes

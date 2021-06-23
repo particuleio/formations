@@ -30,7 +30,7 @@ connectez vous à un noeud master et lancez les commandes suivantes :
 
 ```console
 $ kubectl get cm -n kube-system kubeadm-config -o jsonpath='{ .data.ClusterConfiguration }' > cluster-configuration.yaml
-$ kubeadm alpha kubeconfig user --client-name red --config=cluster-configuration.yaml > kubeconfig
+$ kubeadm kubeconfig user --client-name red --config=cluster-configuration.yaml > kubeconfig
 ```
 
 Le kubeconfig généré contient les crédentials pour un user `red`.

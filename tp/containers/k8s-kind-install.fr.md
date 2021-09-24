@@ -10,11 +10,11 @@ Une installation pour Linux ainsi qu'une installation pour Windows sont disponib
 Docker doit être installé : <https://docs.docker.com/engine/install/ubuntu/>
 
 ```console
-$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
+$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.0/kind-linux-amd64
 $ chmod +x ./kind
 $ sudo mv ./kind /usr/local/bin
 $ kind --version
-kind version 0.9.0
+kind version 0.11.0
 ```
 
 ## Installation Windows
@@ -22,10 +22,10 @@ kind version 0.9.0
 Docker for Windows doit être installé : <https://docs.docker.com/docker-for-windows/install/>
 
 ```powershell
-$ curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/v0.9.0/kind-windows-amd64
+$ curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/v0.11.0/kind-windows-amd64
 $ Move-Item .\kind-windows-amd64.exe c:\Users\your_user\AppData\Local\Microsoft\WindowsApps\kind.exe
 $ kind --version
-kind version 0.9.0
+kind version 0.11.0
 ```
 
 ## Boot de l'environment

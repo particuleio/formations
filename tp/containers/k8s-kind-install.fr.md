@@ -30,11 +30,16 @@ kind version 0.9.0
 
 ## Boot de l'environment
 
-Clonez le répository de formations :
+Enregistrez le fichier suivant sous le nom
+`multi-node-1-controler-1-worker.yaml` :
 
-```console
-$ git clone https://github.com/particuleio/formations.git
-$ cd formations/tp/containers/kind
+```yaml
+# two nodes cluster config
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
 ```
 
 Installez la ligne de commande `kubectl` :

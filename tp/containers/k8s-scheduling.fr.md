@@ -48,7 +48,7 @@ spec:
         datacenter: alpha
       containers:
       - name: nginx
-        image: particule/helloworld
+        image: hello-world
         ports:
         - containerPort: 80
 ```
@@ -137,7 +137,7 @@ spec:
                 - alpha
       containers:
       - name: alpha
-        image: particule/helloworld
+        image: hello-world
         ports:
         - containerPort: 80
 ```
@@ -198,7 +198,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
       - name: alpha
-        image: particule/helloworld
+        image: hello-world
         ports:
         - containerPort: 80
 ```
@@ -263,7 +263,7 @@ metadata:
 spec:
   containers:
   - name: alpha
-    image: particule/helloworld
+    image: hello-world
 ```
 
 ```console
@@ -301,7 +301,7 @@ metadata:
 spec:
   containers:
   - name: alpha
-    image: particule/helloworld
+    image: hello-world
   tolerations:
   - key: "region"
     operator: "Equal"

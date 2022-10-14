@@ -186,7 +186,7 @@ Lancez trois shells différents, dans les deux premiers, lancez :
 
 *(si le binaire `jq` n'est pas présent sur votre système, installez le)*
 
-- `while true; do curl $(kubectl get node master -o json | jq '.status.addresses[0].address' -r):$(kubectl get svc color -o json | jq '.spec.ports[].nodePort'); sleep 1; done`
+- `while true; do curl $(kubectl get $(kubectl get node -l node-role.kubernetes.io/master="" -o name) -o json | jq '.status.addresses[0].address' -r):$(kubectl get svc color -o json | jq '.spec.ports[].nodePort'); sleep 1; done`
 - `while true; do kubectl get pod; sleep 1; clear; done`
 
 Dans le troisième, mettez à jour l'image utilisée par le Deployment.

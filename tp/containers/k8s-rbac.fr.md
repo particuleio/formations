@@ -16,21 +16,33 @@ Nous allons voir les différentes options offertes par Kubernetes :
 
 - Cluster Kubernetes >= 1.20
 - `kubectl`
-- `kubeadm`
+- `[kubeadm](https://kubernetes.io/fr/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)`
 
 ## Création d'un utilisateur
 
 La notion d'utilisateur n'existe pas vraiment sur Kubernetes. Un utilisateur
-généralement représenté par un certificat x509 dont le CommonName est le nom de
+est généralement représenté par un certificat x509 dont le CommonName est le nom de
 l'utilisateur. Pour que ce certificat soit valide, ce certificat doit avoir été
-signé par l'autorité de certification interne à Kubernetes.
+signé par l'autorité de certification de Kubernetes.
 
-Pour créer ce certificat, on va utiliser une fonction de `kubeadm`. Pour cela,
-connectez vous à un noeud master et lancez les commandes suivantes :
+Pour créer ce certificat, on va utiliser une fonction de `kubeadm`. Afin de
+pouvoir signer ce certificat et le rendre valide, il faut aussi récupérer la
+PKI de Kubernetes qui contient la clé privée nécessaire à la signature.
+Pour cela, lancez les commandes suivantes :
 
 ```console
 $ kubectl get cm -n kube-system kubeadm-config -o jsonpath='{ .data.ClusterConfiguration }' > cluster-configuration.yaml
-$ kubeadm kubeconfig user --client-name red --config=cluster-configuration.yaml > kubeconfig
+```
+
+Dans votre `~/.kube/config`, cherchez l'URL du server pour le cluster
+"kind-kind". Vous devriez trouver quelque chose comme 127.0.0.1:40623 (port
+peut varier). Dans `cluster-configuration.yaml`, remplacer la valeur
+`controlPlaneEndpoint:` avec l'URL du server (sans `https://`)
+
+```console
+$ sudo mkdir -p /etc/kubernetes/
+$ sudo docker cp kind-control-plane:/etc/kubernetes/pki /etc/kubernetes/pki
+$ sudo kubeadm kubeconfig user --client-name red --config=cluster-configuration.yaml > kubeconfig
 ```
 
 Le kubeconfig généré contient les crédentials pour un user `red`.
@@ -47,7 +59,7 @@ Que constatez vous ? Pourquoi ?
 
 ## Role et RoleBinding
 
-Nous allons donner des droits à notre utilisateur.
+Nous allons réutiliser le kubeconfig admin et donner des droits à notre utilisateur.
 
 ```yaml
 ---
@@ -80,9 +92,17 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-On peut maintenant accéder au cluster :
+Utilisez le kubeconfig admin et appliquez ces fichiers :
+
+```
+$ export KUBECONFIG=~/.kube/config
+$ kubectl apply -f role.yaml -f rolebinding.yaml
+```
+
+On peut maintenant accéder au cluster avec le kubeconfig red:
 
 ```console
+$ export KUBECONFIG=kubeconfig
 $ kubectl get pod
 $ kubectl get services
 $ kubectl get deploy
@@ -142,7 +162,9 @@ Que constatez vous ?
 
 ## Accès depuis un pod
 
-Il est possible de donner un accès non pas à un User mais à un `ServiceAccount` :
+Il est possible de donner un accès non pas à un User mais à un `ServiceAccount`.
+Le ServiceAccount est ensuite donné à un Pod permettant à ce dernier
+d'hériter des droits du ServiceAccount.
 
 ```console
 $ kubectl create serviceaccount monserviceaccount
@@ -163,7 +185,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-On va maintenant crer un `Pod` en le faisant utiliser notre `ServiceAccount`. Le
+On va maintenant créer un `Pod` en le faisant utiliser notre `ServiceAccount`. Le
 Pod va automatiquement hériter des droits affectés au `ServiceAccount`.
 
 ```yaml

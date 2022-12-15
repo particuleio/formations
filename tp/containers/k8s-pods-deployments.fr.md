@@ -20,7 +20,7 @@ metadata:
 spec:
   containers:
     - name: pod
-      image: particule/helloworld
+      image: hello-world
 ```
 
 Appliquez ce pod avec la commande `kubectl apply -f pod.yaml`.
@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: particule/helloworld
+        image: hello-world
         ports:
         - containerPort: 80
 ```

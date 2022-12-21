@@ -129,6 +129,7 @@
       "containers/kubernetes/k8s-operations",
       "containers/kubernetes/k8s-where-how",
       "containers/kubernetes/k8s-security",
+      "containers/kubernetes/k8s-crds",
       "containers/kubernetes/conclusion"
     ],
     "tp": [

@@ -9,11 +9,12 @@
 
 ### Kubernetes : Composants du Control Plane
 
-- etcd: Base de données
-- kube-apiserver : API server qui permet la configuration d'objets Kubernetes (Pod, Service, Deployment, etc.)
-- kube-proxy : Permet le forwarding TCP/UDP et le load balancing entre les services et les backends (Pods)
-- kube-scheduler : Implémente les fonctionnalités de scheduling
-- kube-controller-manager : Responsable de l'état du cluster, boucle infinie qui régule l'état du cluster afin d'atteindre un état désiré
+
+- **etcd:** Base de données
+- **kube-apiserver:** API server qui permet la configuration d'objets Kubernetes (Pod, Service, Deployment, etc.)
+- **kube-proxy:** Permet le forwarding TCP/UDP et le load balancing entre les services et les backends (Pods)
+- **kube-scheduler:** Implémente les fonctionnalités de scheduling
+- **kube-controller-manager:** Responsable de l'état du cluster, boucle infinie qui régule l'état du cluster afin d'atteindre un état désiré
 
 ### Kubernetes : Composants du Control Plane
 
@@ -56,8 +57,8 @@
 
 ### Kubernetes : Autres composants
 
-- kubelet : Service "agent" fonctionnant sur tous les nœuds et assure le fonctionnement des autres services
-- kubectl : Ligne de commande permettant de piloter un cluster Kubernetes
+- **kubelet :** Service "agent" fonctionnant sur tous les nœuds et assure le fonctionnement des autres services
+- **kubectl :** Ligne de commande permettant de piloter un cluster Kubernetes
 
 ### Kubernetes : Kubelet
 

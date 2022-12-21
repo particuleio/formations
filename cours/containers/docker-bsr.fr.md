@@ -12,7 +12,7 @@
 
 ### Construction d'une image
 
-- Possibilité de construire son image à la main (long et source d'erreurs)
+- Possibilité de construire à la base d'un conteneur
 
 - Suivi de version et construction d'images de manière automatisée
 
@@ -20,7 +20,7 @@
 
 ### Dockerfile
 
-- Suite d'instruction qui définit une image
+- Suite d'instructions qui définit une image
 
 - Permet de vérifier le contenu d'une image
 

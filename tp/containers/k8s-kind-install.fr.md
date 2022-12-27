@@ -3,55 +3,103 @@
 ## Introduction
 
 Dans ce TP, nous allons déployer un cluster avec [KIND](https://kind.sigs.k8s.io/) (Kubernetes in Docker).
-Une installation pour Linux ainsi qu'une installation pour Windows sont disponibles.
+Une installation pour Linux ainsi qu'une installation est disponible.
 
-## Installation Linux
+## Prérequis
+- Docker doit être installé : <https://docs.docker.com/engine/install/ubuntu/>
 
-Docker doit être installé : <https://docs.docker.com/engine/install/ubuntu/>
+## Kubectl
+```bash
+$ curl -LO https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl
+$ mv kubectl /usr/local/bin/kubectl
+$ # verify the installation
+$ kubectl version --client --short
+Client Version: v1.26.0
+Kustomize Version: v4.5.7
+$ # add auto completion
+$ echo 'source <(kubectl completion bash)' >>~/.bashrc && source ~/.bashrc
+```
 
-```console
+
+## Installation
+
+[Quick Start - kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
+
+```bash
 $ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
 $ chmod +x ./kind
 $ sudo mv ./kind /usr/local/bin/kind
 $ kind --version
 kind version 0.17.0
+$ # add auto completion
+$ echo 'source <(kind completion bash)' >> ~/.bashrc && source ~/.bashrc
 ```
 
-## Installation Windows
+## Creation de cluster
+### Méthode impérative
+Création d'un simple cluster appelé `kind-test`
+```bash
+$ kind create cluster --name=test
+Creating cluster "test" ...
+ ✓ Ensuring node image (kindest/node:v1.25.3) 🖼 
+ ✓ Preparing nodes 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+Set kubectl context to "kind-test"
+You can now use your cluster with:
 
-Docker for Windows doit être installé : <https://docs.docker.com/docker-for-windows/install/>
+kubectl cluster-info --context kind-test
 
-```powershell
-$ curl.exe -Lo kind-windows-amd64.exe https://kind.sigs.k8s.io/dl/v0.11.0/kind-windows-amd64
-$ Move-Item .\kind-windows-amd64.exe c:\Users\your_user\AppData\Local\Microsoft\WindowsApps\kind.exe
-$ kind --version
-kind version 0.11.0
+Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
 ```
 
-## Boot de l'environment
 
-Enregistrez le fichier suivant sous le nom
-`multi-node-1-controler-1-worker.yaml` :
+Vérification de d'accès au cluster
+```bash
+$ kubectl get nodes
+NAME                 STATUS   ROLES           AGE   VERSION
+test-control-plane   Ready    control-plane   51s   v1.25.3
+```
 
-```yaml
-# two nodes cluster config
+Suppression de cluster
+``` bash
+kind delete cluster --name=test
+```
+
+### Méthode déclarative
+```bash
+$ # create config file
+$ echo '
+# three node (two workers) cluster config
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
 - role: worker
-```
+- role: worker
+' > kind_cluster_1.yaml
+$ # create cluster
+$ kind create cluster --name=demo --config=kind_cluster_1.yaml
+Creating cluster "demo" ...
+ ✓ Ensuring node image (kindest/node:v1.25.3) 🖼
+ ✓ Preparing nodes 📦 📦 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+ ✓ Joining worker nodes 🚜 
+Set kubectl context to "kind-demo"
+You can now use your cluster with:
 
-Installez la ligne de commande `kubectl` :
-<https://kubernetes.io/fr/docs/tasks/tools/install-kubectl/>
+kubectl cluster-info --context kind-demo
 
-```console
-$ kind create cluster --config multi-node-1-controler-1-worker.yaml
-
-[...]
-
-$ kubectl get node
-NAME            STATUS   ROLES    AGE   VERSION
-control-plane   Ready    master   82s   v1.19.1
-worker          Ready    <none>   48s   v1.19.1
+Thanks for using kind! 😊
+$ # Verify access to cluster
+$ kubectl get nodes
+NAME                 STATUS   ROLES           AGE   VERSION
+demo-control-plane   Ready    control-plane   55s   v1.25.3
+demo-worker          Ready    <none>          35s   v1.25.3
+demo-worker2         Ready    <none>          35s   v1.25.3
 ```

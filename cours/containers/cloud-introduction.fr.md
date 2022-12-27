@@ -20,6 +20,10 @@
 
 - PaaS : Platform as a Service
 
+- DBaaS : Data Base as a Service
+
+- KaaS : Kubernetes as a Service
+
 - SaaS : Software as a Service
 
 ### Le cloud en un schéma
@@ -52,3 +56,9 @@
 - Infrastructure as Code : Définir toute une infrastructure dans un seul fichier texte de manière déclarative
 
 - Scalabilité : passer à l'échelle son infrastructure en fonction de différentes métriques.
+
+
+### Déploiment des application dans le cloud
+- Les conteneurs de nos jours sont partout
+- L'outil de-facto pour le déploiment des applications basées sur les conteneurs est Kubernetes
+- Kubernetes est utilisé partout !

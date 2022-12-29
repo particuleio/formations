@@ -20,7 +20,7 @@ metadata:
 spec:
   containers:
     - name: pod
-      image: particule/helloworld
+      image: docker.io/particule/helloworld
 ```
 
 Appliquez ce pod avec la commande `kubectl apply -f pod.yaml`.
@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: particule/helloworld
+        image: docker.io/particule/helloworld
         ports:
         - containerPort: 80
 ```
@@ -160,7 +160,7 @@ spec:
     spec:
       containers:
       - name: color
-        image: particule/simplecolorapi:1.0
+        image: docker.io/particule/simplecolorapi:1.0
         ports:
         - containerPort: 5000
 ---
@@ -192,7 +192,7 @@ Lancez trois shells différents, dans les deux premiers, lancez :
 Dans le troisième, mettez à jour l'image utilisée par le Deployment.
 
 ```console
-$ kubectl set image deployment/color color=particule/simplecolorapi:2.0
+$ kubectl set image deployment/color color=docker.io/particule/simplecolorapi:2.0
 ```
 
 Que constatez vous sur les premiers shells ?

@@ -103,3 +103,54 @@ demo-control-plane   Ready    control-plane   55s   v1.25.3
 demo-worker          Ready    <none>          35s   v1.25.3
 demo-worker2         Ready    <none>          35s   v1.25.3
 ```
+
+
+## Control plane componentes
+Kubernetes organise les objects avec les namespaces.
+Amusez-vous en regardant ce qu'il y a dans chaque namespace !
+``` bash
+$ # get namespaces
+$ kubectl get namespaces
+NAME                 STATUS   AGE
+default              Active   44s
+kube-node-lease      Active   46s
+kube-public          Active   46s
+kube-system          Active   46s
+local-path-storage   Active   41s
+$ # get all objects inside namespace
+$ kubectl get all <NAMESPACE>
+...
+```
+
+## Kubeconfig
+- Les information d'accès aux clusters kuebrnetes sont stockés dans un fichier appelé kubeconfig.
+
+- Le chemin par défaut de ce fichier est `$HOME/.kube/config`.
+
+``` bash
+$ # show current kubeconfig
+$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://127.0.0.1:40525
+  name: kind-demo
+contexts:
+- context:
+    cluster: kind-demo
+    user: kind-demo
+  name: kind-demo
+current-context: kind-demo
+kind: Config
+preferences: {}
+users:
+- name: kind-demo
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+```
+
+
+## Conclusion
+Dans ce TP nous avons vu comment mettre en place un cluster kubernetes en local avec `kind`.

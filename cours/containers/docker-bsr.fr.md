@@ -6,7 +6,7 @@
 
 - Flexibilité et élasticité
 
-- Format standard de facto
+- Analogie avec les VMs: instance et snapshot/image
 
 - Instanciation illimitée
 
@@ -23,6 +23,8 @@
 - Suite d'instructions qui définit une image
 
 - Permet de vérifier le contenu d'une image
+
+- Chaque commande Dockerfile génère un nouveau layer
 
 ```bash
 FROM alpine:3.4
@@ -50,13 +52,18 @@ CMD ["nginx"]
 
 - Bien choisir sa baseimage
 
-- Chaque commande Dockerfile génère un nouveau layer
+- Bien organiser les layers: mettre ce qui change à la fin
 
 - Comptez vos layers !
 
 ### Dockerfile : Bad Layering
 
 ```bash
+VOLUME /config /downloads
+
+ENV PORT=8081
+
+EXPOSE 8081
 RUN apk --update add \
     git \
     tzdata \
@@ -67,10 +74,6 @@ RUN apk --update add \
     py-pip \
 
 RUN rm -rf /var/cache/apk/*
-
-VOLUME /config /downloads
-
-EXPOSE 8081
 
 CMD ["--datadir=/config", "--nolaunch"]
 
@@ -121,6 +124,8 @@ docker commit mon-conteneur backup/mon-conteneur
 docker run -it backup/mon-conteneur
 ```
 
+### Ship : Save and export
+
 - Exporter une image :
 
 ```bash
@@ -133,13 +138,35 @@ docker save -o mon-image.tar backup/mon-conteneur
 docker import mon-image.tar backup/mon-conteneur
 ```
 
-### Ship : Docker Registry
-
+### Ship : Pull & Push
 - DockerHub n’est qu’au Docker registry ce que GitHub est à git
 
-- Pull and Push
+- Des images officiels
 
-- Image officielle : `registry`
+- Authentification au registre docker.io
+
+```bash
+docker login
+```
+
+### Ship : Pull & Push
+- Ajouter un tag avec l'addresse du registre
+```bash
+docker tag docker.io/username/mon-conteneur:v1
+```
+
+- Push d'une image :
+
+```bash
+docker push docker.io/username/mon-conteneur:v1
+```
+
+- Pull d'une conteneur :
+
+```bash
+docker pull docker.io/username/mon-conteneur:v1
+```
+
 
 ### Run
 
@@ -189,6 +216,22 @@ docker import mon-image.tar backup/mon-conteneur
 
 - docker rm (détruit complètement)
 
+### Run : Les conteneurs en production 
+- Les conteneurs à très grand échèle
+- Les conteneurs sont éphemères
+- Besoin de contrôler l'état des conteneurs
+
+### Run : Les conteneurs en production 
+- Il y a d'autres besoins pour les applis
+  - scaling
+  - networking
+  - stockage
+  - dns
+  - config
+  - gestion de traffic
+  - ...
+
+
 ### Build, Ship and Run : Conclusions
 
 - Écosystème de gestion d'images
@@ -197,3 +240,4 @@ docker import mon-image.tar backup/mon-conteneur
 
 - Contrôle au niveau conteneurs
 
+- Besoin d'un outil gestion des contenurs à grand échèle

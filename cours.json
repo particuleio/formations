@@ -119,7 +119,6 @@
       "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
       "containers/kubernetes/k8s-networking",
-      "containers/kubernetes/k8s-service-mesh",
       "containers/kubernetes/k8s-volumes",
       "containers/kubernetes/k8s-workloads-configuration",
       "containers/kubernetes/k8s-resources-handling",
@@ -130,21 +129,21 @@
       "containers/kubernetes/k8s-operations",
       "containers/kubernetes/k8s-where-how",
       "containers/kubernetes/k8s-security",
+      "containers/kubernetes/k8s-service-mesh",
       "containers/kubernetes/k8s-crds",
       "containers/kubernetes/k8s-best-practices",
       "containers/kubernetes/conclusion"
     ],
     "tp": [
-      "containers/k8s-kubeadm-intro",
+      "docker/docker-base",
       "containers/k8s-kind-install",
-      "containers/k8s-kubeadm-networking",
-      "containers/k8s-minikube-health",
-      "containers/k8s-minikube-intro",
       "containers/k8s-pods-deployments",
       "containers/k8s-helm",
       "containers/k8s-scheduling",
       "containers/k8s-secrets-cm",
-      "containers/k8s-rbac"
+      "containers/k8s-rbac",
+      "containers/k8s-kubeadm-intro",
+      "containers/k8s-kubeadm-networking"
     ]
   },
   "conteneurs-ccb": {

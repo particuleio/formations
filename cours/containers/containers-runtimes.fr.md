@@ -68,11 +68,6 @@ CGroup: /
 
 - Contrôle : figer les groupes ou créer un point de sauvegarde et redémarrer.
 
-### Deux philosophies de conteneurs
-
-- *Systeme* : simule une séquence de boot complète avec un init process ainsi que plusieurs processus (LXC, OpenVZ).
-- *Process* : un conteneur exécute un ou plusieurs processus directement, en fonction de l'application conteneurisée (Docker, Rkt).
-
 ### Encore plus “cloud” qu’une instance
 
 - Partage du kernel
@@ -87,13 +82,18 @@ CGroup: /
 
 Permettent d'exécuter des conteneurs sur un système
 
-- docker: historique
+- docker: container engine - historique
 
 - containerd: implémentation de référence
 
+- podman: container engine - dans les systèmes RHEL 
+
+- runc: lightweight container runtime
+
 - cri-o: implémentation Open Source développée par RedHat
 
-- kata containers: Conteneurs dans des VMs
+- ...
+
 
 ### Les conteneurs: conclusion
 
@@ -101,5 +101,5 @@ Permettent d'exécuter des conteneurs sur un système
 
 - Les conteneurs engine fournissent des interfaces d'abstraction
 
-- Plusieurs types de conteneurs pour différents besoins
+- Plusieurs types de runtime
 

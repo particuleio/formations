@@ -7,6 +7,13 @@
 - Faciles à conteneuriser et à packager
 - Peut se déployer uniquement avec des conteneurs sans dépendance d'OS
 
+### Kubernetes : Composants
+- Kubernetes fonctionne en cluster
+- Un cluster un groupement des noeuds (VMs)
+- Les noeuds ont deux rôles:
+  - Controle Plane
+  - Workers
+
 ### Kubernetes : Composants du Control Plane
 
 

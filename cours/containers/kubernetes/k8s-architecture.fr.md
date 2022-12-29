@@ -14,6 +14,9 @@
   - Controle Plane
   - Workers
 
+### Kubernetes : Composants
+![](images/kubernetes/kubernetes-architecture.png){height="500px"}
+
 ### Kubernetes : Composants du Control Plane
 
 
@@ -22,10 +25,6 @@
 - **kube-proxy:** Permet le forwarding TCP/UDP et le load balancing entre les services et les backends (Pods)
 - **kube-scheduler:** Implémente les fonctionnalités de scheduling
 - **kube-controller-manager:** Responsable de l'état du cluster, boucle infinie qui régule l'état du cluster afin d'atteindre un état désiré
-
-### Kubernetes : Composants du Control Plane
-
-![](images/kubernetes/kubernetes-architecture.png){height="500px"}
 
 ### Kubernetes : Composants du Control Plane
 

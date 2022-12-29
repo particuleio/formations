@@ -19,25 +19,30 @@ le temps à jour, il peut apparaitre utile d’utiliser les dépots fournis par
 Docker afin de disposer d’un package à jour.
 
 Exemple pour Ubuntu :
-https://docs.docker.com/engine/installation/linux/ubuntu/#install-docker
+[https://docs.docker.com/engine/installation/linux/ubuntu/#install-docker](https://docs.docker.com/engine/installation/linux/ubuntu/#install-docker)
 
 
-## Préparation de l’environnement
+## Afficher les images et conteneurs
+On peut utiliser le client docker pour afficher les images et conteneurs dans 
+le système
 
-Afin de travailler dans un environnement vierge, créez un dossier et placez vous
-à l’intérieur. Toutes les commandes qui suivront seront lancées depuis ce
-répertoire.
-
+Pour afficher les images : 
 ```bash
-~ $ mkdir docker
-~ $ cd docker
+$ # list images
+$ docker images
 ```
+```bash
+$ # list conatiners
+$ docker container ls
+```
+
+On note bien qu'il y a pas ni des images docker ni de conteneurs dans le système.
+
 
 ## Construire une image Docker
 
-Nous utiliserons le serveur web Nginx comme démonstrateur.
-
-Copier/coller ce contenu dans un fichier nommé `Dockerfile` :
+Nous allon créer une image docker pour lancer un serveur nginx.
+Voici un exemple d'un Dockerfile.
 
 ```bash
 FROM ubuntu:16.04
@@ -81,123 +86,33 @@ masuperimagenginx      	latest          	62d27f54b98b    	About a minute ago   2
 On voit bien que nos deux images ont exactement le même ID (ce sont les
 **mêmes** images !) mais avec deux noms différents.
 
-### Différence CMD et ENTRYPOINT
-
-Utilisons le package mtr comme démonstrateur, celui ci permet d’obtenir un
-traceroute agréable visuellement.
-
-Créer deux dossiers cmd et entrypoint :
 
 ```bash
-$ mkdir cmd entrypoint
-$ cd cmd
+$ # list conatiners
+$ docker container ls
 ```
 
-Copiez y ce Dockerfile :
-
-```bash
-FROM ubuntu:16.04
-RUN apt update \
-	&& apt install -yf \
-	mtr
-CMD ["mtr", "8.8.8.8"]
-```
-
-Builder l’image :
-
-```bash
-$ docker build -t mtr-cmd .
-```
-
-Déplacer vous dans l’autre dossier et copiez y ce Dockerfile :
-
-```bash
-FROM ubuntu:16.04
-RUN apt update \
-	&& apt install -yf \
-	mtr
-ENTRYPOINT ["mtr"]
-```
-
-Builder le :
-
-```bash
-$ docker build -t mtr-entrypoint .
-```
-
-Vous disposez de deux images : mtr-cmd et mtr-entrypoint
-
-Lancer chacune des deux images :
-
-```bash
-$ docker run -it mtr-cmd
-$ docker run -it mtr-entrypoint
-```
-
-Que se passe t-il ?
-
-Lancer les images de cette façon maintenant :
-
-```bash
-$ docker run -it mtr-cmd 8.8.8.8
-$ docker run -it mtr-entrypoint 8.8.8.8
-```
-
-Que remarquez vous ?
-Quelles sont les différences entre CMD et ENTRYPOINT
+On note bien qu'on n'a pas des conteneurs lancés.
 
 ## Lancer un conteneur
 
 ```bash
 $ docker [OPTIONS] COMMAND [ARG…]
+$ docker run -i -t ubuntu /bin/bash
+root@ebc138d8cdc9:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 ```
 
 Les premières options à exploiter sont : -t , -i et -d
 Elles permettent de choisir le “mode” du conteneur. Notamment entre le fait
 d’être exécuté au premier plan ou en arrière plan.
 
-### Différence -t et -i
-
+Sur un autre terminal, on peut vérifier qu'on a un conteneur lancé
 ```bash
-$ docker run -i -t ubuntu /bin/bash
-root@ebc138d8cdc9:/# ls
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+$ # list conatiners
+$ docker container ls
 ```
 
-Le comportement est normal.
-
-```bash
-$ docker run -i ubuntu /bin/bash
-ls
-bin
-boot
-dev
-etc
-home
-lib
-lib64
-media
-mnt
-opt
-proc
-root
-run
-sbin
-srv
-sys
-tmp
-usr
-var
-```
-
-Que constate t-on ?
-
-```bash
-$ docker run -t ubuntu /bin/bash
-root@f0f4c4dcc7da:/# ls
-```
-
-Que constate t-on ?
 
 ### Exposer un port
 
@@ -210,13 +125,7 @@ $ docker run -d -p 8000:80 mynginx
 Nous avons exposé le port 8000 de notre host vers le port 80 de notre conteneur.
 
 Vérifions que notre conteneur est bien en écoute :
-
-```html
-$ curl http://localhost:8000
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
+$ curl http://localhost:8001
 
 [...]
 
@@ -258,12 +167,7 @@ Créons cet index.html dans notre dossier courant :
 <html>
 <h1> Particule, l’expertise cloud </h1>
 </html>
-```
-
-Montons le dans notre conteneur :
-
-```bash
-$ docker run -d -p 8000:80 -v $PWD/index.html:/var/www/html/index.html mynginx
+$ curl http://localhost:8001/www/html/index.html mynginx
 ```
 
 Vérifions que notre page est bien accessible :
@@ -307,5 +211,24 @@ $ curl http://localhost:8001
 ```
 
 Notre volume est correctement monté !
+
+
+## Lancer l'appplication Demo-Todo
+
+
+```
+$ git clone https://github.com/particuleio/demo-todo-app
+Cloning into 'demo-todo-app'...
+remote: Enumerating objects: 21, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 21 (delta 1), reused 21 (delta 1), pack-reused 0
+Receiving objects: 100% (21/21), 11.03 KiB | 2.76 MiB/s, done.
+Resolving deltas: 100% (1/1), done.
+$ cd demo-todo-app
+$ export SERVER_ADDR=http://<VM_PUBLIC_IP>:1323
+$ bash script.sh
+...
+```
 
 

@@ -9,14 +9,20 @@
 
 <https://github.com/helm/helm>
 
+## Problématiques
+- Plusieurs objets dans kubernetes x plusieurs env:
+  - Nombres énormes des manifests à gérer !
+- Des paramètres évoluent ensemblent / dépendences
+- => Besoin d'un outil de versionning et de templating 
+
 ## Pourquoi Helm ?
 
-  - Applique le principe DRY (Don't Repeat Yourself)
-    - Mécanisme de templating (Go templating)
-    - Variabilisation des ressources générées
-  - Facilité de versionnement et de partage (repository Helm)
-  - Helm permet d'administrer les Releases
-    - Rollbacks / upgrades d'applications
+- Applique le principe DRY (Don't Repeat Yourself)
+  - Mécanisme de templating (Go templating)
+  - Variabilisation des ressources générées
+- Facilité de versionnement et de partage (repository Helm)
+- Helm permet d'administrer les Releases
+  - Rollbacks / upgrades d'applications
 
 ## Concepts
 

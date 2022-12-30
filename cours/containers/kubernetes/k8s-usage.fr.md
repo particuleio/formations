@@ -20,7 +20,7 @@ Un seul fichier pour gérer tous ses clusters avec trois informations :
 - Users (Nom, Certificat, Clé)
 - Context, association d'un user et d'un serveur
 
-Stocké par défaut dans ~/.kube/config
+Stocké par défaut dans `~/.kube/config`
 
 ### Kubernetes : Kubectl
 
@@ -149,7 +149,7 @@ kubectl replace -f object.yaml
 - Pour déployer le Dashboard, exécuter la commande suivante:
 
 ```console
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 ```
 
 - Pour accéder au Dashboard, il faut établir une communication entre votre poste et le cluster Kubernetes :

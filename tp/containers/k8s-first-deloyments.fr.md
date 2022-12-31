@@ -8,30 +8,8 @@ base.
 ## Prérequis
 
 - Cluster Kubernetes
+- Kubectl
 
-## Pods
-
-```yaml
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod
-spec:
-  containers:
-    - name: pod
-      image: docker.io/particule/helloworld
-```
-
-Appliquez ce pod avec la commande `kubectl apply -f pod.yaml`.
-
-Vérifier que le pod est bien `Running` avec la commande `kubectl get pod`.
-
-Avec la paramètre `-o wide` de la commande précédente, retrouvez l'IP du pod
-ainsi que le node sur lequel il est déployé.
-
-Comment peut-on accéder à l'IP du Pod pour vérifier qu'il fonctionne
-correctement ?
 
 ## Deployments
 
@@ -89,48 +67,6 @@ spec:
     app: helloworld
 ```
 
-Vérifiez la création du Service. Sur quelle IP pouvez vous le joindre ? Est-ce
-possible ?
-
-Schédulez un pod de test afin d'avoir un accès dans le cluster :
-
-```yaml
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: debug
-spec:
-  containers:
-  - name: debug
-    image: rguichard/debug
-    command: ["sleep", "36000"]
-```
-
-```
-$ kubectl apply -f debug.yaml
-$ kubectl exec -it debug -- /bin/bash
-```
-
-Effectuer un `curl` sur la ClusterIP du Service et constatez le résultat. Que se
-passe t-il si vous relancez plusieurs fois la commande `curl` ?
-
-Quitter le pod avec `exit`.
-
-Utilisez la commande `kubectl edit service helloworld` pour modifier le type de
-Service et le transformer en `NodePort`.
-
-Vérifiez la modification avec `kubectl get service`.
-
-```console
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-helloworld   NodePort    10.103.251.40   <none>        80:30315/TCP   3h6m
-```
-
-Grâce à ce NodePort, avec quelle adresse pouvez vous accéder à ce service ?
-(indice, la liste des Nodes peut être récupérée avec `kubectl get node`)
-
-
 Supprimer le Deployment et le Service :
 
 ```console
@@ -176,10 +112,6 @@ spec:
   selector:
     app: color
 ```
-
-Pour cette application, il existe 3 couples IP/port distincts permettant
-d'y accéder. Lesquels sont-ils ?
-
 
 
 Lancez trois shells différents, dans les deux premiers, lancez :

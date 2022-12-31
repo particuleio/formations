@@ -19,7 +19,6 @@
 
 ### Kubernetes : Composants du Control Plane
 
-
 - **etcd:** Base de données
 - **kube-apiserver:** API server qui permet la configuration d'objets Kubernetes (Pod, Service, Deployment, etc.)
 - **kube-proxy:** Permet le forwarding TCP/UDP et le load balancing entre les services et les backends (Pods)

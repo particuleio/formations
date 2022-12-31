@@ -136,7 +136,6 @@ kubectl replace -f object.yaml
 
 - Interface graphique web pour les clusters Kubernetes
 - Permet de gérer les différents objets Kubernetes créés dans le(s) cluster(s).
-- Installé par défaut dans minikube
 
 
 ### Kubernetes : Kubernetes Dashboard

@@ -169,35 +169,24 @@ Vérifier que le pod est bien `Running` avec la commande `kubectl get pod`.
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld
+  name: helloworld2
+  namespace: default
 spec:
   type: ClusterIP
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: helloworld
+    app: color
 ```
 
-Schédulez un pod de test afin d'avoir un accès dans le cluster :
-
-```yaml
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: debug
-spec:
-  containers:
-  - name: debug
-    image: rguichard/debug
-    command: ["sleep", "36000"]
-```
+Exposez le service avec cette commande:
 
 ```
-$ kubectl apply -f debug.yaml
-$ kubectl exec -it debug -- /bin/bash
+$ kubectl port-forward svc/helloworld2 8080:80
 ```
+
+Vérifiez que la disponibilité de l'application sur http://localhost:8080
 
 ## Installation du dashboard
 

@@ -11,34 +11,53 @@ base.
 - Kubectl
 
 
-## Deployments
+## déploiement
+### Un simple déploiement
 
 ```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld
+  name: color
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
-      app: helloworld
+      app: color
   template:
     metadata:
       labels:
-        app: helloworld
+        app: color
     spec:
       containers:
-      - name: helloworld
-        image: docker.io/particule/helloworld
+      - name: color
+        image: docker.io/particule/simplecolorapi:1.0
         ports:
-        - containerPort: 80
+        - containerPort: 5000
 ```
 
-Appliquez ce Deployment avec la commande `kubectl apply -f deployment.yaml`.
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5000
+    targetPort: 5000
+  selector:
+    app: helloworld
+```
+
+Appliquez le Deployment et le service avec
+la commande `kubectl apply -f`.
 
 Vérifier que les trois Pod sont bien `Running` avec la commande `kubectl get pod`.
+
+### Scale up
 
 Changez le nombre de réplicats du Deployment :
 
@@ -50,30 +69,7 @@ Vérifier le nombre de pod.
 
 Appliquez à nouveau le fichier `deployment.yaml`, que se passe t-il ?
 
-## Services
-
-```yaml
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: helloworld
-spec:
-  type: ClusterIP
-  ports:
-  - port: 80
-    targetPort: 80
-  selector:
-    app: helloworld
-```
-
-Supprimer le Deployment et le Service :
-
-```console
-$ kubectl delete deployment/helloworld service/helloworld
-```
-
-## Modification de l'image
+### Modification de l'image
 
 Déployez le Deployment et le Service ci dessous. Deux ressources peuvent être
 enregistrées dans le même fichier tant qu'elles sont séparées par `---`.
@@ -99,18 +95,6 @@ spec:
         image: docker.io/particule/simplecolorapi:1.0
         ports:
         - containerPort: 5000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: color
-spec:
-  type: NodePort
-  ports:
-  - port: 80
-    targetPort: 5000
-  selector:
-    app: color
 ```
 
 
@@ -129,7 +113,11 @@ $ kubectl set image deployment/color color=docker.io/particule/simplecolorapi:2.
 
 Que constatez vous sur les premiers shells ?
 
+### Rolling updates
 Finalement vous considérer que cette version `2.0` ne vous plait pas et décidez
 de revenir en arrière.
 
 Utiliser la commande `kubectl rollout` pour revenir à la version `1.0`.
+
+On peut consulter l'historique des changement avec la commande:
+```kubectl rollout history deployment color```

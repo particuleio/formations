@@ -147,13 +147,13 @@ Voici le manifest yaml pour créer un pod appelé helloworld2 dans le namespace
 apiVersion: v1
 kind: Pod
 metadata:
-  name: redis
+  name: helloworld
   namespace: default
   labels:
     app: helloworld2
 spec:
   containers:
-    - name: redis
+    - name: helloworld
       image: docker.io/particule/helloworld
 ```
 
@@ -207,7 +207,5 @@ $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0
 $ kubectl proxy
 ```
 
-
-
-Kubectl will make Dashboard available at [http://localhost:8001](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/).
+Le dashboard est disponible sur ce lien <http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
 

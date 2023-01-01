@@ -256,14 +256,14 @@ spec:
             value: "10"
           -
             name: CPU_PERCENT
-            value: "80"
+            value: "30"
         resources:
           requests:
             memory: "64Mi"
-            cpu: "800m"
+            cpu: "300m"
           limits:
             memory: "128Mi"
-            cpu: "1"
+            cpu: "400m"
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler

@@ -223,14 +223,22 @@ On peut vérifier la disponiblité de l'application
 ## Installation du dashboard
 
 ``` bash
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-$ kubectl --namespace kubernetes-dashboard create serviceaccount admin
-$ kubectl create secret generic admin-token --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "admin"}' | kubectl apply -f-
-$ k create clusterrolebinding --clusterrole admin --serviceaccount kubernetes-dashboard:admin admin-role-binding
-$ k --namespace kubernetes-dashboard get secrets token-kind -o=jsonpath="{.data.token}" | base64 -d
-...
-$ kubectl proxy
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+# The following will create a serviceaccount with role admin
+# It is required to have admin access kubernetes dashboard
+kubectl --namespace kubernetes-dashboard create serviceaccount admin
+kubectl --namespace kubernetes-dashboard create secret generic admin-token --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "admin"}' | kubectl apply -f-
+kubectl create clusterrolebinding --clusterrole admin --serviceaccount kubernetes-dashboard:admin kind-admin-role-binding
 ```
 
+```
+kubectl proxy
+```
 Le dashboard est disponible sur ce lien <http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+
+
+Lancez cette commande pour récupérer le token d'accès au dashboard:
+```
+kubectl --namespace kubernetes-dashboard get secrets admin-token -o=jsonpath="{.data.token}" | base64 -d; echo 
+```
 

@@ -9,6 +9,29 @@ base.
 
 - Cluster Kubernetes
 - Kubectl
+- Wget
+
+Le cluster de type kind doit avoir une configuration simulaire:
+
+``` yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 8080
+    protocol: TCP
+  - containerPort: 8443
+    hostPort: 443
+    protocol: TCP
+```
 
 
 ## déploiement
@@ -21,7 +44,7 @@ kind: Deployment
 metadata:
   name: color
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: color
@@ -161,6 +184,7 @@ qui permet de rediriger les requêtes en se basant sur de configuration.
 
 Kubernetes permet de gérer ça avec des objets de type `ingress`
 
+
 Pour commencer, il faut installer un ingress controller
 
 
@@ -169,13 +193,8 @@ $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/co
 ```
 
 
-``` bash
-$ # expose nginx controller to localhost
-$ kubectl --namespace ingress-nginx port-forward services/ingress-nginx-controller 8080:80
-```
-
-
 ```yaml
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -200,4 +219,78 @@ spec:
 
 ## Autoscaling
 
+``` bash
+# add metrics api
+wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.2/components.yaml
+sed '/args:/a \        - --kubelet-insecure-tls' -i components.yaml
+kubectl apply -f components.yaml
+```
 
+``` yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stress
+  template:
+    metadata:
+      labels:
+        app: stress
+    spec:
+      containers:
+      -
+        name: stress
+        image: docker.io/sametma/stress-ng
+        command:
+        - sh
+        - -c
+        - sleep $WAIT_TIME; stress-ng -c 1 -l $CPU_PERCENT
+        env:
+          -
+            name: WAIT_TIME
+            value: "10"
+          -
+            name: CPU_PERCENT
+            value: "80"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "800m"
+          limits:
+            memory: "128Mi"
+            cpu: "1"
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-demo
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: stress
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+```
+
+
+```
+watch -n 1 kubectl top pods --selector app=stress
+```
+
+
+```
+watch -n 1 kubectl get hpa
+```

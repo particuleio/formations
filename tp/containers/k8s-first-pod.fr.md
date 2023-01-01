@@ -188,10 +188,46 @@ $ kubectl port-forward svc/helloworld2 8080:80
 
 Vérifiez que la disponibilité de l'application sur http://localhost:8080
 
+
+## Debug
+
+Créer et exposer un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
+
+Est-ce que l'application est disponible ?
+
+
+Schédulez un pod de test afin d'avoir un accès dans le cluster :
+
+```yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  containers:
+  - name: debug
+    image: rguichard/debug
+    command: ["sleep", "36000"]
+```
+
+
+```
+$ kubectl apply -f debug.yaml
+$ kubectl exec -it debug -- /bin/bash
+```
+
+On peut vérifier la disponiblité de l'application 
+
+
 ## Installation du dashboard
 
 ``` bash
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+$ kubectl --namespace kubernetes-dashboard create serviceaccount admin
+$ kubectl create secret generic admin-token --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "admin"}' | kubectl apply -f-
+$ k create clusterrolebinding --clusterrole admin --serviceaccount kubernetes-dashboard:admin admin-role-binding
+$ k --namespace kubernetes-dashboard get secrets token-kind -o=jsonpath="{.data.token}" | base64 -d
 ...
 $ kubectl proxy
 ```

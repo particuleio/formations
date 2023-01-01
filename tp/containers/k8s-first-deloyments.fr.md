@@ -42,14 +42,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld
+  name: color
 spec:
   type: ClusterIP
   ports:
   - port: 5000
     targetPort: 5000
   selector:
-    app: helloworld
+    app: color
 ```
 
 Appliquez le Deployment et le service avec
@@ -92,17 +92,45 @@ spec:
     spec:
       containers:
       - name: color
-        image: docker.io/particule/simplecolorapi:1.0
+        image: docker.io/particule/simplecolorapi:2.0
         ports:
         - containerPort: 5000
 ```
 
 
+Créer et exposer un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
+
+Est-ce que l'application est disponible ?
+
+
+Schédulez un pod de test afin d'avoir un accès dans le cluster :
+
+```yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  containers:
+  - name: debug
+    image: rguichard/debug:amd64
+    command: ["sleep", "36000"]
+```
+
+
+```
+$ kubectl apply -f debug.yaml
+$ kubectl exec -it debug -- /bin/bash
+```
+
+
 Lancez trois shells différents, dans les deux premiers, lancez :
 
-*(si le binaire `jq` n'est pas présent sur votre système, installez le)*
+Dans le pod debug, executez la commnde:
+- `while true; do curl http://<SVC_ADDR>:5000; sleep 1; done`
 
-- `while true; do curl $(kubectl get $(kubectl get node -l node-role.kubernetes.io/master="" -o name) -o json | jq '.status.addresses[0].address' -r):$(kubectl get svc color -o json | jq '.spec.ports[].nodePort'); sleep 1; done`
+
 - `while true; do kubectl get pod; sleep 1; clear; done`
 
 Dans le troisième, mettez à jour l'image utilisée par le Deployment.
@@ -121,3 +149,55 @@ Utiliser la commande `kubectl rollout` pour revenir à la version `1.0`.
 
 On peut consulter l'historique des changement avec la commande:
 ```kubectl rollout history deployment color```
+
+
+## Ingress
+Ingress permet de simplifier l'accès aux applications.
+
+Au lieu d'exposer à chaque fois un port pour chaque application,
+on peut exposer un seul port pour reverse-proxy/loadbalancer
+appelé `ingress controller`
+qui permet de rediriger les requêtes en se basant sur de configuration.
+
+Kubernetes permet de gérer ça avec des objets de type `ingress`
+
+Pour commencer, il faut installer un ingress controller
+
+
+``` bash
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/kind/deploy.yaml
+```
+
+
+``` bash
+$ # expose nginx controller to localhost
+$ kubectl --namespace ingress-nginx port-forward services/ingress-nginx-controller 8080:80
+```
+
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myfirst-ingress
+  annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/colors"
+        backend:
+          service:
+            name: color
+            port:
+              number: 5000
+
+```
+
+
+## Autoscaling
+
+

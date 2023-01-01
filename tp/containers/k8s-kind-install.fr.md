@@ -17,7 +17,13 @@ $ kubectl version --client --short
 Client Version: v1.26.0
 Kustomize Version: v4.5.7
 $ # add auto completion
-$ echo 'source <(kubectl completion bash)' >>~/.bashrc && source ~/.bashrc
+$ echo 'source <(kubectl completion bash)' >>~/.bashrc
+$ # alias kubectl
+$ echo '
+alias k=kubectl
+complete -o default -F __start_kubectl k
+' >> ~/.bashrc && source ~/.bashrc
+
 ```
 
 

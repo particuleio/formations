@@ -15,10 +15,7 @@ Télécharger la dernière version release par la communauté :
 <https://github.com/helm/helm/releases>
 
 ```console
-$ curl -fsSL https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz -o helm-v3.3.1-linux-amd64.tar.gz
-$ tar -zxvf helm-v3.3.1-linux-amd64.tar.gz
-$ chmod +x linux-amd64/helm
-# mv linux-amd64/helm /usr/bin/helm
+$ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 $ helm version
 version.BuildInfo{Version:"v3.3.1", GitCommit:"249e5215cde0c3fa72e27eb7a30e8d55c9696144", GitTreeState:"clean", GoVersion:"go1.14.7"}

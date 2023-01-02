@@ -228,7 +228,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/a
 # It is required to have admin access kubernetes dashboard
 kubectl --namespace kubernetes-dashboard create serviceaccount admin
 kubectl --namespace kubernetes-dashboard create secret generic admin-token --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "admin"}' | kubectl apply -f-
-kubectl create clusterrolebinding --clusterrole admin --serviceaccount kubernetes-dashboard:admin kind-admin-role-binding
+kubectl create clusterrolebinding --clusterrole cluster-admin --serviceaccount kubernetes-dashboard:admin kind-admin-role-binding
 ```
 
 ```

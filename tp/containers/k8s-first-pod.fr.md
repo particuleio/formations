@@ -121,7 +121,7 @@ metadata:
   labels:
     run: helloworld
   name: helloworld
-  namespace: defaul
+  namespace: default
   ...
 spec:
   containers:
@@ -138,23 +138,23 @@ status:
   ...
 ```
 
-Voici le manifest yaml pour créer un pod appelé helloworld2 dans le namespace
-`default` avec le label `app: helloworld2` et avec l'image
-`docker.io/particule/helloworld` :
+Voici le manifest yaml pour créer un pod appelé `demoserver` dans le namespace
+`default` avec le label `app: server` et avec l'image
+`docker.io/sametma/server:1` :
 
 ```yaml
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: helloworld
+  name: demoserver
   namespace: default
   labels:
-    app: helloworld2
+    app: server
 spec:
   containers:
-    - name: helloworld
-      image: docker.io/particule/helloworld
+    - name: demoserver
+      image: docker.io/sametma/server:1
 ```
 
 > On peut déployer les manifests avec la commande `kubectl apply -f <PATH>`.
@@ -169,7 +169,7 @@ Vérifier que le pod est bien `Running` avec la commande `kubectl get pod`.
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld2
+  name: demoserver
   namespace: default
 spec:
   type: ClusterIP
@@ -177,13 +177,13 @@ spec:
   - port: 80
     targetPort: 80
   selector:
-    app: color
+    app: server
 ```
 
 Exposez le service avec cette commande:
 
 ```
-$ kubectl port-forward svc/helloworld2 8080:80
+$ kubectl port-forward svc/demoserver 8080:80
 ```
 
 Vérifiez que la disponibilité de l'application sur http://localhost:8080
@@ -195,6 +195,9 @@ Créer et exposer un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
 
 Est-ce que l'application est disponible ?
 
+Regardez les logs du conteneur
+
+Sur quel port l'application est disponible ?
 
 Schédulez un pod de test afin d'avoir un accès dans le cluster :
 
@@ -223,12 +226,9 @@ On peut vérifier la disponiblité de l'application
 ## Installation du dashboard
 
 ``` bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-# The following will create a serviceaccount with role admin
-# It is required to have admin access kubernetes dashboard
-kubectl --namespace kubernetes-dashboard create serviceaccount admin
-kubectl --namespace kubernetes-dashboard create secret generic admin-token --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "admin"}' | kubectl apply -f-
-kubectl create clusterrolebinding --clusterrole cluster-admin --serviceaccount kubernetes-dashboard:admin kind-admin-role-binding
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+$ # The following will create a serviceaccount with role admin
+$ kubectl apply -f https://raw.githubusercontent.com/particuleio/k8s_dashboard_role/main/all.yaml
 ```
 
 ```
@@ -239,6 +239,6 @@ Le dashboard est disponible sur ce lien <http://localhost:8001/api/v1/namespaces
 
 Lancez cette commande pour récupérer le token d'accès au dashboard:
 ```
-kubectl --namespace kubernetes-dashboard get secrets admin-token -o=jsonpath="{.data.token}" | base64 -d; echo 
+kubectl --namespace kubernetes-dashboard get secrets cluster-admin-token -o=jsonpath="{.data.token}" | base64 -d; echo 
 ```
 

@@ -119,10 +119,10 @@ $ docker container ls
 Reprenons notre image mynginx
 
 ```bash
-$ docker run -d -p 8000:80 mynginx
+$ docker run -d -p 8001:80 mynginx
 ```
 
-Nous avons exposé le port 8000 de notre host vers le port 80 de notre conteneur.
+Nous avons exposé le port 8001 de notre host vers le port 80 de notre conteneur.
 
 Vérifions que notre conteneur est bien en écoute :
 ```
@@ -137,26 +137,6 @@ $ curl http://localhost:8001
 
 Que se passe t-il si vous essayer d'accéder à `http://localhost:80` depuis
 votre host ? Pourquoi ?
-
-Peut-on accéder à cette page html avec une autre URL ? un autre port ?
-
-Indice : Utiliser la commande `docker inspect $ID_CONTENEUR`
-
-On peut ne pas vouloir fixer le port sur notre host :
-
-```bash
-$ docker run -d -p 80 mynginx
-```
-
-Comment savoir le port associé à notre host ?
-
-Comme nous avons spécifié un EXPOSE dans notre Dockerfile, nous pouvons aussi utiliser le paramètre -P :
-
-```
-$ docker run -d -P mynginx
-```
-
-Comment vérifier le mappage de port entre notre host et notre conteneur ?
 
 ### Monter un fichier
 

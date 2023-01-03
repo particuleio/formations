@@ -14,7 +14,7 @@ Créer des Namespaces, Déployer des Pods et tester les Services de base.
 ### Création et exposition d'un pod
 ``` bash
 $ # Create pod named helloworld
-$ kubectl run --image=docker.io/particule/helloworld --port=80 helloworld
+$ kubectl run --image=docker.io/particule/helloworld:latest --port=80 helloworld
 pod/helloworld created
 $ # List pods
 $ kubectl get pods
@@ -37,9 +37,8 @@ au niveau du cluster.
 
 ``` bash
 $ # Port forward to localhost
-$ kubectl port-forward svc/helloworld 8080:80
-Forwarding from 127.0.0.1:8080 -> 80
-Forwarding from [::1]:8080 -> 80
+$ kubectl port-forward svc/helloworld --address 0.0.0.0  8081:80
+Forwarding from 0.0.0.0:8081 -> 80
 ```
 
 Maintenant le service est accessible via le navigateur sur le port 8080.
@@ -69,9 +68,9 @@ services                          svc          v1                               
 On peut accéder au pod avec la commande `kubectl exec <OPTIONS> <POD_NAME> -- <COMMAND>`
 ```bash
 $ # Print /www/index.php file
-$ kubectl exec monpremierpod -- cat /www/index.php
+$ kubectl exec helloworld -- cat /www/index.php
 $ # Access to container shell
-$ kubectl exec -it monpremierpod -- sh
+$ kubectl exec -it helloworld -- sh
 / # ls 
 bin           home          media         product_name  run           srv           usr
 dev           lib           mnt           product_uuid  run.sh        sys           var
@@ -128,7 +127,6 @@ spec:
   - image: docker.io/particule/helloworld
     imagePullPolicy: Always
     name: helloworld
-    
     ...
     volumeMounts:
       ...
@@ -155,6 +153,9 @@ spec:
   containers:
     - name: demoserver
       image: docker.io/sametma/server:1
+      ports:
+      - containerPort: 80
+        protocol: TCP
 ```
 
 > On peut déployer les manifests avec la commande `kubectl apply -f <PATH>`.
@@ -183,10 +184,10 @@ spec:
 Exposez le service avec cette commande:
 
 ```
-$ kubectl port-forward svc/demoserver 8080:80
+$ kubectl port-forward svc/demoserver --address 0.0.0.0 8082:80
 ```
 
-Vérifiez que la disponibilité de l'application sur http://localhost:8080
+Vérifiez la disponibilité de l'application sur le chemin `/api/ping`
 
 
 ## Debug
@@ -210,7 +211,7 @@ metadata:
 spec:
   containers:
   - name: debug
-    image: rguichard/debug
+    image: docker.io/rguichard/debug:amd64
     command: ["sleep", "36000"]
 ```
 
@@ -232,9 +233,9 @@ $ kubectl apply -f https://raw.githubusercontent.com/particuleio/k8s_dashboard_r
 ```
 
 ```
-kubectl proxy
+kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard --address 0.0.0.0 8443:443
 ```
-Le dashboard est disponible sur ce lien <http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+Le dashboard est disponible sur ce lien <http://<HOST_IP>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
 
 
 Lancez cette commande pour récupérer le token d'accès au dashboard:

@@ -125,6 +125,7 @@ $ docker run -d -p 8000:80 mynginx
 Nous avons exposé le port 8000 de notre host vers le port 80 de notre conteneur.
 
 Vérifions que notre conteneur est bien en écoute :
+```
 $ curl http://localhost:8001
 
 [...]

@@ -159,7 +159,7 @@ Comment vérifier le mappage de port entre notre host et notre conteneur ?
 
 ### Monter un fichier
 
-Le répertoire dans lequel Nginx va, par défaut, chercher les pages html est /var/www/html
+Le répertoire dans lequel Nginx va, par défaut, chercher les pages html est `/var/www/html`
 
 Créons cet index.html dans notre dossier courant :
 
@@ -173,7 +173,7 @@ $ curl http://localhost:8001/www/html/index.html mynginx
 Vérifions que notre page est bien accessible :
 
 ```html
-$ curl http://localhost:8000
+$ curl http://localhost:8001
 <html>
   <h1> Particule, l’expertise cloud native</h1>
 </html>

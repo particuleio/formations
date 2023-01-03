@@ -111,6 +111,7 @@
     "modules": [
       "intro-particule",
       "copyright",
+      "general/tp-introduction",
       "conatiners/cloud-introduction",
       "containers/containers-introduction",
       "containers/containers-runtimes",

@@ -10,8 +10,8 @@ Une installation pour Linux ainsi qu'une installation est disponible.
 
 ## Kubectl
 ```bash
-$ curl -LO https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl
-$ mv kubectl /usr/local/bin/kubectl
+$ curl -Lo /usr/local/bin/kubectl https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl
+$ chmod +x /usr/local/bin/kubectl
 $ # verify the installation
 $ kubectl version --client --short
 Client Version: v1.26.0
@@ -32,9 +32,8 @@ complete -o default -F __start_kubectl k
 [Quick Start - kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 ```bash
-$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
-$ chmod +x ./kind
-$ sudo mv ./kind /usr/local/bin/kind
+$ curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
+$ chmod +x /usr/local/bin/kind
 $ kind --version
 kind version 0.17.0
 $ # add auto completion
@@ -124,7 +123,7 @@ kube-public          Active   46s
 kube-system          Active   46s
 local-path-storage   Active   41s
 $ # get all objects inside namespace
-$ kubectl get all <NAMESPACE>
+$ kubectl -n <NAMESPACE> get all 
 ...
 ```
 

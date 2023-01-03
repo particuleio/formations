@@ -221,7 +221,7 @@ spec:
 
 ``` bash
 # add metrics api
-wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.2/components.yaml
+curl -LO https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.2/components.yaml
 sed '/args:/a \        - --kubelet-insecure-tls' -i components.yaml
 kubectl apply -f components.yaml
 ```
@@ -256,14 +256,14 @@ spec:
             value: "10"
           -
             name: CPU_PERCENT
-            value: "30"
+            value: "7"
         resources:
           requests:
             memory: "64Mi"
-            cpu: "300m"
+            cpu: "100m"
           limits:
             memory: "128Mi"
-            cpu: "400m"
+            cpu: "500m"
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler

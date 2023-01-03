@@ -45,9 +45,9 @@ Nous allon créer une image docker pour lancer un serveur nginx.
 Voici un exemple d'un Dockerfile.
 
 ```bash
-FROM ubuntu:16.04
-RUN apt update \
-	&& apt install -yf \
+FROM fedora:37
+RUN dnf update -y \
+	&& dnf install -y \
 	nginx
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
@@ -138,23 +138,28 @@ $ curl http://localhost:8001
 Que se passe t-il si vous essayer d'accéder à `http://localhost:80` depuis
 votre host ? Pourquoi ?
 
-### Monter un fichier
+### Changer le fichier index.html
 
-Le répertoire dans lequel Nginx va, par défaut, chercher les pages html est `/var/www/html`
+Le répertoire dans lequel Nginx va, par défaut, chercher les pages html est `/usr/share/nginx/html`
 
-Créons cet index.html dans notre dossier courant :
+Modifiant cet index.html dans notre dossier courant :
 
-```html
+
+
+```bash
+$ docker exec -it <CONTAINER_NAME> bash
+root@4ac39fc8f73b:/# cd /usr/share/nginx/html
+cat << EOF > index.html  
 <html>
-<h1> Particule, l’expertise cloud </h1>
+  <h1> Particule, l'expertise cloud native</h1>
 </html>
-$ curl http://localhost:8001/www/html/index.html mynginx
+EOF
 ```
 
 Vérifions que notre page est bien accessible :
 
 ```html
-$ curl http://localhost:8001
+$ curl http://localhost:8000
 <html>
   <h1> Particule, l’expertise cloud native</h1>
 </html>
@@ -176,7 +181,7 @@ Par défaut, les volumes sont stockés dans `/var/lib/docker/volumes/`
 Il est nécessaire d’être root pour accéder à la sous-arborescence
 `/var/lib/docker`
 
-```bash
+```
 # ls /var/lib/docker/volumes
 myvolume metadata.db
 # cd /var/lib/docker/volumes/myvolume/_data
@@ -186,7 +191,7 @@ myvolume metadata.db
 Montons ce volume dans un conteneur :
 
 ```html
-$ docker run -d -p 8001:80 -v myvolume:/var/www/html mynginx
+$ docker run -d -p 8001:80 -v myvolume:/usr/share/nginx/html mynginx
 $ curl http://localhost:8001
 <html> Hello Particule </html>
 ```

@@ -142,7 +142,7 @@
       "containers/k8s-deployments",
       "containers/k8s-helm",
       "containers/k8s-scheduling",
-      "containers/k8s-secrets-cm",
+      "containers/k8s-secrets-cm-volumes",
       "containers/k8s-rbac",
       "containers/k8s-kubeadm-intro",
       "containers/k8s-kubeadm-networking"

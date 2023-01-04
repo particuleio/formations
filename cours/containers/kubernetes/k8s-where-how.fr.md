@@ -7,8 +7,7 @@
 ![gcp](images/kubernetes/gcp_h.png){height="50px"}
 ![magnum](images/kubernetes/magnum_h.png){height="50px"}
 
-Managed - Kops - Kubespray - Kubeadm - Kube-aws - Symplegma
-
+Managed - Kops - Kubespray - Kubeadm - Kube-aws - Symplegma - RKE - K3S - openshift
 ▼
 
 Cluster Deployment
@@ -128,4 +127,23 @@ Infrastructure immuable
 - Facilement personnalisable
 - Multiples OS
 - Supporte Cloudformation and Terraform
+
+### Openshift
+- Distrubtion de kubernetes de RedHat
+- Pour les entreprises
+  - sécruité
+  - séparation des rôles
+- Dashboard pour gérer la distrubtion kubernetes
+
+### RKE
+- Facile à utiliser
+- Offert par Rancher
+- configuration des cluster avec YAML
+
+### Légers Kubernetes clusters
+- examples:
+  - [k3s](https://k3s.io/)
+  - [k0s](https://k0sproject.io/)
+- Distrubitons kuebrnetes minimales
+- Support de l'architecture ARM pour les cartes électironiques d'IOT
 

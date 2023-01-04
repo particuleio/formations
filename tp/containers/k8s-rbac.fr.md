@@ -170,10 +170,19 @@ d'hériter des droits du ServiceAccount.
 $ kubectl create serviceaccount monserviceaccount
 ```
 
+Dans les plus récentes versions de kubernetes, il faut associer un secret de type
+`kubernetes.io/service-account-token`  avec l'annotation
+`kubernetes.io/service-account.name: <SERVICE_ACCOIUNT>` au serviceaccount
+
+```
+$ kubectl create secret generic montoken --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "monserviceaccount"}' | kubectl apply -f-
+```
+
+
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: RoleBindinger
 metadata:
   name: rb-red
 subjects:

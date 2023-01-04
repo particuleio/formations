@@ -62,3 +62,4 @@
 - Les conteneurs de nos jours sont partout
 - L'outil de-facto pour le déploiment des applications basées sur les conteneurs est Kubernetes
 - Kubernetes est utilisé partout !
+

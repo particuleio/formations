@@ -235,7 +235,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/particuleio/k8s_dashboard_r
 ```
 kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard --address 0.0.0.0 8443:443
 ```
-Le dashboard est disponible sur ce lien <http://<HOST_IP>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+Le dashboard est disponible sur ce lien <http://<HOST_IP>:8443/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
 
 
 Lancez cette commande pour récupérer le token d'accès au dashboard:

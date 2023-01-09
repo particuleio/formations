@@ -117,10 +117,10 @@
       "containers/containers-runtimes",
       "containers/docker-bsr",
       "containers/kubernetes/k8s-governance",
-      "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-core-api-objects",
       "containers/kubernetes/k8s-usage",
       "containers/kubernetes/k8s-networking",
+      "containers/kubernetes/k8s-architecture",
       "containers/kubernetes/k8s-volumes",
       "containers/kubernetes/k8s-workloads-configuration",
       "containers/kubernetes/k8s-resources-handling",
@@ -139,13 +139,14 @@
       "docker/docker-base",
       "containers/k8s-kind-install",
       "containers/k8s-first-pod",
-      "containers/k8s-deployments",
-      "containers/k8s-helm",
-      "containers/k8s-scheduling",
+      "containers/k8s-first-deployment",
       "containers/k8s-secrets-cm-volumes",
       "containers/k8s-rbac",
+      "containers/k8s-kind-autoscaling",
       "containers/k8s-kubeadm-intro",
-      "containers/k8s-kubeadm-networking"
+      "containers/k8s-kubeadm-networking",
+      "containers/k8s-helm",
+      "containers/k8s-scheduling"
     ]
   },
   "conteneurs-ccb": {
@@ -184,10 +185,8 @@
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",
       "containers/k8s-pods-deployments",
-      "containers/k8s-kind-autoscaling",
       "containers/k8s-scheduling",
       "containers/k8s-secrets-cm",
-      "containers/k8s-dashboard",
       "containers/k8s-helm",
       "containers/k8s-rbac"
     ]

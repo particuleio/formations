@@ -187,6 +187,7 @@
       "containers/k8s-kind-autoscaling",
       "containers/k8s-scheduling",
       "containers/k8s-secrets-cm",
+      "containers/k8s-dashboard",
       "containers/k8s-helm",
       "containers/k8s-rbac"
     ]

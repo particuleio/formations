@@ -79,7 +79,7 @@ Changer la valeur de `CPU_PERCENT` et observez la consommation de CPU
 
 
 ## L'autoscaling Horizontale
-Créez le HPA suivant:
+Mettez une valeur > 5 pour `CPU_PERCENT` puis créez le HPA suivant:
 
 ``` yaml
 ---
@@ -103,17 +103,20 @@ spec:
         averageUtilization: 50
 ```
 
-Mettez une valeur > 5 pour `CPU_PERCENT` et lancer dans un autre terminal les commandes suivantes:
 
+Lancer dans un autre terminal la commande suivante:
 ```
 watch -n 1 kubectl top pods --selector app=stress
 ```
 
 
+Lancer dans un autre terminal la commande suivante:
 ```
 watch -n 1 kubectl get hpa
 ```
 
+
+Que constatez-vous ?
 
 Qu'est ce qui ce passe si on met `CPU_PERCENT` à 2 ?
 

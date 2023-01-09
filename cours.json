@@ -184,6 +184,7 @@
       "containers/k8s-kubeadm-networking",
       "containers/k8s-minikube-health",
       "containers/k8s-pods-deployments",
+      "containers/k8s-kind-autoscaling",
       "containers/k8s-scheduling",
       "containers/k8s-secrets-cm",
       "containers/k8s-helm",

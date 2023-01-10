@@ -128,7 +128,7 @@ $ kubectl -n <NAMESPACE> get all
 ```
 
 ## Kubeconfig
-- Les information d'accès aux clusters kuebrnetes sont stockés dans un fichier appelé kubeconfig.
+- Les information d'accès aux clusters Kubernetes sont stockés dans un fichier appelé kubeconfig.
 
 - Le chemin par défaut de ce fichier est `$HOME/.kube/config`.
 
@@ -158,4 +158,4 @@ users:
 
 
 ## Conclusion
-Dans ce TP nous avons vu comment mettre en place un cluster kubernetes en local avec `kind`.
+Dans ce TP nous avons vu comment mettre en place un cluster Kubernetes en local avec `kind`.

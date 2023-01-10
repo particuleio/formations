@@ -10,7 +10,7 @@
 <https://github.com/helm/helm>
 
 ## Problématiques
-- Plusieurs objets dans kubernetes x plusieurs env:
+- Plusieurs objets dans Kubernetes x plusieurs env:
   - Nombres énormes des manifests à gérer !
 - Des paramètres évoluent ensemblent / dépendences
 - => Besoin d'un outil de versionning et de templating 

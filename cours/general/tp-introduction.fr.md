@@ -14,7 +14,7 @@ Vous aurez l'accès en ligne à :
 
 - Un terminal 
 
-- Un editeur de texte
+- Un éditeur de texte
 
 ### Editeur de texte
 L'editeur de texte est disponible en `http` sur le port `8080`

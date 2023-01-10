@@ -104,7 +104,7 @@ helloworld2   1/1     Running   0          15s
 ```
 
 ## Méthode déclarative avec les manifests
-Une autre méthode utilisée pour créer des ressources dans kubernetes est l'approche
+Une autre méthode utilisée pour créer des ressources dans Kubernetes est l'approche
 déclarative avec des fichiers yaml appelés manifests.
 Généralement on déploie les ressources avec cette méthode.
 

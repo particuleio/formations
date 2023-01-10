@@ -129,7 +129,7 @@ Infrastructure immuable
 - Supporte Cloudformation and Terraform
 
 ### Openshift
-- Distrubtion de kubernetes de RedHat
+- Distrubtion de Kubernetes de RedHat
 - Pour les entreprises
   - sécruité
   - séparation des rôles
@@ -144,6 +144,6 @@ Infrastructure immuable
 - examples:
   - [k3s](https://k3s.io/)
   - [k0s](https://k0sproject.io/)
-- Distrubitons kuebrnetes minimales
-- Support de l'architecture ARM pour les cartes électironiques d'IOT
+- Distributions Kuebrnetes minimalistes
+- Support de l'architecture ARM pour les cartes électroniques d'IOT
 

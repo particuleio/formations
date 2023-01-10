@@ -2,20 +2,20 @@
 
 
 ### Kuberentes est extensible
-- L'architecture de kubernetes est ouverte
+- L'architecture de Kubernetes est ouverte
 - Kubernetes de se nature est extensible
-- On peut définir d'autres ressources dans l'api-service pour les utiliser après
-- Potentiellement, l'uilisatuer de kubernetes va rencontrer des CRDs 
+- On peut définir d'autres ressources dans l'api-service pour les utiliser plus tard
+- Potentiellement, l'utilisateur de Kubernetes va rencontrer des CRDs 
 
 
 ### Custom Resource et Custom Resource Definition
 - La différence entre CR et CRD est la même différence entre le pod qui tourne et le manifest yaml du pod
-- Le CRD est la définiton du ressource
+- Le CRD est la définiton de la ressource
 - Le CR est la ressource qui tourne
 
 
 ### Les controlleurs de kubernetes
-- Pour chaque objet dans kubernetes il y a un controlleur qui s'assure du bon fonctionnement de l'objet.
+- Les controlleurs dans Kubernetes assurent le bon fonctionnement de certains objets.
 - Le controlleur vise à tout moment à converger l'état désiré vers l'état actuelle:
   - L'état désirée représentée par le manifest Yaml puis stocké dans ETCD.
   - L'état actuelle et l'état des ressources et du système
@@ -41,7 +41,7 @@ spec:
 ```
 
 ### Utilisation des Custom Resources
-- De nos jours, kubernetes est utilisé partout
+- De nos jours, Kubernetes est utilisé partout
 - C'est l'outil universel de gestion des conteneurs
 - Son Controller Pattern est robuste et stable
 - Plusieurs services offrent une solution basé sur les CRDs:

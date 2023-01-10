@@ -20,7 +20,7 @@
 - Des pré-requis 
 - Conflit éternel entre les devs et les ops: "ça fonctionnait en local !"
 
-### Ere de la virtualisation !
+### Ère de la virtualisation !
 
 - Environnement isolé => plus de sécurité
 - Création de plusieurs VMs sur la même machine
@@ -41,7 +41,7 @@
 
 ### Problèmes des VMs
 
-- Couche d'hyperviser et allocation des ressources
+- Couche d'hyperviseur et allocation des ressources
 - L'application avec toutes les dépendances sont installés dans une VM
     - Pas de séparation des services
     - Conflit des dépendances des services
@@ -52,7 +52,7 @@
 - Se connectent directement au kernel du système
 - Se lancent rapidement
 - Facile à partager
-- Signle purpose
+- Single purpose
 
 ### VM Vs Conteneurs
 

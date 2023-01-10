@@ -101,5 +101,5 @@ Permettent d'exécuter des conteneurs sur un système
 
 - Les conteneurs engine fournissent des interfaces d'abstraction
 
-- Plusieurs types de runtime
+- Plusieurs types de runtimes
 

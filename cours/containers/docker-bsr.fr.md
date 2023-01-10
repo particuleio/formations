@@ -161,7 +161,7 @@ docker tag docker.io/username/mon-conteneur:v1
 docker push docker.io/username/mon-conteneur:v1
 ```
 
-- Pull d'une conteneur :
+- Pull d'une image :
 
 ```bash
 docker pull docker.io/username/mon-conteneur:v1

@@ -100,7 +100,7 @@ kubectl port-forward my-svc 6000
 
 ### Kubectl : Logging
 
-- Utiliser `kubectl` pour diagnostiquer les applications et le cluster kubernetes :
+- Utiliser `kubectl` pour diagnostiquer les applications et le cluster Kubernetes :
 
 ```console
 kubectl cluster-info

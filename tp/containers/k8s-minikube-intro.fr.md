@@ -282,7 +282,7 @@ spec:
     app: helloworld
 ```
 
-Les objets kubernetes sont déployés avec `kubectl` et notamment avec `kubectl apply` :
+Les objets Kubernetes sont déployés avec `kubectl` et notamment avec `kubectl apply` :
 
 ```console
 $ kubectl apply -f helloworld-svc.yaml

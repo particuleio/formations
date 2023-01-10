@@ -10,18 +10,20 @@ sans tag ou avec le tag `latest`.
     - la version `latest` n'est pas la plus stable 
 
 
-### Specification des ressources
+### Spécification des ressources
 En cas d'absence des spécifications des ressources, les pods peuvent consommer
 autant de mémoire disponible et laisser les autres pod en "famine".
 
 
 ### L'utilisation des policies
-Chaque requête vers l'api de kubernetes passe par l'`admission controller`.
-La validation des objets à déployer passe se fait au de l'`admission controller`.
-Ceci permet de forcer des policies (critères d'acceptances) sur les manifests.
+- Chaque requête vers l'api de Kubernetes passe par l'`admission controller`.
+- Il y a un  mécanisme dans l'`admission controller` qui  permet de valider les requêtes
+- Ceci permet de forcer des policies (critères d'acceptances) sur les manifests.
 
 
 ### L'utilisation des policies
-Examples des outils de policies 
+Examples des outils de policies
+
 - `keyverno`
+
 - `Gatekeeper`/`Open Policy Agent`

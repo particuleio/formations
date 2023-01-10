@@ -110,7 +110,7 @@ Regardez le status des pods du deployment `bad-frontend`. Que remarquez vous ?
 
 Décrivez les pods pour voir ce qu'il se passe en détail.
 
-Comme les healthcheck ne passent pas, kubernetes indique que 0/1 conteneur est prêt. Décrivez les pods issus du déploiement `frontend` et regardez l'état des healthcheck.
+Comme les healthcheck ne passent pas, Kubernetes indique que 0/1 conteneur est prêt. Décrivez les pods issus du déploiement `frontend` et regardez l'état des healthcheck.
 
 Nous allons maintenant provoquer un crash d'un pod `frontend` :
 

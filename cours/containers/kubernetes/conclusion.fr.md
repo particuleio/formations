@@ -1,7 +1,7 @@
 
 # Conclusion
 
-### Tout est basé sur les interafaces !
+### Tout est basé sur des interafaces !
 ![](images/kubernetes/architecture-2.png){height="500px"}
 
 ### L'API de Kubernetes est ouvertes

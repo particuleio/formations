@@ -62,7 +62,7 @@
 
 ### Kubernetes : Autres composants
 
-- **kubelet :** Service "agent" fonctionnant sur tous les nœuds et assure le fonctionnement des autres services
+- **Kubelet :** Service "agent" fonctionnant sur tous les nœuds et assure le fonctionnement des autres services
 - **kubectl :** Ligne de commande permettant de piloter un cluster Kubernetes
 
 ### Kubernetes : Kubelet
@@ -75,10 +75,10 @@
 
 ### Kubernetes : Kubelet
 
-- Assure la communication entre les nodes et l'apiserver
+- Assure la communication entre les nodes et l'Apiserver
 - En charge de créer les conteneurs au travers de l'interface Container Runtime
   Interface (CRI)
-- Peut fonctionner avec différentes container runtimes
+- Peut fonctionner avec différentes Container Runtimes
 
 ### Kubernetes : Kubelet
 

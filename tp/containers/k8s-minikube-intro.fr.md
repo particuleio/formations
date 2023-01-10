@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Dans ce TP nous allons déployer un cluster Kubernetes mononode.
+Dans ce TP nous allons déployer un cluster Kubernetes.
 
 Nous montrerons comment :
 

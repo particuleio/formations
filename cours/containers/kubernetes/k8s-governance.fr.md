@@ -38,7 +38,7 @@
 - But : Créer un standard Open Source concernant la manière de "runner" et le format des conteneurs et images
 - Non lié à des produits
 - Non lié à des COE
-- runC a été donné par Docker à l'OCI comme implémention de base
+- runC a été donné par Docker à l'OCI comme implémentation de base
 
 ![](images/docker/oci.png){height="100px"}
 

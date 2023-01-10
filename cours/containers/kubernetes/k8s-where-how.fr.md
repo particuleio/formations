@@ -93,9 +93,9 @@ Infrastructure immuable
 - Outil **officiel** de la communauté
 - Stable depuis v1.13.0
 - Ne provisionne pas de machine
-- Facilement personnalisabe
+- Facilement personnalisable
 - Respect des best practices
-- Peut être utilisé par d'autres outils
+- Peut-être utilisé par d'autres outils
 
 ### kubespray
 
@@ -129,11 +129,11 @@ Infrastructure immuable
 - Supporte Cloudformation and Terraform
 
 ### Openshift
-- Distrubtion de Kubernetes de RedHat
+- Distribution de Kubernetes de RedHat
 - Pour les entreprises
-  - sécruité
+  - sécurité
   - séparation des rôles
-- Dashboard pour gérer la distrubtion kubernetes
+- Dashboard pour gérer la distribution Kubernetes
 
 ### RKE
 - Facile à utiliser
@@ -141,7 +141,7 @@ Infrastructure immuable
 - configuration des cluster avec YAML
 
 ### Légers Kubernetes clusters
-- examples:
+- exemples:
   - [k3s](https://k3s.io/)
   - [k0s](https://k0sproject.io/)
 - Distributions Kuebrnetes minimalistes

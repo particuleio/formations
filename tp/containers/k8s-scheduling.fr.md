@@ -16,7 +16,7 @@ Nous allons voir les différentes options offertes par Kubernetes :
 - Cluster Kubernetes avec au moins 2 nodes
 
 Si vous avez un noeud `master`, il est probable que vous ne puissiez schéduler
-de pod dessus. Vous pouvez supprimer cettte limite :
+de pod dessus. Vous pouvez supprimer cette limite :
 
 ```console
 $ kubectl taint nodes --all node-role.kubernetes.io/master-

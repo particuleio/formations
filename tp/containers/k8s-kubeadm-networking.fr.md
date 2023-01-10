@@ -213,8 +213,8 @@ Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer
 
 ## Ingress
 
-Nous avons tout d'abord besoin de déployer un Ingress Controller. Nous
-choisissons de déployer nginx-ingress-controller.
+Nous avons tout d'abord besoin de déployer un `Ingress Controller`. Nous
+choisissons de déployer `nginx-ingress-controller`.
 
 ```console
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-3.7.0/deploy/static/provider/baremetal/deploy.yaml

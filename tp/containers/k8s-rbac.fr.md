@@ -170,7 +170,7 @@ d'hériter des droits du ServiceAccount.
 $ kubectl create serviceaccount monserviceaccount
 ```
 
-Dans les plus récentes versions de kubernetes, il faut associer un secret de type
+Dans les plus récentes versions de Kubernetes, il faut associer un secret de type
 `kubernetes.io/service-account-token`  avec l'annotation
 `kubernetes.io/service-account.name: <SERVICE_ACCOIUNT>` au serviceaccount
 

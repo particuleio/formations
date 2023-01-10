@@ -9,15 +9,15 @@
 - Il suffit de respecter la description des APIs dans Kubernetes pour ajouter un intégrer un nouveau composant
 
 
-### La vrai portabilité sur le cloud
+### La vraie portabilité sur le cloud
 - No vendor locking
 
 ### Standarisation des ressources
-Tous les composants nécessaires pour déployer les applications dans Kubernetes peuvent être définis sous forme des manifests et tout passe par kubernetes.
+Tous les composants nécessaires pour déployer les applications dans Kubernetes peuvent être définis sous forme des manifests et tout passe par Kubernetes.
 
 
 ### Plus de contrôle sur l'état du système
-Avec kubernetes, on définit l'état désirée sous forme yaml et kuberentes s'occupe de converger l'état actuelle vers l'état désiré.
+Avec Kubernetes, on définit l'état désiré sous forme yaml et Kuberentes s'occupe de converger l'état actuel vers l'état désiré.
 
 
 

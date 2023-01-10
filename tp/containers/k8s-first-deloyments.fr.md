@@ -11,7 +11,7 @@ base.
 - Kubectl
 - Wget
 
-Le cluster de type kind doit avoir une configuration simulaire:
+Le cluster de type Kind doit avoir une configuration similaire:
 
 ``` yaml
 kind: Cluster
@@ -82,7 +82,7 @@ Vérifier que les trois Pod sont bien `Running` avec la commande `kubectl get po
 
 ### Scale up
 
-Changez le nombre de réplicats du Deployment :
+Changez le nombre de Replicats du Deployment :
 
 ```console
 $ kubectl scale deployment/helloworld --replicas=5

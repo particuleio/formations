@@ -19,7 +19,7 @@ Clonez le répository de formations :
 $ git clone https://github.com/particuleio/formations.git
 ```
 
-Dans le repertoire `tp/containers/vagrant/kubeadm`:
+Dans le répertoire `tp/containers/vagrant/kubeadm`:
 
 ```console
 $ vagrant up
@@ -43,8 +43,8 @@ $ vagrant ssh worker
 
 Toutes ces actions sont à réaliser **sur les deux VM**.
 
-- Les opérations commançant par **#** sont à realiser en tant qu'utilisateur root.
-- Les opérations commançant par **$** sont à realiser en tant qu'utilisateur **non** root.
+- Les opérations commençant par **#** sont à réaliser en tant qu'utilisateur root.
+- Les opérations commençant par **$** sont à réaliser en tant qu'utilisateur **non** root.
 
 ### Désactivation de la swap
 

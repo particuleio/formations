@@ -90,7 +90,7 @@ $ kubectl create namespace test2
 namespace/test2 created
 ```
 
-Maintenant on peut céer un pod dans le namespace test2 en ajoutant l'option `--namespace=test2`.
+Maintenant on peut créer un pod dans le namespace test2 en ajoutant l'option `--namespace=test2`.
 On peut utiliser cette option avec les autres commande de kubectl `describe`, `create`, `delete`...
 
 Si on supprime un namespace, tous les ressources créés dans ce namespace seront supprimés.
@@ -109,7 +109,7 @@ déclarative avec des fichiers yaml appelés manifests.
 Généralement on déploie les ressources avec cette méthode.
 
 
-On peut consulter la description d'un ressource déjà déploié.
+On peut consulter la description d'un ressource déjà déployé.
 ``` bash
 kubectl get pod helloworld -o=yaml
 ```
@@ -221,6 +221,6 @@ $ kubectl apply -f debug.yaml
 $ kubectl exec -it debug -- /bin/bash
 ```
 
-On peut vérifier la disponiblité de l'application 
+On peut vérifier la disponibilité de l'application 
 
 

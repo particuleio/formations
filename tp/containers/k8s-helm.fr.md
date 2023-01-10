@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Dans ce TP, nous allons déployer un Ingress Controller en utilisant un template Helm
+Dans ce TP, nous allons déployer un `Ingress Controller` en utilisant un template Helm
 
 ## Prérequis
 

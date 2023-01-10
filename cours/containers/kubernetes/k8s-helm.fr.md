@@ -3,7 +3,7 @@
 ## Qu'est-ce que Helm ?
 
 - Outil de packaging d'application Kubernetes
-- Developpé en Go
+- Développé en Go
 - Actuellement en v3
 - Projet *graduated* de la CNCF
 
@@ -12,14 +12,14 @@
 ## Problématiques
 - Plusieurs objets dans Kubernetes x plusieurs env:
   - Nombres énormes des manifests à gérer !
-- Des paramètres évoluent ensemblent / dépendences
+- Des paramètres évoluent ensembles / dépendances
 - => Besoin d'un outil de versionning et de templating 
 
 ## Pourquoi Helm ?
 
 - Applique le principe DRY (Don't Repeat Yourself)
   - Mécanisme de templating (Go templating)
-  - Variabilisation des ressources générées
+  - Viabilisation des ressources générées
 - Facilité de versionnement et de partage (repository Helm)
 - Helm permet d'administrer les Releases
   - Rollbacks / upgrades d'applications
@@ -28,7 +28,7 @@
 
 Concept | Description
 --------|------------------------------------------------------------------------
-Chart   | Ensemble de ressources permettant de definir une application Kubernetes
+Chart   | Ensemble de ressources permettant de définir une application Kubernetes
 Config  | Valeurs permettant de configurer un Chart (`values.yaml`)
 Release | Chart deployé avec une Config
 

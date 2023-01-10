@@ -195,7 +195,6 @@ spec:
                   operator: In
                   values:
                   - scheduling
-              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: alpha
         image: particule/helloworld

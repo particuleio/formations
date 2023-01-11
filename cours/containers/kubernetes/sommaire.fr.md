@@ -19,7 +19,7 @@
 - Les objets de base de Kubernetes: 
 - Networking dans Kubernetes
 - *TP: Deployment, services et ingress*
-- Architecture de Kubernets 
+- Architecture de Kubernetes 
 - Gestion de la configuration des applications et volumes
 - *TP: Configmap - Secret - Stockage*
 

@@ -86,7 +86,7 @@ spec:
 - Il est possible de directement créer un `Secret` spécifique à l'authentification sur une registry Docker privée.
 - Il est possible de directement créer un `Secret` à partir d'un compte utilisateur et d'un mot de passe.
 
-### Kubernets : Secrets
+### Kubernetes : Secrets
 
 - S'utilisent de la même façon que les `ConfigMap`
 - La seule différence est le stockage en base64

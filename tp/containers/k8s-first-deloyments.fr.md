@@ -78,7 +78,7 @@ spec:
 Appliquez le Deployment et le service avec
 la commande `kubectl apply -f`.
 
-Vérifier que les trois Pod sont bien `Running` avec la commande `kubectl get pod`.
+Vérifiez que les trois Pod sont bien `Running` avec la commande `kubectl get pod`.
 
 ### Scale up
 
@@ -88,7 +88,7 @@ Changez le nombre de Replicats du Deployment :
 $ kubectl scale deployment/helloworld --replicas=5
 ```
 
-Vérifier le nombre de pod.
+Vérifiez le nombre de pod.
 
 Appliquez à nouveau le fichier `deployment.yaml`, que se passe t-il ?
 
@@ -121,7 +121,7 @@ spec:
 ```
 
 
-Créer et exposer un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
+Créez et exposez un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
 
 Est-ce que l'application est disponible ?
 
@@ -165,10 +165,10 @@ $ kubectl set image deployment/color color=docker.io/particule/simplecolorapi:2.
 Que constatez vous sur les premiers shells ?
 
 ### Rolling updates
-Finalement vous considérer que cette version `2.0` ne vous plait pas et décidez
+Finalement vous considérez que cette version `2.0` ne vous plait pas et décidez
 de revenir en arrière.
 
-Utiliser la commande `kubectl rollout` pour revenir à la version `1.0`.
+Utilisez la commande `kubectl rollout` pour revenir à la version `1.0`.
 
 On peut consulter l'historique des changement avec la commande:
 ```kubectl rollout history deployment color```

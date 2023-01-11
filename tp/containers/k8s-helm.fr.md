@@ -10,7 +10,7 @@ Dans ce TP, nous allons déployer un `Ingress Controller` en utilisant un templa
 
 ## Installation de Helm
 
-Télécharger la dernière version release par la communauté :
+Téléchargez la dernière version release par la communauté :
 
 <https://github.com/helm/helm/releases>
 

@@ -51,8 +51,8 @@ Pour récupérer des informations sur les ressource créés, on peut utiliser
 la commande `kubectl describe <RESOURCE_TYPE> <RESOURCE_NAME>`
 
 
-On utilise souvent des abbréviations des types des ressources.
-On peut trouver une liste des ressources qu'on peut créer ainsi que les abbréviation
+On utilise souvent des abréviations des types des ressources.
+On peut trouver une liste des ressources qu'on peut créer ainsi que les abréviation
 avec la commande suivante:
 
 ``` bash
@@ -160,7 +160,7 @@ spec:
 
 > On peut déployer les manifests avec la commande `kubectl apply -f <PATH>`.
 
-Appliquez ce pod avec la commande `kubectl apply -f pod.yaml`.
+Appliquer ce pod avec la commande `kubectl apply -f pod.yaml`.
 
 Vérifier que le pod est bien `Running` avec la commande `kubectl get pod`.
 
@@ -192,7 +192,7 @@ Vérifiez la disponibilité de l'application sur le chemin `/api/ping`
 
 ## Debug
 
-Créer et exposer un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
+Créez et exposez un pod avec l'image `docker.io/particule/simplecolorapi:1.0`
 
 Est-ce que l'application est disponible ?
 

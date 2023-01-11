@@ -306,12 +306,12 @@ spec:
 
 
 Ce qu'il faut faire:
-1. Créer un objet de type `PersistentVolume`
-2. Créer un objet de type `PersistentVolumeClaim`
-3. Vérifier l'état des PV et PVC avec la commande: `k get pv,pvc`
-4. Ajouter le volume au déploiement 
-5. Associer le volume au conteneur redis avec l'option `volumeMounts`
-6. Revérifier l'état des PV et PVC avec la commande: `k get pv,pvc`
+1. Créez un objet de type `PersistentVolume`
+2. Créez un objet de type `PersistentVolumeClaim`
+3. Vérifiez l'état des PV et PVC avec la commande: `k get pv,pvc`
+4. Ajoutez le volume au déploiement 
+5. Associez le volume au conteneur redis avec l'option `volumeMounts`
+6. Revérifiez l'état des PV et PVC avec la commande: `k get pv,pvc`
 
 
 

@@ -104,13 +104,13 @@ spec:
 ```
 
 
-Lancer dans un autre terminal la commande suivante:
+Lancez dans un autre terminal la commande suivante:
 ```
 watch -n 1 kubectl top pods --selector app=stress
 ```
 
 
-Lancer dans un autre terminal la commande suivante:
+Lancez dans un autre terminal la commande suivante:
 ```
 watch -n 1 kubectl get hpa
 ```

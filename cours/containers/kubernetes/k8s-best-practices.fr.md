@@ -31,8 +31,10 @@ Exemples des outils de policies
 - Construire des petits conteneurs:
   - des images de petites bases
   - builder pattern
-- Éviter le namespace `Default`
-- 
+- Éviter le namespace `default` en production
+- Health Check avec `Readiness` et `Liveness`
+- `Network Security Policy`
+- Hooks de conteneurs `PreStop`
 
 
 

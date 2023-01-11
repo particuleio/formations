@@ -138,7 +138,7 @@ Infrastructure immuable
 ### RKE
 - Facile à utiliser
 - Offert par Rancher
-- configuration des cluster avec YAML
+- Configuration des clusters avec YAML
 
 ### Légers Kubernetes clusters
 - exemples:

@@ -150,7 +150,7 @@ docker login
 ```
 
 ### Ship : Pull & Push
-- Ajouter un tag avec l'addresse du registre
+- Ajouter un tag avec l’adresse du registre
 ```bash
 docker tag docker.io/username/mon-conteneur:v1
 ```
@@ -217,8 +217,8 @@ docker pull docker.io/username/mon-conteneur:v1
 - docker rm (détruit complètement)
 
 ### Run : Les conteneurs en production 
-- Les conteneurs à très grand échèle
-- Les conteneurs sont éphemères
+- Les conteneurs à très grand échelle
+- Les conteneurs sont éphémères
 - Besoin de contrôler l'état des conteneurs
 
 ### Run : Les conteneurs en production 
@@ -240,4 +240,4 @@ docker pull docker.io/username/mon-conteneur:v1
 
 - Contrôle au niveau conteneurs
 
-- Besoin d'un outil gestion des contenurs à grand échèle
+- Besoin d'un outil gestion des conteneurs à grande échelle

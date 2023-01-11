@@ -9,7 +9,7 @@
 
 ### Kubernetes : Composants
 - Kubernetes fonctionne en cluster
-- Un cluster un groupement des noeuds
+- Un cluster est un groupement des noeuds
 - Les noeuds ont des rôles:
   - Controle Plane
   - Workers

@@ -30,7 +30,6 @@
 - Observabilité
 - Helm
 - Kubernetes best practices
-- 
 - *TP: Autoscaling, RBAC, Autoscaling, Kubeadm*
 
 

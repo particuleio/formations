@@ -6,7 +6,7 @@
 
 ### L'API de Kubernetes est ouvertes
 - Kubernetes a plusieurs composants
-- Il suffit de respecter la description des APIs dans Kubernetes pour ajouter un intégrer un nouveau composant
+- Il suffit de respecter la description des APIs dans Kubernetes pour ajouter ou intégrer un nouveau composant
 
 
 ### La vraie portabilité sur le cloud
@@ -17,7 +17,7 @@ Tous les composants nécessaires pour déployer les applications dans Kubernetes
 
 
 ### Plus de contrôle sur l'état du système
-Avec Kubernetes, on définit l'état désiré sous forme yaml et Kuberentes s'occupe de converger l'état actuel vers l'état désiré.
+Avec Kubernetes, on définit l'état désiré sous forme yaml et Kubernetes s'occupe de converger l'état actuel vers l'état désiré.
 
 
 

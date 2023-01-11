@@ -11,7 +11,7 @@
 
 ## Problématiques
 - Plusieurs objets dans Kubernetes x plusieurs env:
-  - Nombres énormes des manifests à gérer !
+  - Nombre énormes des manifests à gérer !
 - Des paramètres évoluent ensembles / dépendances
 - => Besoin d'un outil de versionning et de templating 
 
@@ -19,7 +19,7 @@
 
 - Applique le principe DRY (Don't Repeat Yourself)
   - Mécanisme de templating (Go templating)
-  - Viabilisation des ressources générées
+  - Variabilisation des ressources générées
 - Facilité de versionnement et de partage (repository Helm)
 - Helm permet d'administrer les Releases
   - Rollbacks / upgrades d'applications

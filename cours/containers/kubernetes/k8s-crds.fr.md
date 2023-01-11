@@ -1,7 +1,7 @@
 # Kubernetes : Custom Resource Defintion
 
 
-### Kuberentes est extensible
+### Kubernetes est extensible
 - L'architecture de Kubernetes est ouverte
 - Kubernetes de se nature est extensible
 - On peut définir d'autres ressources dans l'api-service pour les utiliser plus tard
@@ -9,9 +9,8 @@
 
 
 ### Custom Resource et Custom Resource Definition
-- La différence entre CR et CRD est la même différence entre le pod qui tourne et le manifest yaml du pod
-- Le CRD est la définition de la ressource
-- Le CR est la ressource qui tourne
+- La CRD c'est la description de la ressources, ce que contient la spec, metadata...
+- La CR c'est l'implémentation de cette CRD.
 
 
 ### Les contrôleurs de Kubernetes

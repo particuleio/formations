@@ -24,6 +24,15 @@ autant de mémoire disponible et laisser les autres pod en "famine".
 ### L'utilisation des policies
 Exemples des outils de policies
 
+- `Gatekeeper`/`Open Policy Agent`
 - `keyverno`
 
-- `Gatekeeper`/`Open Policy Agent`
+### Recommendations
+- Construire des petits conteneurs:
+  - des images de petites bases
+  - builder pattern
+- Éviter le namespace `Default`
+- 
+
+
+

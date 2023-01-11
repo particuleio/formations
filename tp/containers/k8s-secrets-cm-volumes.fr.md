@@ -247,11 +247,11 @@ echo -e $PASSWORD > /creds/password
 
 ## Les volumes persistants
 La dernière configuration de redis ne permet le stockage persistant des données.
-Si le pod s'arrête, on perd tout les données. 
+Si le pod s'arrête, on perd toutes les données. 
 
 Pour créer un volume persistant il nous faut un `StorageClass`
 
-Dans notre cluster kind, on a déjà un `StorageClass` avec le nom standard qui permet de créer des volumes en local dans le Système de fichier des noeuds.
+Dans notre cluster kind, on a déjà un `StorageClass` avec le nom standard qui permet de créer des volumes en local dans le Système de fichiers des noeuds.
 
 
 ``` bash

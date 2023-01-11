@@ -2,7 +2,7 @@
 
 
 
-### Ne pas utiliser latests
+### Ne pas utiliser le tag `latest`
 - Parmi les recommendations pour les conteneurs est d'éviter les images
 sans tag ou avec le tag `latest`.
 - Il est recommandé d'utiliser une version spécifique:

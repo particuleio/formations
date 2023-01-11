@@ -143,22 +143,3 @@ kubectl replace -f object.yaml
 ![](images/kubernetes/ui-dashboard.png)
 
 
-### Kubernetes : Kubernetes Dashboard
-
-- Pour déployer le Dashboard, exécuter la commande suivante:
-
-```console
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-```
-
-- Pour accéder au Dashboard, il faut établir une communication entre votre poste et le cluster Kubernetes :
-
-```console
-$ kubectl proxy
-```
-
-- L'accès se fait désormais sur :
-
-<http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/>
-
-

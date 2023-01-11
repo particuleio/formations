@@ -1,4 +1,4 @@
-### Kubectl : Advanced Usage
+# Kubectl : Advanced Usage
 
 - Il est possible de mettre à jour un service sans incident grâce ce qui est appelé le _rolling-update_.
 - Avec les _rolling updates_, les ressources qu'expose un objet `Service` se mettent à jour progressivement.
@@ -127,4 +127,6 @@ kubectl cordon <NODE_NAME>
 kubectl drain <NODE_NAME>
 kubectl uncordon <NODE_NAME>
 ```
+
+
 

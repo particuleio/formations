@@ -17,7 +17,7 @@
     - configuration
     - réseau
     - ...
-- Des pré-requis 
+- Des prérequis
 - Conflit éternel entre les devs et les ops: "ça fonctionnait en local !"
 
 ### Ère de la virtualisation !
@@ -28,27 +28,27 @@
     - Portabilité
     - Dupliquer les VMs
     - S'assurer d'avoir le même comportement n'importe où
-- Problème des dépendances/pré-requis
+- Problème des dépendances/prérequis
 
 ### Problèmes des VMs
 
-- Les VMs sont lourds
+- Les VMs sont lourdes
     - Un système d'exploitation !
     - La taille d'une VMs est de l'ordre des Go
     - Difficulté de partage des VMs
     - L'arrêt/relance des VMs prend beaucoup de temps
-    - Le process de création d'une VM est long
+    - Le processus de création d'une VM est long
 
 ### Problèmes des VMs
 
 - Couche d'hyperviseur et allocation des ressources
-- L'application avec toutes les dépendances sont installés dans une VM
+- L'application et toutes les dépendances sont installées dans une VM
     - Pas de séparation des services
     - Conflit des dépendances des services
 
 ### Les conteneurs !
 
-- Sont legers de l'ordre des Mo
+- Sont légers de l'ordre des Mo
 - Se connectent directement au kernel du système
 - Se lancent rapidement
 - Facile à partager

@@ -34,7 +34,7 @@ Exemples des outils de policies
 - Éviter le namespace `default` en production
 - Health Check avec `Readiness` et `Liveness`
 - `Network Security Policy`
-- Hooks de conteneurs `PreStop`
+- Hook des conteneurs `PreStop`
 
 
 

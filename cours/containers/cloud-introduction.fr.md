@@ -58,8 +58,9 @@
 - Scalabilité : passer à l'échelle son infrastructure en fonction de différentes métriques.
 
 
-### Déploiment des application dans le cloud
-- Les conteneurs de nos jours sont partout
-- L'outil de-facto pour le déploiment des applications basées sur les conteneurs est Kubernetes
-- Kubernetes est utilisé partout !
+
+### Déploiement des applications
+- De nos jours, Il y a une grande tendance à utiliser les conteneurs pour le déploiement des applications dans le cloud
+- L'outil de-facto pour l'automatisation de gestion des applications basées sur les conteneurs est **Kubernetes** !
+
 

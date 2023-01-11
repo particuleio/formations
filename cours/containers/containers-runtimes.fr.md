@@ -96,10 +96,12 @@ Permettent d'exécuter des conteneurs sur un système
 
 
 ### Les conteneurs: conclusion
-
 - Fonctionnalités offertes par le Kernel
-
 - Les conteneurs engine fournissent des interfaces d'abstraction
-
 - Plusieurs types de runtimes
+
+
+
+
+
 

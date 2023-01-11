@@ -11,7 +11,7 @@
 - Introduction au cloud et aux conteneurs
 - Conteneurs Build/Ship/Run
 - *TP: Docker*
-- Introduction à Kuebernetes
+- Introduction à Kubernetes
 - *TP: Création d'un cluster Kubernetes*
 - *TP: Création et gestion des pods*
 

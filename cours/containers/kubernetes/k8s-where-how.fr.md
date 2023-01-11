@@ -144,6 +144,6 @@ Infrastructure immuable
 - exemples:
   - [k3s](https://k3s.io/)
   - [k0s](https://k0sproject.io/)
-- Distributions Kuebrnetes minimalistes
+- Distributions Kubernetes minimalistes
 - Support de l'architecture ARM pour les cartes électroniques d'IOT
 

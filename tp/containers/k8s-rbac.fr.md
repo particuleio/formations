@@ -47,7 +47,7 @@ $ sudo kubeadm kubeconfig user --client-name red --config=cluster-configuration.
 
 Le kubeconfig généré contient les crédentials pour un user `red`.
 
-Lister les pods avec ce kubeconfig :
+Listez les pods avec ce kubeconfig :
 
 ```console
 $ export KUBECONFIG=kubeconfig

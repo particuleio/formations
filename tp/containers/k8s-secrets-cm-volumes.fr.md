@@ -1,4 +1,4 @@
-# Travaux Pratiques: Kubernetes - ConfigMap, Secrets, Volumes et init-container
+# Travaux Pratiques: Kubernetes - ConfigMap, Secrets et Volumes
 
 ## Introduction
 
@@ -8,6 +8,7 @@ Dans ce TP nous allons utiliser les objets notions de *Secrets* et de *ConfigMap
 - Utiliser une *ConfigMap* en tant que volume
 - Créer et utiliser un *Secret* en tant que secret
 - Utiliser un *Secret* en tant que volume
+- Créer et utiliser un volume persistant
 
 ## Prérequis
 
@@ -146,7 +147,7 @@ Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez une variabl
 
 Observez ensuite le comportement dans le pod avec `kubectl exec`.
 
-Changer la valeur de l'username et réappliquez votre *Secret*. Que se passe t-il
+Changez la valeur de l'username et réappliquez votre *Secret*. Que se passe t-il
 dans votre pod ?
 
 ### Utiliser un *Secret* en tant que volume
@@ -271,7 +272,7 @@ Ce qu'il faut faire:
 ## Récupérer un secret externe avec un `init-container`
 Dans certains cas, les secrets sont stockés dans un serveur externe.
 Pour cela, il faut récupérer les secrets avant de lancer le conteneur principal.
-On peut faire ça avec un `init-container` qui va executer un traitement juste avant le lancement du conteneur principal.
+On peut faire ça avec un `init-container` qui va exécuter un traitement juste avant le lancement du conteneur principal.
 
 Voici un exemple d'un déploiement redis:
 
@@ -307,7 +308,7 @@ Le conteneur redis cherche le mot de passe dans le chemin `/creds/passwd`.
 
 
 Ce qu'il faut faire:
-1. Ajouter un init conteneur
+1. Ajoutez un init conteneur
   - avec l'image `docker.io/sametma/tools:v1`
   - avec la commande:
 ``` bash
@@ -315,8 +316,8 @@ PASSWORD=$(curl https://dummyjson.com/users/1 | jq -r '.password')
 echo PASSWORD=$PASSWORD
 echo -e $PASSWORD > /creds/password
 ```
-2. Ajouter un volume éphémère (type `emptyDir`)
-3. Partager le volume avec l'init conteneur le conteneur redis avec le paramètre `volumeMounts` sur le chemin `creds`
+2. Ajoutez un volume éphémère (type `emptyDir`)
+3. Partagez le volume avec l'init conteneur le conteneur redis avec le paramètre `volumeMounts` sur le chemin `creds`
 
 
 <!-- 

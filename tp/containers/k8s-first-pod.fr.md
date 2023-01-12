@@ -160,9 +160,9 @@ spec:
 
 > On peut déployer les manifests avec la commande `kubectl apply -f <PATH>`.
 
-Appliquer ce pod avec la commande `kubectl apply -f pod.yaml`.
+Appliquez ce pod avec la commande `kubectl apply -f pod.yaml`.
 
-Vérifier que le pod est bien `Running` avec la commande `kubectl get pod`.
+Vérifiez que le pod est bien `Running` avec la commande `kubectl get pod`.
 
 
 ```yaml

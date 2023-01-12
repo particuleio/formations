@@ -75,7 +75,7 @@ spec:
 ```
 
 
-Changer la valeur de `CPU_PERCENT` et observez la consommation de CPU
+Changez la valeur de `CPU_PERCENT` et observez la consommation de CPU
 
 
 ## L'autoscaling Horizontale

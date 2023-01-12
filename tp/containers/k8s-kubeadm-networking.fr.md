@@ -217,7 +217,7 @@ Nous avons tout d'abord besoin de déployer un `Ingress Controller`. Nous
 choisissons de déployer `nginx-ingress-controller`.
 
 ```console
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/ingress-nginx-3.7.0/deploy/static/provider/baremetal/deploy.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/baremetal/deploy.yaml
 ```
 
 Déployons cet Ingress en réutilisant notre Deployment et notre Service crées en début de TP pour la partie ClusterIP. Ce Service était de type ClusterIP et ne pouvait donc pas être join depuis l'extérieur du cluster et on se propose d'utiliser un Ingress pour qu'il le soit.

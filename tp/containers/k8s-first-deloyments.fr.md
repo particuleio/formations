@@ -75,10 +75,10 @@ spec:
     app: color
 ```
 
-Appliquez le Deployment et le service avec
-la commande `kubectl apply -f`.
+Appliquez le Deployment et le service avec la commande `kubectl apply -f`.
 
-Vérifiez que les trois Pod sont bien `Running` avec la commande `kubectl get pod`.
+Vérifiez que les trois Pod sont bien `Running` avec la commande
+`kubectl get pod`.
 
 ### Scale up
 
@@ -177,10 +177,9 @@ On peut consulter l'historique des changement avec la commande:
 ## Ingress
 Ingress permet de simplifier l'accès aux applications.
 
-Au lieu d'exposer à chaque fois un port pour chaque application,
-on peut exposer un seul port pour reverse-proxy/loadbalancer
-appelé `ingress controller`
-qui permet de rediriger les requêtes en se basant sur de configuration.
+Au lieu d'exposer à chaque fois un port pour chaque application, on peut exposer
+un seul port pour reverse-proxy/loadbalancer appelé `ingress controller` qui
+permet de rediriger les requêtes en se basant sur de configuration.
 
 Kubernetes permet de gérer ça avec des objets de type `ingress`
 
@@ -189,7 +188,8 @@ Pour commencer, il faut installer un ingress controller
 
 
 ``` bash
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/kind/deploy.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/kind/deploy.yaml
 ```
 
 
@@ -218,6 +218,7 @@ spec:
 
 
 ## A vous de faire:
-Créez deux déploiements avec les images `docker.io/particule/simplecolorapi:1.0` et `docker.io/particule/simplecolorapi:2.0`
-et exposez les deux déploiements avec ingress.
+Créez deux déploiements avec les images `docker.io/particule/simplecolorapi:1.0`
+et `docker.io/particule/simplecolorapi:2.0` et exposez les deux déploiements
+avec ingress.
 

@@ -20,23 +20,23 @@ Nous allons voir les différentes options offertes par Kubernetes :
 
 ## Création d'un utilisateur
 
-La notion d'utilisateur n'existe pas vraiment sur Kubernetes. Un utilisateur
-est généralement représenté par un certificat x509 dont le CommonName est le nom de
+La notion d'utilisateur n'existe pas vraiment sur Kubernetes. Un utilisateur est
+généralement représenté par un certificat x509 dont le CommonName est le nom de
 l'utilisateur. Pour que ce certificat soit valide, ce certificat doit avoir été
 signé par l'autorité de certification de Kubernetes.
 
 Pour créer ce certificat, on va utiliser une fonction de `kubeadm`. Afin de
-pouvoir signer ce certificat et le rendre valide, il faut aussi récupérer la
-PKI de Kubernetes qui contient la clé privée nécessaire à la signature.
-Pour cela, lancez les commandes suivantes :
+pouvoir signer ce certificat et le rendre valide, il faut aussi récupérer la PKI
+de Kubernetes qui contient la clé privée nécessaire à la signature. Pour cela,
+lancez les commandes suivantes :
 
 ```console
 $ kubectl get cm -n kube-system kubeadm-config -o jsonpath='{ .data.ClusterConfiguration }' > cluster-configuration.yaml
 ```
 
 Dans votre `~/.kube/config`, cherchez l'URL du server pour le cluster
-"kind-kind". Vous devriez trouver quelque chose comme 127.0.0.1:40623 (port
-peut varier). Dans `cluster-configuration.yaml`, remplacer la valeur
+"kind-kind". Vous devriez trouver quelque chose comme 127.0.0.1:40623 (port peut
+varier). Dans `cluster-configuration.yaml`, remplacer la valeur
 `controlPlaneEndpoint:` avec l'URL du server (sans `https://`)
 
 ```console
@@ -59,7 +59,8 @@ Que constatez vous ? Pourquoi ?
 
 ## Role et RoleBinding
 
-Nous allons réutiliser le kubeconfig admin et donner des droits à notre utilisateur.
+Nous allons réutiliser le kubeconfig admin et donner des droits à notre
+utilisateur.
 
 ```yaml
 ---
@@ -163,19 +164,24 @@ Que constatez vous ?
 ## Accès depuis un pod
 
 Il est possible de donner un accès non pas à un User mais à un `ServiceAccount`.
-Le ServiceAccount est ensuite donné à un Pod permettant à ce dernier
-d'hériter des droits du ServiceAccount.
+Le ServiceAccount est ensuite donné à un Pod permettant à ce dernier d'hériter
+des droits du ServiceAccount.
 
 ```console
 $ kubectl create serviceaccount monserviceaccount
 ```
 
-Dans les plus récentes versions de Kubernetes, il faut associer un secret de type
-`kubernetes.io/service-account-token`  avec l'annotation
+Dans les plus récentes versions de Kubernetes, il faut associer un secret de
+type `kubernetes.io/service-account-token`  avec l'annotation
 `kubernetes.io/service-account.name: <SERVICE_ACCOIUNT>` au serviceaccount
 
 ```
-$ kubectl create secret generic montoken --type=kubernetes.io/service-account-token -o json --dry-run=client  | jq '.metadata.annotations = {"kubernetes.io/service-account.name": "monserviceaccount"}' | kubectl apply -f-
+$ kubectl create secret generic montoken \
+  --type=kubernetes.io/service-account-token \
+  -o json --dry-run=client  | \
+    jq '.metadata.annotations = \
+    {"kubernetes.io/service-account.name": "monserviceaccount"}' | \
+      kubectl apply -f-
 ```
 
 
@@ -194,8 +200,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-On va maintenant créer un `Pod` en le faisant utiliser notre `ServiceAccount`. Le
-Pod va automatiquement hériter des droits affectés au `ServiceAccount`.
+On va maintenant créer un `Pod` en le faisant utiliser notre `ServiceAccount`.
+Le Pod va automatiquement hériter des droits affectés au `ServiceAccount`.
 
 ```yaml
 ---
@@ -260,8 +266,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-La spécificité ici est que nous devons spécifier le namespace dans lequel
-existe notre `ServiceAccount` étant donné que le `ClusterRoleBinding` est non
+La spécificité ici est que nous devons spécifier le namespace dans lequel existe
+notre `ServiceAccount` étant donné que le `ClusterRoleBinding` est non
 namespacé.
 
 On se connecte ensuite au `Pod` pour effectuer les commandes :
@@ -278,20 +284,25 @@ Que constatez vous ?
 ## Installation du dashboard
 
 ``` bash
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 $ # The following will create a serviceaccount with role admin
-$ kubectl apply -f https://raw.githubusercontent.com/particuleio/k8s_dashboard_role/main/all.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/particuleio/k8s_dashboard_role/main/all.yaml
 ```
 
 ```
-kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard --address 0.0.0.0 8443:443
+kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard \
+--address 0.0.0.0 8443:443
 ```
-Le dashboard est disponible sur ce lien <http://<HOST_IP>:8443/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
+Le dashboard est disponible sur ce lien
+<http://<HOST_IP>:8443/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/>
 
 
 Lancez cette commande pour récupérer le token d'accès au dashboard:
 ```
-kubectl --namespace kubernetes-dashboard get secrets cluster-admin-token -o=jsonpath="{.data.token}" | base64 -d; echo 
+kubectl --namespace kubernetes-dashboard get secrets cluster-admin-token \
+-o=jsonpath="{.data.token}" | base64 -d; echo 
 ```
 
 

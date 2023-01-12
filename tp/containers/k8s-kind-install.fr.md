@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Dans ce TP, nous allons déployer un cluster avec [KIND](https://kind.sigs.k8s.io/) (Kubernetes in Docker).
+Dans ce TP, nous allons déployer un cluster avec
+[KIND](https://kind.sigs.k8s.io/) (Kubernetes in Docker).
 Une installation pour Linux ainsi qu'une installation est disponible.
 
 ## Prérequis
@@ -111,8 +112,8 @@ demo-worker2         Ready    <none>          35s   v1.25.3
 
 
 ## Control plane componentes
-Kubernetes organise les objects avec les namespaces.
-Amusez-vous en regardant ce qu'il y a dans chaque namespace !
+Kubernetes organise les objects avec les namespaces. Amusez-vous en regardant ce
+qu'il y a dans chaque namespace !
 ``` bash
 $ # get namespaces
 $ kubectl get namespaces
@@ -128,7 +129,8 @@ $ kubectl -n <NAMESPACE> get all
 ```
 
 ## Kubeconfig
-- Les information d'accès aux clusters Kubernetes sont stockés dans un fichier appelé kubeconfig.
+- Les information d'accès aux clusters Kubernetes sont stockés dans un fichier
+  appelé kubeconfig.
 
 - Le chemin par défaut de ce fichier est `$HOME/.kube/config`.
 
@@ -158,4 +160,5 @@ users:
 
 
 ## Conclusion
-Dans ce TP nous avons vu comment mettre en place un cluster Kubernetes en local avec `kind`.
+Dans ce TP nous avons vu comment mettre en place un cluster Kubernetes en local
+avec `kind`.

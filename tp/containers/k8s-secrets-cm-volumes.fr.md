@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Dans ce TP nous allons utiliser les objets notions de *Secrets* et de *ConfigMap*:
+Dans ce TP nous allons utiliser les objets notions de *Secrets* et de
+*ConfigMap*:
 
 - Créer et utiliser une *ConfigMap* en variable d'environnement
 - Utiliser une *ConfigMap* en tant que volume
@@ -69,8 +70,8 @@ spec:
                 key: log.location
 ```
 
-Avec `kubectl exec`, regardez les variables d'environnement disponibles dans
-le conteneur.
+Avec `kubectl exec`, regardez les variables d'environnement disponibles dans le
+conteneur.
 
 ### Utiliser une *ConfigMap* en tant que volume
 
@@ -107,13 +108,16 @@ spec:
           name: log-config
 ```
 
-Décrivez le pod. Avec `kubectl exec`, observez le comportement à l'intérieur du conteneur.
+Décrivez le pod. Avec `kubectl exec`, observez le comportement à l'intérieur du
+conteneur.
 
 ## *Secret*
 
-Les *Secrets* fonctionnent exactement de la même manière que les *ConfigMap* à l'exception qu'ils sont stockés encodés en `base64`.
+Les *Secrets* fonctionnent exactement de la même manière que les *ConfigMap* à
+l'exception qu'ils sont stockés encodés en `base64`.
 
-Les valeurs stockées dans un *Secret* au format `yaml` doivent être encodées au préalable.
+Les valeurs stockées dans un *Secret* au format `yaml` doivent être encodées au
+préalable.
 
 ```console
 $ echo -n "admin" | base64
@@ -135,7 +139,8 @@ data:
 
 ### Utiliser un *Secret* en tant que ENV
 
-Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez une variable d'environnement à partir d'un *Secret* :
+Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez une variable
+d'environnement à partir d'un *Secret* :
 
 ```yaml
 - name: SECRET_USERNAME
@@ -152,7 +157,8 @@ dans votre pod ?
 
 ### Utiliser un *Secret* en tant que volume
 
-Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez un volume à partir d'un secret :
+Reprenez les déploiements utilisés pour les *ConfigMap* et ajoutez un volume à
+partir d'un secret :
 
 ```yaml
 volumes:
@@ -200,11 +206,13 @@ spec:
             redis-server --save 30 1
 ```
 
-Si le pod s'arrête, on perd toutes les données parce que les données ne sont pas enregistrées dans un volume persistant.
+Si le pod s'arrête, on perd toutes les données parce que les données ne sont pas
+enregistrées dans un volume persistant.
 
 Pour créer un volume persistant il nous faut un `StorageClass`
 
-Dans notre cluster kind, on a déjà un `StorageClass` avec le nom standard qui permet de créer des volumes en local dans le Système de fichiers des noeuds.
+Dans notre cluster kind, on a déjà un `StorageClass` avec le nom standard qui
+permet de créer des volumes en local dans le Système de fichiers des noeuds.
 
 
 ``` bash

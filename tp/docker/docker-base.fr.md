@@ -2,8 +2,8 @@
 
 ## Introduction
 
-Ce TP permet de se familiariser avec la CLI Docker
-et sur les fonctions de base des conteneurs Docker.
+Ce TP permet de se familiariser avec la CLI Docker et sur les fonctions de base
+des conteneurs Docker.
 
 Nous montrerons comment :
 - créer une image
@@ -23,8 +23,8 @@ Exemple pour Ubuntu :
 
 
 ## Afficher les images et conteneurs
-On peut utiliser le client docker pour afficher les images et conteneurs dans 
-le système
+On peut utiliser le client docker pour afficher les images et conteneurs dans le
+système
 
 Pour afficher les images : 
 ```bash
@@ -36,13 +36,14 @@ $ # list conatiners
 $ docker container ls
 ```
 
-On note bien qu'il y a pas ni des images docker ni de conteneurs dans le système.
+On note bien qu'il y a pas ni des images docker ni de conteneurs dans le
+système.
 
 
 ## Construire une image Docker
 
-Nous allon créer une image docker pour lancer un serveur nginx.
-Voici un exemple d'un Dockerfile.
+Nous allon créer une image docker pour lancer un serveur nginx. Voici un exemple
+d'un Dockerfile.
 
 ```bash
 FROM fedora:37
@@ -64,8 +65,8 @@ $ docker build -t mynginx .
 
 Notez bien le point à la fin de la commande ! Il permet de dire à Docker que le
 Dockerfile à builder se trouve dans notre répertoire courant. Si on veut
-construire plusieurs images, la bonne pratique est de créer un dossier par
-image et d'y placer les Dockerfile correspondants.
+construire plusieurs images, la bonne pratique est de créer un dossier par image
+et d'y placer les Dockerfile correspondants.
 
 Il est possible de renommer une image avec la commande `tag` :
 
@@ -103,9 +104,9 @@ root@ebc138d8cdc9:/# ls
 bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 ```
 
-Les premières options à exploiter sont : -t , -i et -d
-Elles permettent de choisir le “mode” du conteneur. Notamment entre le fait
-d’être exécuté au premier plan ou en arrière plan.
+Les premières options à exploiter sont : -t , -i et -d Elles permettent de
+choisir le “mode” du conteneur. Notamment entre le fait d’être exécuté au
+premier plan ou en arrière plan.
 
 Sur un autre terminal, on peut vérifier qu'on a un conteneur lancé
 ```bash
@@ -135,12 +136,13 @@ $ curl http://localhost:8001
 </html>
 ```
 
-Que se passe t-il si vous essayer d'accéder à `http://localhost:80` depuis
-votre host ? Pourquoi ?
+Que se passe t-il si vous essayer d'accéder à `http://localhost:80` depuis votre
+host ? Pourquoi ?
 
 ### Changer le fichier index.html
 
-Le répertoire dans lequel Nginx va, par défaut, chercher les pages html est `/usr/share/nginx/html`
+Le répertoire dans lequel Nginx va, par défaut, chercher les pages html est
+`/usr/share/nginx/html`
 
 Modifiant cet index.html dans notre dossier courant :
 
@@ -165,7 +167,8 @@ $ curl http://localhost:8000
 </html>
 ```
 
-Le test peut aussi être effectué sur votre navigateur. Les balises HTML sont correctement interprétées.
+Le test peut aussi être effectué sur votre navigateur. Les balises HTML sont
+correctement interprétées.
 
 ### Monter un volume
 

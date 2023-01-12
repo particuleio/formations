@@ -2,8 +2,8 @@
 
 ## Introduction
 
-Les options de scheduling permettent de placer intelligemment et
-automatiquement des pods sur des noeuds.
+Les options de scheduling permettent de placer intelligemment et automatiquement
+des pods sur des noeuds.
 
 Nous allons voir les différentes options offertes par Kubernetes :
 
@@ -56,8 +56,8 @@ spec:
 `nodeSelector` fait partie de la spec du pod et défini de façon très simple
 l'assignation du pod à un node possédant un label `datacenter=alpha`.
 
-Si on applique, on voit que notre pod reste en pending car aucun node ne
-possède un label à cette valeur.
+Si on applique, on voit que notre pod reste en pending car aucun node ne possède
+un label à cette valeur.
 
 ```console
 $ kubectl get pod
@@ -101,14 +101,14 @@ pod à un node.
 
 ## Affinity / Anti Affinity
 
-Les règles d'affinité permettent de définir le scheduling pour un groupe de
-pod. Elles vont permettent de placer des pods sur le même node ou, au
-contraire, de les forcer sur des nodes différents.
+Les règles d'affinité permettent de définir le scheduling pour un groupe de pod.
+Elles vont permettent de placer des pods sur le même node ou, au contraire, de
+les forcer sur des nodes différents.
 
 
-On va ici souhaiter placer tous les pods de ce deployment sur des nodes ayant
-un label `datacenter=alpha`. On se rappelle par rapport à l'exemple précédent
-que seul `worker` à ce label.
+On va ici souhaiter placer tous les pods de ce deployment sur des nodes ayant un
+label `datacenter=alpha`. On se rappelle par rapport à l'exemple précédent que
+seul `worker` à ce label.
 
 ```yaml
 ---
@@ -316,9 +316,8 @@ alpha   1/1     Running   0          4s
 
 Que se passe t-il ?
 
-Des effets autre que `NoSchedule` existe, notamment `NoExecute`. Celui ci
-permet notamment de supprimer les pods *déjà* schédulés qui tournent sur un
-node.
+Des effets autre que `NoSchedule` existe, notamment `NoExecute`. Celui ci permet
+notamment de supprimer les pods *déjà* schédulés qui tournent sur un node.
 
 Ajoutons une nouvelle Taint à nos nodes :
 

@@ -24,8 +24,8 @@ kubectl top nodes
 
 ## Déploiement
 
-Nous allons créer un déploiement avec une image contenant le programme `stress-ng` qui
-permet de simuler un test de charge de consommation de CPU.
+Nous allons créer un déploiement avec une image contenant le programme
+`stress-ng` qui permet de simuler un test de charge de consommation de CPU.
 
 Il y a deux variables à configurer:
 - `WAIT_TIME`: temps d'attente en secondes avant de lancer le test de charge
@@ -121,8 +121,8 @@ Que constatez-vous ?
 Qu'est ce qui ce passe si on met `CPU_PERCENT` à 2 ?
 
 ## Conclusion et perspectives
-Kubernetes nativement l'autoscaling horizontale pour les metrics de CPU et de RAM.
-Ceci permet une meilleure adaptation des replicas face au charge.
+Kubernetes nativement l'autoscaling horizontale pour les metrics de CPU et de
+RAM. Ceci permet une meilleure adaptation des replicas face au charge.
 
 Mais, selon vous est ce que c'est suffisant ?
 

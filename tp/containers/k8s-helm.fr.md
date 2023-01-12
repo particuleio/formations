@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Dans ce TP, nous allons déployer un `Ingress Controller` en utilisant un template Helm
+Dans ce TP, nous allons déployer un `Ingress Controller` en utilisant un
+template Helm
 
 ## Prérequis
 
@@ -32,8 +33,8 @@ $ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 $ helm repo update
 ```
 
-Nous devons ensuite trouver le nom du chart que l'on souhaite utiliser ainsi
-que sa version :
+Nous devons ensuite trouver le nom du chart que l'on souhaite utiliser ainsi que
+sa version :
 
 ```console
 $ helm search repo nginx
@@ -41,9 +42,8 @@ NAME                      	CHART VERSION	APP VERSION	DESCRIPTION
 ingress-nginx/ingress-nginx	2.15.0       	0.35.0     	Ingress controller for Kubernetes using NGINX a...
 ```
 
-On choisi le premier qui est
-Le Hub Helm <https://hub.helm.sh> peut être recherché avec la commande `helm
-search hub <keyword>`.
+On choisi le premier qui est Le Hub Helm <https://hub.helm.sh> peut être
+recherché avec la commande `helm search hub <keyword>`.
 
 On retient la nom du chart et sa version pour le déploiement de la Release.
 
@@ -105,8 +105,8 @@ Containers:
 ### Rollback
 
 Si finalement nous considérons que les anciennes CPU Requests et les Memory
-Requests étaient mieux adaptées, nous pouvons décider de revenir en arrière
-avec l'aide de la fonction `rollback` de Helm.
+Requests étaient mieux adaptées, nous pouvons décider de revenir en arrière avec
+l'aide de la fonction `rollback` de Helm.
 
 ```console
 $ helm history ingress-nginx
@@ -147,7 +147,3 @@ Containers:
       cpu:      300m
       memory:   300Mi
 ```
-
-## Conclusion
-
-Vous avez à votre disposition un cluster de deux nœuds déployés avec kubeadm. Si vous avez le temps, reprenez les TPs minikube et testez les sur ce cluster.

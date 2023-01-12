@@ -30,9 +30,8 @@ kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP   5m25s
 helloworld   ClusterIP   10.96.61.159   <none>        80/TCP    3s
 ```
 
-Le port du pod 80 est exposé via le service `helloworld`.
-Le service est de type ClusterIP. C'est-à-dire que le service est disponible
-au niveau du cluster.
+Le port du pod 80 est exposé via le service `helloworld`. Le service est de type
+ClusterIP. C'est-à-dire que le service est disponible au niveau du cluster.
 
 
 ``` bash
@@ -47,25 +46,26 @@ Maintenant le service est accessible via le navigateur sur le port 8080.
 
 ### Découvrir les commandes de kubectl describe, exec et delete
 
-Pour récupérer des informations sur les ressource créés, on peut utiliser
-la commande `kubectl describe <RESOURCE_TYPE> <RESOURCE_NAME>`
+Pour récupérer des informations sur les ressource créés, on peut utiliser la
+commande `kubectl describe <RESOURCE_TYPE> <RESOURCE_NAME>`
 
 
-On utilise souvent des abréviations des types des ressources.
-On peut trouver une liste des ressources qu'on peut créer ainsi que les abréviation
-avec la commande suivante:
+On utilise souvent des abréviations des types des ressources. On peut trouver
+une liste des ressources qu'on peut créer ainsi que les abréviation avec la
+commande suivante:
 
 ``` bash
 $ kubectl api-resources
-NAME                              SHORTNAMES   APIVERSION                             NAMESPACED   KIND
+NAME              SHORTNAMES   APIVERSION      NAMESPACED   KIND
 ...
-pods                              po           v1                                     true         Pod
-namespaces                        ns           v1                                     false        Namespace
-services                          svc          v1                                     true         Service
+pods              po           v1              true         Pod
+namespaces        ns           v1              false        Namespace
+services          svc          v1              true         Service
 ...
 ```
 
-On peut accéder au pod avec la commande `kubectl exec <OPTIONS> <POD_NAME> -- <COMMAND>`
+On peut accéder au pod avec la commande
+`kubectl exec <OPTIONS> <POD_NAME> -- <COMMAND>`
 ```bash
 $ # Print /www/index.php file
 $ kubectl exec helloworld -- cat /www/index.php
@@ -81,8 +81,8 @@ etc           linuxrc       proc          root          sbin          tmp       
 Pour supprimer un ressource, on peut utliser la commande `kubectl delete <RESOURCE_TYPE> <RESOURCE_NAME>`
 
 ### Création d'un namespace
-Par défaut, les ressources sont créés dans le namespace `default`.
-Kubernetes utilise les namespaces pour regrouper les ressources.
+Par défaut, les ressources sont créés dans le namespace `default`. Kubernetes
+utilise les namespaces pour regrouper les ressources.
 
 On peut créer un namespace avec la commande suivante :
 ```bash
@@ -90,13 +90,16 @@ $ kubectl create namespace test2
 namespace/test2 created
 ```
 
-Maintenant on peut créer un pod dans le namespace test2 en ajoutant l'option `--namespace=test2`.
-On peut utiliser cette option avec les autres commande de kubectl `describe`, `create`, `delete`...
+Maintenant on peut créer un pod dans le namespace test2 en ajoutant l'option
+`--namespace=test2`. On peut utiliser cette option avec les autres commande de
+kubectl `describe`, `create`, `delete`...
 
-Si on supprime un namespace, tous les ressources créés dans ce namespace seront supprimés.
+Si on supprime un namespace, tous les ressources créés dans ce namespace seront
+supprimés.
 
 ```bash
-$ kubectl run --image=docker.io/particule/helloworld --namespace=test2 --port=80 helloworld2
+$ kubectl run --image=docker.io/particule/helloworld --namespace=test2 \
+--port=80 helloworld2
 pod/helloworld2 created
 $ kubectl get pods --namespace test2
 NAME          READY   STATUS    RESTARTS   AGE
@@ -104,9 +107,9 @@ helloworld2   1/1     Running   0          15s
 ```
 
 ## Méthode déclarative avec les manifests
-Une autre méthode utilisée pour créer des ressources dans Kubernetes est l'approche
-déclarative avec des fichiers yaml appelés manifests.
-Généralement on déploie les ressources avec cette méthode.
+Une autre méthode utilisée pour créer des ressources dans Kubernetes est
+l'approche déclarative avec des fichiers yaml appelés manifests. Généralement
+on déploie les ressources avec cette méthode.
 
 
 On peut consulter la description d'un ressource déjà déployé.

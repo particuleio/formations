@@ -18,9 +18,12 @@ Nous allons voir les différents types de services et les notions associées :
 
 ## ClusterIP
 
-Chaque cluster Kubernetes dispose d'un réseau interne pour les services. Le type de service par défaut est *ClusterIP*, ces IP sont joignables uniquement à l'intérieur du cluster.
+Chaque cluster Kubernetes dispose d'un réseau interne pour les services. Le type
+de service par défaut est *ClusterIP*, ces IP sont joignables uniquement à
+l'intérieur du cluster.
 
-Avoir une seule IP permet de load balancer le trafic automatiquement entre de multiples pods (replicas).
+Avoir une seule IP permet de load balancer le trafic automatiquement entre de
+multiples pods (replicas).
 
 Créez le fichier `clusterip.yaml` et appliquez le sur le cluster :
 
@@ -67,8 +70,8 @@ $ kubectl get svc
 ```
 
 Remarquez que, par défaut, le port du service est la même que le port du
-conteneur (80). Il est possible de dissocier le port du conteneur du port
-du service grâce à la notion de *targetPort*.
+conteneur (80). Il est possible de dissocier le port du conteneur du port du
+service grâce à la notion de *targetPort*.
 
 Créez et appliquez le fichier `clusterip-target.yaml` :
 
@@ -107,13 +110,16 @@ spec:
         - containerPort: 80
 ```
 
-Regardez maintenant le mapping du service avec `kubectl get svc`. Que remarquez vous ?
+Regardez maintenant le mapping du service avec `kubectl get svc`. Que remarquez
+vous ?
 
-Les IPs de service ne sont pas joignables directement car nous sommes situés à l'extérieur du cluster. Pour y accéder, nous devons publier le service.
+Les IPs de service ne sont pas joignables directement car nous sommes situés à
+l'extérieur du cluster. Pour y accéder, nous devons publier le service.
 
 ## NodePort
 
-Les services de type *NodePort* permettent d'exposer un service à l'extérieur du cluster en mappant un port sur tous les noeuds d'un cluster.
+Les services de type *NodePort* permettent d'exposer un service à l'extérieur du
+cluster en mappant un port sur tous les noeuds d'un cluster.
 
 Créez et appliquez le fichier `nodeport.yaml` :
 
@@ -155,11 +161,14 @@ spec:
 
 Récupérez l'IP du nœuds et accédez au service sur le port 30080.
 
-Ce type de service permet d'exposer un ensemble de pods sur tous les noeuds d'un cluster. Si vous souhaitez exposer le service uniquement sur une IP, il existe un autre type de service.
+Ce type de service permet d'exposer un ensemble de pods sur tous les noeuds d'un
+cluster. Si vous souhaitez exposer le service uniquement sur une IP, il existe
+un autre type de service.
 
 ## ExternalIP
 
-Créez et appliquez le fichier `external-ip.yaml` en remplaçant `HOSTIP` par l'IP externe du nœud du cluster :
+Créez et appliquez le fichier `external-ip.yaml` en remplaçant `HOSTIP` par l'IP
+externe du nœud du cluster :
 
 ```yaml
 apiVersion: v1
@@ -207,9 +216,13 @@ $ curl -v $EXTERNAL_IP
 
 ## Load Balancer
 
-Le dernier type de service est spécifique aux fournisseurs de Cloud. Par exemple, dans le cas d'un cluster sur Amazon Web Service, il est possible de provisionner automatiquement un load balancer et de publier le trafic vers l'extérieur.
+Le dernier type de service est spécifique aux fournisseurs de Cloud. Par
+exemple, dans le cas d'un cluster sur Amazon Web Service, il est possible de
+provisionner automatiquement un load balancer et de publier le trafic vers
+l'extérieur.
 
-Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load balancer..
+Un cluster sur une machine virtuelle ne fournit pas de Cloud ou de load
+balancer..
 
 ## Ingress
 
@@ -217,10 +230,14 @@ Nous avons tout d'abord besoin de déployer un `Ingress Controller`. Nous
 choisissons de déployer `nginx-ingress-controller`.
 
 ```console
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/baremetal/deploy.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/baremetal/deploy.yaml
 ```
 
-Déployons cet Ingress en réutilisant notre Deployment et notre Service crées en début de TP pour la partie ClusterIP. Ce Service était de type ClusterIP et ne pouvait donc pas être join depuis l'extérieur du cluster et on se propose d'utiliser un Ingress pour qu'il le soit.
+Déployons cet Ingress en réutilisant notre Deployment et notre Service crées en
+début de TP pour la partie ClusterIP. Ce Service était de type ClusterIP et ne
+pouvait donc pas être join depuis l'extérieur du cluster et on se propose
+d'utiliser un Ingress pour qu'il le soit.
 
 ```yaml
 apiVersion: networking.k8s.io/v1beta1
@@ -240,9 +257,9 @@ spec:
 
 Selon de fichier YAML, via quelle URL puis-je atteindre mon Service ?
 
-L'URL utilisée n'existe pas vraiment alors nous allons devoir tricher un peu
-en modifiant le header "host" de notre requête HTTP pour tromper l'Ingress
-et lui faire accepter notre requête.
+L'URL utilisée n'existe pas vraiment alors nous allons devoir tricher un peu en
+modifiant le header "host" de notre requête HTTP pour tromper l'Ingress et lui
+faire accepter notre requête.
 
 ```console
 $ curl -H "Host: hello.particule.io" http://10.42.42.42:30048/tp

@@ -169,6 +169,105 @@ volumeMounts:
 Avec `kubectl exec`, observez le comportement dans le pod.
 
 
+## Les volumes persistants
+La configuration suivante de redis ne permet le stockage persistant des données.
+
+``` yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: docker.io/library/redis:7
+        command:
+          - sh
+          - -c
+          - |-
+            redis-server --save 30 1
+```
+
+Si le pod s'arrête, on perd toutes les données parce que les données ne sont pas enregistrées dans un volume persistant.
+
+Pour créer un volume persistant il nous faut un `StorageClass`
+
+Dans notre cluster kind, on a déjà un `StorageClass` avec le nom standard qui permet de créer des volumes en local dans le Système de fichiers des noeuds.
+
+
+``` bash
+$ k get storageclasses.storage.k8s.io
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  3d1h
+```
+
+Voici un exemple de `PersistentVolume` et `PersistentVolumeClaim`
+
+``` yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-standard
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  local:
+    path: "/var/lib/test"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - kind-control-plane
+```
+
+
+``` yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-loc-sc
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+```
+
+
+
+Ce qu'il faut faire:
+1. Créez un objet de type `PersistentVolume`
+2. Créez un objet de type `PersistentVolumeClaim`
+3. Vérifiez l'état des PV et PVC avec la commande: `k get pv,pvc`
+4. Ajoutez le volume au déploiement 
+5. Associez le volume au conteneur redis avec l'option `volumeMounts`
+6. Revérifiez l'état des PV et PVC avec la commande: `k get pv,pvc`
+
+
+
+<!-- 
 ## Récupérer un secret externe avec un `init-container`
 Dans certains cas, les secrets sont stockés dans un serveur externe.
 Pour cela, il faut récupérer les secrets avant de lancer le conteneur principal.
@@ -244,74 +343,3 @@ echo -e $PASSWORD > /creds/password
       - name: creds
         emptyDir: {}
  -->
-
-## Les volumes persistants
-La dernière configuration de redis ne permet le stockage persistant des données.
-Si le pod s'arrête, on perd toutes les données. 
-
-Pour créer un volume persistant il nous faut un `StorageClass`
-
-Dans notre cluster kind, on a déjà un `StorageClass` avec le nom standard qui permet de créer des volumes en local dans le Système de fichiers des noeuds.
-
-
-``` bash
-$ k get storageclasses.storage.k8s.io
-NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  3d1h
-```
-
-Voici un exemple de `PersistentVolume` et `PersistentVolumeClaim`
-
-``` yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-standard
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: standard
-  capacity:
-    storage: 500Mi
-  accessModes:
-    - ReadWriteOnce
-  local:
-    path: "/var/lib/test"
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - kind-control-plane
-```
-
-
-``` yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-loc-sc
-spec:
-  storageClassName: standard
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
-  accessModes:
-    - ReadWriteOnce
-```
-
-
-
-Ce qu'il faut faire:
-1. Créez un objet de type `PersistentVolume`
-2. Créez un objet de type `PersistentVolumeClaim`
-3. Vérifiez l'état des PV et PVC avec la commande: `k get pv,pvc`
-4. Ajoutez le volume au déploiement 
-5. Associez le volume au conteneur redis avec l'option `volumeMounts`
-6. Revérifiez l'état des PV et PVC avec la commande: `k get pv,pvc`
-
-
-

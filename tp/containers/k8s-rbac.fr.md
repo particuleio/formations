@@ -182,7 +182,7 @@ $ kubectl create secret generic montoken --type=kubernetes.io/service-account-to
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBindinger
+kind: RoleBinding
 metadata:
   name: rb-red
 subjects:

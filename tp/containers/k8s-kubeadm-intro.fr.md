@@ -189,7 +189,10 @@ Pour terminer et rendre définitivement le node `Ready`, il faut rajouter un
 plugin réseau. Nous allons utiliser [calico](https://www.projectcalico.org/) :
 
 ```console
-$ kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/custom-resources.yaml
 ```
 
 Nous sommes maintenant prêt à rajouter le worker node.

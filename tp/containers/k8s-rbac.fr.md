@@ -286,11 +286,48 @@ Que constatez vous ?
 ``` bash
 $ kubectl apply -f \
 https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-$ # The following will create a serviceaccount with role admin
-$ kubectl apply -f \
-https://raw.githubusercontent.com/particuleio/k8s_dashboard_role/main/all.yaml
 ```
 
+Il nous faut un token d'un `ServiceAccount` pour accéder au dashboard.
+L'exemple suivant permet de créer un `ServiceAccount` avec le rôle `cluster-admin`.
+
+``` yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cluster-admin
+  namespace: kubernetes-dashboard
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admin-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: cluster-admin
+  namespace: kubernetes-dashboard
+```
+
+Dans les nouvelles version de Kubernetes, il faut créer un secret de type
+`kubernetes.io/service-account-token` et associer ce token au `ServiceAccount`.
+``` yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    kubernetes.io/service-account.name: cluster-admin
+  name: cluster-admin-token
+  namespace: kubernetes-dashboard
+type: kubernetes.io/service-account-token
+```
+
+  
 ```
 kubectl port-forward -n kubernetes-dashboard svc/kubernetes-dashboard \
 --address 0.0.0.0 8443:443

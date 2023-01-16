@@ -30,7 +30,7 @@
     - S'assurer d'avoir le même comportement n'importe où
 - Problème des dépendances/prérequis
 
-### Problèmes des VMs
+### VMs : Problématiques
 
 - Les VMs sont lourdes
     - Un système d'exploitation !
@@ -39,12 +39,23 @@
     - L'arrêt/relance des VMs prend beaucoup de temps
     - Le processus de création d'une VM est long
 
-### Problèmes des VMs
+### VMs : Problématiques
 
 - Couche d'hyperviseur et allocation des ressources
 - L'application et toutes les dépendances sont installées dans une VM
     - Pas de séparation des services
     - Conflit des dépendances des services
+
+
+### Besoin d'une nouvelle solution de virtualisation
+![](./images/containers_idea.svg)
+
+
+### VM Vs Conteneurs
+
+![](./images/virtual-machines-vs-containers.png)
+<!-- source: https://dzone.com/articles/container-technologies-overview -->
+
 
 ### Les conteneurs !
 
@@ -53,9 +64,4 @@
 - Se lancent rapidement
 - Facile à partager
 - Single purpose
-
-### VM Vs Conteneurs
-
-![](./images/virtual-machines-vs-containers.png)
-<!-- source: https://dzone.com/articles/container-technologies-overview -->
 

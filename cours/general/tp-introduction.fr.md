@@ -32,7 +32,7 @@ Le navigateur vous demandera le nom d'utilisateur et le mot de passe.
 
 
 ### Terminal
-Voici une capture d'écran du terminal:
+Ci-dessous une capture d'écran du terminal:
 
 ![](images/general/terminal_online_screenshot.png)
 

@@ -1,18 +1,5 @@
 # Kubernetes : Architecture
 
-### Kubernetes : Composants
-
-- Kubernetes est écrit en Go, compilé statiquement.
-- Un ensemble de binaires sans dépendance
-- Faciles à conteneuriser et à packager
-- Peut se déployer uniquement avec des conteneurs sans dépendance d'OS
-
-### Kubernetes : Composants
-- Kubernetes fonctionne en cluster
-- Un cluster est un groupement des noeuds
-- Les noeuds ont des rôles:
-  - Controle Plane
-  - Workers
 
 ### Kubernetes : Composants
 ![](images/kubernetes/kubernetes-architecture.png){height="500px"}

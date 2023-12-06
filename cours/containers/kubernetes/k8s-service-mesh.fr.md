@@ -62,7 +62,7 @@ Les service mesh déportent la logique de communication au niveau de l'infrastru
 
 - Permettent aux développeurs de se focaliser sur l'application et non pas sur la communication des services
 - Couche commune de communication qui facilite le débogage et l'identification des problèmes
-- Évite automatiquement certaines défaillances grace à du routage intelligent
+- Évite automatiquement certaines défaillances grâce à du routage intelligent
 
 ### Service Mesh : Inconvénients
 

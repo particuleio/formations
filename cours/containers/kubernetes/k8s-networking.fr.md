@@ -109,10 +109,10 @@ spec:
               number: 80
 ```
 
-### Kubernetes : Ingress Controller
+### Kubernetes : `Ingress Controller`
 
-Pour utiliser un `Ingress`, il faut un Ingress Controller. Un `Ingress` permet
-de configurer une règle de reverse proxy sur l'Ingress Controller.
+Pour utiliser un `Ingress`, il faut un `Ingress Controller`. Un `Ingress` permet
+de configurer une règle de reverse proxy sur l'`Ingress Controller`.
 
 - Nginx Controller : <https://github.com/kubernetes/ingress-nginx>
 - Traefik : <https://github.com/containous/traefik>

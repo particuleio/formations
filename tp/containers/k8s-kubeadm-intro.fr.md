@@ -2,11 +2,13 @@
 
 ## Introduction
 
-Dans ce TP, nous allons déployer un cluster avec kubeadm de deux noeuds : 1 master et un 1 worker.
+Dans ce TP, nous allons déployer un cluster avec kubeadm de deux noeuds : 1
+master et un 1 worker.
 
 ## Prérequis
 
-Nous allons déployer deux VM avec Vagrant, pour cela nous avons également besoin d'un hyperviseur comme Virtualbox :
+Nous allons déployer deux VM avec Vagrant, pour cela nous avons également besoin
+d'un hyperviseur comme Virtualbox :
 
 - [Virtualbox v6.0](https://www.virtualbox.org/wiki/Downloads)
 - [Vagrant](https://www.vagrantup.com/downloads.html)
@@ -19,7 +21,7 @@ Clonez le répository de formations :
 $ git clone https://github.com/particuleio/formations.git
 ```
 
-Dans le repertoire `tp/containers/vagrant/kubeadm`:
+Dans le répertoire `tp/containers/vagrant/kubeadm`:
 
 ```console
 $ vagrant up
@@ -27,9 +29,11 @@ Bringing machine 'master' up with 'virtualbox' provider...
 Bringing machine 'worker' up with 'virtualbox' provider...
 ```
 
-Vagrant demandera quelle interface réseau utiliser, choisissez l'interface réseau utilisée pour se connecter à Internet.
+Vagrant demandera quelle interface réseau utiliser, choisissez l'interface
+réseau utilisée pour se connecter à Internet.
 
-Il est ensuite possible de se connecter en SSH sur chaque machine avec les commandes suivantes :
+Il est ensuite possible de se connecter en SSH sur chaque machine avec les
+commandes suivantes :
 
 ```console
 $ vagrant ssh master
@@ -43,8 +47,10 @@ $ vagrant ssh worker
 
 Toutes ces actions sont à réaliser **sur les deux VM**.
 
-- Les opérations commançant par **#** sont à realiser en tant qu'utilisateur root.
-- Les opérations commançant par **$** sont à realiser en tant qu'utilisateur **non** root.
+- Les opérations commençant par **#** sont à réaliser en tant qu'utilisateur
+  root.
+- Les opérations commençant par **$** sont à réaliser en tant qu'utilisateur
+  **non** root.
 
 ### Désactivation de la swap
 
@@ -59,7 +65,8 @@ Rédémarrez ensuite les deux VM.
 
 ### Installation d'une container runtime
 
-Nous allons utiliser `containerd` en tant que container runtime. Pour préparer les machines, lancez les commandes suivantes :
+Nous allons utiliser `containerd` en tant que container runtime. Pour préparer
+les machines, lancez les commandes suivantes :
 
 ```console
 # cat > /etc/modules-load.d/containerd.conf <<EOF
@@ -72,7 +79,7 @@ EOF
 
 # cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
 net.bridge.bridge-nf-call-iptables  = 1
-net.ipv4.ip_forward                 = 1
+net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
@@ -86,13 +93,18 @@ Installation de `containerd` :
 ### Set up the repository
 ### Install packages to allow apt to use a repository over HTTPS
 
-# apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common
+# apt update && apt install -y \
+apt-transport-https \
+ca-certificates \
+curl \
+software-properties-common
 
 ### Add Docker’s official GPG key
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
 ### Add Docker apt repository.
-# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# add-apt-repository "deb [arch=amd64] \
+https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 ### Install containerd
 # apt update && apt install -y containerd.io
@@ -130,7 +142,8 @@ devrait pas changer la première est réservée à Vagrant et la seconde est cel
 du réseau privé que vous devez utiliser. Pensez à remplacer "enp0s8" dans le
 reste du TP si votre interface est nommée différemment.
 
-Créez et éditez le ficher `/etc/default/kubelet`, pour chaque nœud remplacez avec la bonne adresse IP :
+Créez et éditez le ficher `/etc/default/kubelet`, pour chaque nœud remplacez
+avec la bonne adresse IP :
 
 ```console
 KUBELET_EXTRA_ARGS="--node-ip=IP_ENP0S8"
@@ -149,12 +162,14 @@ Démarrez le kubelet :
 Sur le nœud master, en root, lancez la commande suivante :
 
 ```console
-# kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-advertise-address=IP_ENP0S8
+# kubeadm init --pod-network-cidr=192.168.0.0/16 \
+--apiserver-advertise-address=192.168.56.11/24
 ```
 
 L'opération prend quelques minutes suivant la qualité de la connexion.
 
-Nous allons repasser en utilisateur non root pour la suite. Pour configurer `kubectl` sur le master :
+Nous allons repasser en utilisateur non root pour la suite. Pour configurer
+`kubectl` sur le master :
 
 ```console
 $ mkdir -p $HOME/.kube
@@ -174,22 +189,26 @@ Pour terminer et rendre définitivement le node `Ready`, il faut rajouter un
 plugin réseau. Nous allons utiliser [calico](https://www.projectcalico.org/) :
 
 ```console
-$ kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
+$ kubectl apply -f \
+https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/custom-resources.yaml
 ```
 
 Nous sommes maintenant prêt à rajouter le worker node.
 
 ## Déploiement du worker node
 
-Pour rajouter un worker node, il suffit d'utiliser la commande `join` (sur le worker node), affichée précédemment à la fin de commande `kubeadm init`.
+Pour rajouter un worker node, il suffit d'utiliser la commande `join` (sur le
+worker node), affichée précédemment à la fin de commande `kubeadm init`.
 
 ```console
 # kubeadm join 10.42.42.42:6443 --token xxxxxxxxxxxxxxxx \
     --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-Vous pouvez obtenir cette commande `join` plus tard avec la commande `kubeadm
-token create --print-join-command` depuis le node Master.
+Vous pouvez obtenir cette commande `join` plus tard avec la commande
+`kubeadm token create --print-join-command` depuis le node Master.
 
 Sur le Master, surveillez la liste des nodes :
 

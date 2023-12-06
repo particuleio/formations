@@ -1,23 +1,16 @@
 # Kubernetes : Architecture
 
+
 ### Kubernetes : Composants
-
-- Kubernetes est écrit en Go, compilé statiquement.
-- Un ensemble de binaires sans dépendance
-- Faciles à conteneuriser et à packager
-- Peut se déployer uniquement avec des conteneurs sans dépendance d'OS
-
-### Kubernetes : Composants du Control Plane
-
-- etcd: Base de données
-- kube-apiserver : API server qui permet la configuration d'objets Kubernetes (Pod, Service, Deployment, etc.)
-- kube-proxy : Permet le forwarding TCP/UDP et le load balancing entre les services et les backends (Pods)
-- kube-scheduler : Implémente les fonctionnalités de scheduling
-- kube-controller-manager : Responsable de l'état du cluster, boucle infinie qui régule l'état du cluster afin d'atteindre un état désiré
-
-### Kubernetes : Composants du Control Plane
-
 ![](images/kubernetes/kubernetes-architecture.png){height="500px"}
+
+### Kubernetes : Composants du Control Plane
+
+- **etcd:** Base de données
+- **kube-apiserver:** API server qui permet la configuration d'objets Kubernetes (Pod, Service, Deployment, etc.)
+- **kube-proxy:** Permet le forwarding TCP/UDP et le load balancing entre les services et les backends (Pods)
+- **kube-scheduler:** Implémente les fonctionnalités de scheduling
+- **kube-controller-manager:** Responsable de l'état du cluster, boucle infinie qui régule l'état du cluster afin d'atteindre un état désiré
 
 ### Kubernetes : Composants du Control Plane
 
@@ -56,8 +49,8 @@
 
 ### Kubernetes : Autres composants
 
-- kubelet : Service "agent" fonctionnant sur tous les nœuds et assure le fonctionnement des autres services
-- kubectl : Ligne de commande permettant de piloter un cluster Kubernetes
+- **Kubelet :** Service "agent" fonctionnant sur tous les nœuds et assure le fonctionnement des autres services
+- **kubectl :** Ligne de commande permettant de piloter un cluster Kubernetes
 
 ### Kubernetes : Kubelet
 
@@ -69,10 +62,10 @@
 
 ### Kubernetes : Kubelet
 
-- Assure la communication entre les nodes et l'apiserver
+- Assure la communication entre les nodes et l'Apiserver
 - En charge de créer les conteneurs au travers de l'interface Container Runtime
   Interface (CRI)
-- Peut fonctionner avec différentes container runtimes
+- Peut fonctionner avec différentes Container Runtimes
 
 ### Kubernetes : Kubelet
 

@@ -82,7 +82,7 @@ spec:
 
 ### Kubernetes : PersistentVolume
 
-- Composant de stockage dans le cluster kubernetes
+- Composant de stockage dans le cluster Kubernetes
 - Stockage externe aux noeuds du cluster
 - Cycle de vie indépendant du pod qui le consomme
 - Peut être provisionné manuellement par un administrateur ou dynamiquement grâce à une `StorageClass`

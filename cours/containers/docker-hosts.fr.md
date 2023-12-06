@@ -42,7 +42,7 @@
 
 - Dual root : facilité de mise à jour
 
-- Système de fichier en read only
+- Système de fichiers en read only
 
 - Pas de gestionnaire de paquets : tout est conteneurisé
 

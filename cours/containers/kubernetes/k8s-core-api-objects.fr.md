@@ -2,7 +2,6 @@
 
 ### Kubernetes : API Resources
 
-- Namespaces
 - Pods
 - Deployments
 - DaemonSets
@@ -10,14 +9,6 @@
 - Jobs
 - Cronjobs
 
-### Kubernetes : Namespaces
-
-- Fournissent une séparation logique des ressources :
-    - Par utilisateurs
-    - Par projet / applications
-    - Autres...
-- Les objets existent uniquement au sein d'un namespace donné
-- Évitent la collision de nom d'objets
 
 ### Kubernetes : Labels
 
@@ -46,17 +37,17 @@ spec:
 
 ### Kubernetes : Pod
 
+- C'est la plus petite et la plus simple unité dans Kubernetes
 - Ensemble logique composé de un ou plusieurs conteneurs
 - Les conteneurs d'un pod fonctionnent ensemble (instanciation et destruction) et sont orchestrés sur un même hôte
 - Les conteneurs partagent certaines spécifications du Pod :
     - La stack IP (network namespace)
     - Inter-process communication (PID namespace)
     - Volumes
-- C'est la plus petite et la plus simple unité dans Kubernetes
 
 ### Kubernetes : Pod
 
-Les Pods sont définis en YAML comme les fichiers `docker-compose` :
+Les Pods sont définis en YAML :
 
 ![](images/kubernetes/pod.png)
 
@@ -209,7 +200,7 @@ spec:
 ### Kubernetes : CronJob
 
 ```yaml
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: batch-job-every-fifteen-minutes
@@ -228,3 +219,4 @@ spec:
              image: perl
              command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
 ```
+

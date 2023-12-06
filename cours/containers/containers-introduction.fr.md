@@ -1,70 +1,67 @@
-# Le Cloud : vue d’ensemble
+# Les conteneurs : Introduction
 
-### Le cloud, c’est large !
 
-- Stockage/calcul distant (on oublie, cf. externalisation)
+### Déploiement des applications
 
-- Virtualisation++
+- Cycle de vie d'une application
+- Plusieurs environnements:
+    - local
+    - test
+    - production
 
-- Abstraction du matériel (voire plus)
+### Déploiement des applications
 
-- Accès normalisé par des APIs
+- Chaque environnement est différent des autres:
+    - système d'exploitation
+    - dépendances
+    - configuration
+    - réseau
+    - ...
+- Des prérequis
+- Conflit éternel entre les devs et les ops: "ça fonctionnait en local !"
 
-- Service et facturation à la demande
+### Ère de la virtualisation !
 
-- Flexibilité, élasticité
+- Environnement isolé => plus de sécurité
+- Création de plusieurs VMs sur la même machine
+- Snapshot des VMs
+    - Portabilité
+    - Dupliquer les VMs
+    - S'assurer d'avoir le même comportement n'importe où
+- Problème des dépendances/prérequis
 
-### WaaS : Whatever as a Service
+### VMs : Problématiques
 
-- IaaS : Infrastructure as a Service
+- Les VMs sont lourdes
+    - Un système d'exploitation !
+    - La taille d'une VMs est de l'ordre des Go
+    - Difficulté de partage des VMs
+    - L'arrêt/relance des VMs prend beaucoup de temps
+    - Le processus de création d'une VM est long
 
-- PaaS : Platform as a Service
+### VMs : Problématiques
 
-- SaaS : Software as a Service
+- Couche d'hyperviseur et allocation des ressources
+- L'application et toutes les dépendances sont installées dans une VM
+    - Pas de séparation des services
+    - Conflit des dépendances des services
 
-### Le cloud en un schéma
 
-![](images/cloud.png){height="400px"}
+### Besoin d'une nouvelle solution de virtualisation
+![](./images/containers_idea.svg)
 
-### Pourquoi du cloud ? Côté technique
 
-- Abstraction des couches basses
+### VM Vs Conteneurs
 
-- On peut tout programmer à son gré (API)
+![](./images/virtual-machines-vs-containers.png)
+<!-- source: https://dzone.com/articles/container-technologies-overview -->
 
-- Permet la mise en place d’architectures scalables
 
-### Virtualisation dans le cloud
+### Les conteneurs !
 
-- Le cloud IaaS repose souvent sur la virtualisation
-
-- Ressources compute : virtualisation
-
-- Virtualisation complète : KVM, Xen
-
-- Virtualisation conteneurs : OpenVZ, LXC, Docker, RKT
-
-### Notions et vocabulaire IaaS
-
-- L’instance est par définition éphémère
-
-- Elle doit être utilisée comme ressource de calcul
-
-- Séparer les données des instances
-
-### Orchestration des ressources ?
-
-- Groupement fonctionnel de ressources : micro services
-
-- Infrastructure as Code : Définir toute une infrastructure dans un seul fichier texte de manière déclarative
-
-- Scalabilité : passer à l'échelle son infrastructure en fonction de différentes métriques.
-
-### Positionnement des conteneurs dans l'écosystème Cloud ?
-
-- Facilitent la mise en place de PaaS
-
-- Fonctionnent sur du IaaS ou sur du bare-metal
-
-- Simplifient la décomposition d'applications en micro services
+- Sont légers de l'ordre des Mo
+- Se connectent directement au kernel du système
+- Se lancent rapidement
+- Facile à partager
+- Single purpose
 

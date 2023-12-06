@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Dans ce TP, nous allons déployer un Ingress Controller en utilisant un template Helm
+Dans ce TP, nous allons déployer un `Ingress Controller` en utilisant un
+template Helm
 
 ## Prérequis
 
@@ -10,15 +11,12 @@ Dans ce TP, nous allons déployer un Ingress Controller en utilisant un template
 
 ## Installation de Helm
 
-Télécharger la dernière version release par la communauté :
+Téléchargez la dernière version release par la communauté :
 
 <https://github.com/helm/helm/releases>
 
 ```console
-$ curl -fsSL https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz -o helm-v3.3.1-linux-amd64.tar.gz
-$ tar -zxvf helm-v3.3.1-linux-amd64.tar.gz
-$ chmod +x linux-amd64/helm
-# mv linux-amd64/helm /usr/bin/helm
+$ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 $ helm version
 version.BuildInfo{Version:"v3.3.1", GitCommit:"249e5215cde0c3fa72e27eb7a30e8d55c9696144", GitTreeState:"clean", GoVersion:"go1.14.7"}
@@ -35,8 +33,8 @@ $ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 $ helm repo update
 ```
 
-Nous devons ensuite trouver le nom du chart que l'on souhaite utiliser ainsi
-que sa version :
+Nous devons ensuite trouver le nom du chart que l'on souhaite utiliser ainsi que
+sa version :
 
 ```console
 $ helm search repo nginx
@@ -44,9 +42,8 @@ NAME                      	CHART VERSION	APP VERSION	DESCRIPTION
 ingress-nginx/ingress-nginx	2.15.0       	0.35.0     	Ingress controller for Kubernetes using NGINX a...
 ```
 
-On choisi le premier qui est
-Le Hub Helm <https://hub.helm.sh> peut être recherché avec la commande `helm
-search hub <keyword>`.
+On choisi le premier qui est Le Hub Helm <https://hub.helm.sh> peut être
+recherché avec la commande `helm search hub <keyword>`.
 
 On retient la nom du chart et sa version pour le déploiement de la Release.
 
@@ -108,8 +105,8 @@ Containers:
 ### Rollback
 
 Si finalement nous considérons que les anciennes CPU Requests et les Memory
-Requests étaient mieux adaptées, nous pouvons décider de revenir en arrière
-avec l'aide de la fonction `rollback` de Helm.
+Requests étaient mieux adaptées, nous pouvons décider de revenir en arrière avec
+l'aide de la fonction `rollback` de Helm.
 
 ```console
 $ helm history ingress-nginx
@@ -150,7 +147,3 @@ Containers:
       cpu:      300m
       memory:   300Mi
 ```
-
-## Conclusion
-
-Vous avez à votre disposition un cluster de deux nœuds déployés avec kubeadm. Si vous avez le temps, reprenez les TPs minikube et testez les sur ce cluster.

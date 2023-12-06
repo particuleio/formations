@@ -20,7 +20,7 @@ Un seul fichier pour gérer tous ses clusters avec trois informations :
 - Users (Nom, Certificat, Clé)
 - Context, association d'un user et d'un serveur
 
-Stocké par défaut dans ~/.kube/config
+Stocké par défaut dans `~/.kube/config`
 
 ### Kubernetes : Kubectl
 
@@ -136,30 +136,10 @@ kubectl replace -f object.yaml
 
 - Interface graphique web pour les clusters Kubernetes
 - Permet de gérer les différents objets Kubernetes créés dans le(s) cluster(s).
-- Installé par défaut dans minikube
 
 
 ### Kubernetes : Kubernetes Dashboard
 
 ![](images/kubernetes/ui-dashboard.png)
-
-
-### Kubernetes : Kubernetes Dashboard
-
-- Pour déployer le Dashboard, exécuter la commande suivante:
-
-```console
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
-```
-
-- Pour accéder au Dashboard, il faut établir une communication entre votre poste et le cluster Kubernetes :
-
-```console
-$ kubectl proxy
-```
-
-- L'accès se fait désormais sur :
-
-<http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/>
 
 

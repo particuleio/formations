@@ -43,7 +43,7 @@ et placez vous à l’intérieur. Toutes les commandes qui suivront seront lanc�
 
 ## Notre stack
 
-Nous utiliserons l’application Gogs comme démonstrateur. Gogs est un serveur Git écrit en Go
+Nous utiliserons l’application gitea comme démonstrateur. gitea est un serveur Git écrit en Go
 concurrent de Gitlab ou Bitbucket par exemple. L’application se compose du serveur lui même ainsi que
 d’une base de données. Ces deux parties seront déployées par Docker Compose.
 Copier/coller cette stack dans un fichier docker-compose.yml
@@ -51,41 +51,41 @@ Copier/coller cette stack dans un fichier docker-compose.yml
 ```
 version: '2'
 services:
-  gogs_server:
-    image: gogs/gogs:0.10.18
+  gitea_server:
+    image: gitea/gitea:1.19
     ports:
       - "3000:3000"
       - "10022:22"
     volumes:
-      - gogs_server_data:/data
+      - gitea_server_data:/data
     networks:
-      - gogs_network
-  gogs_db:
-    image: mysql:5.6
+      - gitea_network
+  gitea_db:
+    image: mysql:8
     volumes:
-      - gogs_db_data:/var/lib/mysql
+      - gitea_db_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=gogs
+      - MYSQL_DATABASE=gitea
     networks:
-      gogs_network:
+      gitea_network:
         aliases:
           - mysql
 volumes:
-  gogs_server_data:
+  gitea_server_data:
     driver: local
-  gogs_db_data:
+  gitea_db_data:
     driver: local
 networks:
-  gogs_network:
+  gitea_network:
 ```
 
 Avant de lancer votre stack, essayez de retrouver :
 
-- la version de Gogs utilisée
+- la version de gitea utilisée
 - La façon dont MySQL récupère son master password
 - Le nom que va prendre MySQL grâce au service discovery de Docker
-- Le port SSH sur lequel votre serveur Gogs écoutera
+- Le port SSH sur lequel votre serveur gitea écoutera
 
 Vous pouvez maintenant lancer votre stack :
 ```
@@ -97,8 +97,8 @@ $ docker-compose ps
 Name
  Command State Ports
 --------------------------------------------------------------------------------------------------------------------------
-10dockercomposegogs_gogs_db_1  docker-entrypoint.sh mysqld Up  3306/tcp
-10dockercomposegogs_gogs_server_1 /app/gogs/docker/start.sh ...  Up  0.0.0.0:10022->22/tcp, 0.0.0.0:3000->3000/tcp
+10dockercomposegitea_gitea_db_1  docker-entrypoint.sh mysqld Up  3306/tcp
+10dockercomposegitea_gitea_server_1 /app/gitea/docker/start.sh ...  Up  0.0.0.0:10022->22/tcp, 0.0.0.0:3000->3000/tcp
 ```
 
 Vérifiez que :
@@ -107,10 +107,10 @@ Vérifiez que :
 - Le réseau a bien été créé
 - Les conteneurs sont bien démarrés et visibles par le démon Docker
 
-## Configuration de Gogs
+## Configuration de gitea
 
-Rendez vous sur l’adresse de votre daemon Docker au port en écoute par Gogs, probablement
-localhost:3000 et procédez à l’installation de Gogs
+Rendez vous sur l’adresse de votre daemon Docker au port en écoute par gitea, probablement
+localhost:3000 et procédez à l’installation de gitea
 
 - Sur quelle adresse se trouve votre container MySQL ?
 - Quel est le password root de la base de données ?
@@ -144,19 +144,19 @@ $ docker-compose up -d
 
 ## Upgrade de l’application
 
-Notre serveur Gogs est en version 0.10.18.
-Mais une version 0.11.4 est disponible.
-Nous allons modifier notre fichier docker-compose.yml et changer le tag de notre image gogs/gogs pour
-utiliser la version 0.11.4 et relancer notre stack.
+Notre serveur gitea est en version 1.19.
+Mais une version 1.20 est disponible.
+Nous allons modifier notre fichier docker-compose.yml et changer le tag de notre image gitea/gitea pour
+utiliser la version 1.20 et relancer notre stack.
 
 ```
-$ sed -i ‘s/0.10.18/0.11.4/g’ docker-compose.yml
+$ sed -i ‘s/1.19/1.20/g’ docker-compose.yml
 $ docker-compose stop
 $ docker-compose rm -f
 $ docker-compose up -d
 ```
 
-Si vous retournez sur la page web Gogs, vous devriez voir la version changer :
+Si vous retournez sur la page web gitea, vous devriez voir la version changer :
 Bien entendu, Docker ne rend pas cette mise à jour magique. Il convient de tester cet upgrade dans un
 environnement de test pour s’assurer que la nouvelle version n’impacte pas le schéma de la base de
 données par exemple.

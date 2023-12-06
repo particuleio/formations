@@ -24,13 +24,13 @@ Deux méthodes d’installation sont disponibles, l’une via les packages pip, 
 page GitHub du projet docker-compose. Nous utiliserons cette dernière :
 
 ```
-# curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# curl -L "https://github.com/docker/compose/releases/download/v2.2.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 # chmod +x /usr/local/bin/docker-compose
 # docker-compose --version
-docker-compose version 1.11.2, build b31ff33
+docker-compose version v2.2.2, build b31ff33
 ```
 
-Une version supérieure à 1.11.2 conviendra aussi.
+Une version supérieure à v2.2.2 conviendra aussi.
 
 ## Préparation de l’environnement
 
